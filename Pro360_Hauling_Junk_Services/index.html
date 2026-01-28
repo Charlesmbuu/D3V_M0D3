@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pro360Hauling | Junk Removal & Hauling | 425-395-8807</title>
+  <meta name="description" content="Same-day junk removal in an area. Furniture disposal, appliance removal, estate cleanouts. Free quotes. Call 425-395-8807. Licensed & insured." />
+  <meta name="keywords" content="junk removal, hauling, auburn wa, furniture disposal, appliance removal, estate cleanout, 425-395-8807" />
+  <meta name="author" content="Pro360Hauling" />
+  <meta name="robots" content="index, follow" />
+  
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Pro360Hauling",
+    "description": "Junk removal and hauling services",
+   /* "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "29815 47th Pl S",
+      "addressLocality": "Auburn",
+      "addressRegion": "WA",
+      "postalCode": "98001" 
+    }, */
+    "telephone": "+1-425-395-8807",
+    "email": "pro360contact@gmail.com",
+    "openingHours": "Mo-Su 07:00-23:30",
+    "priceRange": "$100-$500",
+    "serviceType": ["Junk Removal", "Furniture Disposal", "Appliance Removal", "Estate Cleanouts"],
+    "areaServed": {
+      "@type": "GeoCircle",
+      "geoMidpoint": {
+        "@type": "GeoCoordinates",
+        "latitude": 47.30785,
+        "longitude": -122.235972
+      },
+      "geoRadius": "20000"
+    }
+  }
+  </script>
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#8b5a2b">
+  <link rel="icon" href="logo.jpg" type="image/jpeg">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Stripe (Payments) -->
+  <script src="https://js.stripe.com/v3/"></script>
+
+  <style>
+    :root {
+      --primary:#8b5a2b;
+      --secondary:#3e2a18;
+      --accent:#c68642;
+      --light:#f6efe9;
+      --dark:#2a1b12;
+    }
+    *{box-sizing:border-box;margin:0;padding:0;font-family:Segoe UI,system-ui,sans-serif}
+    body{background:var(--light);color:#333;line-height:1.6}
+    header {
+      background: linear-gradient(to right, var(--secondary), var(--primary));
+      color: #fff;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+    }
+    nav{display:flex;justify-content:space-between;align-items:center;max-width:1200px;margin:auto}
+    nav h1{font-size:1.8rem}
+    nav a{color:#fff;margin-left:1rem;text-decoration:none;font-weight:500}
+
+    .hero{max-width:1200px;margin:auto;padding:3rem 0;display:grid;grid-template-columns:1.2fr .8fr;gap:2rem}
+    .hero h2{font-size:2.6rem;margin-bottom:1rem;color: #fff}
+    .cta{display:inline-block;background:var(--accent);color:#fff;padding:.9rem 1.7rem;border-radius:8px;text-decoration:none;font-weight:700;transition:all 0.3s}
+    .hero h1 {
+      color: #fff;
+    }
+    .hero-card {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .hero-card p {
+      color: #fff;
+    }
+    .cta:hover{background:var(--primary);transform:scale(1.05)}
+    /* HERO CONTACT CARD — FINAL FIX */
+    .hero-contact {
+      background: #ffffff;
+      color: #2b2b2b;
+      backdrop-filter: none;
+    }
+
+    .hero-contact * {
+      color: inherit;
+    }
+
+    .hero-contact h3 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    .hero-contact p {
+      margin: 0.5rem 0;
+      font-size: 0.95rem;
+    }
+
+    .hero-contact i {
+      color: var(--primary);
+      margin-right: 6px;
+    }
+
+    .hero-contact .hours {
+      color: #555;
+      font-size: 0.9rem;
+    }
+
+    .hero-contact {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 2rem;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+}
+
+.hero-contact h3 {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.hero-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 1.8rem;
+}
+
+.hero-actions .cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  padding: 0.9rem 1rem;
+  font-size: 1rem;
+  font-weight: 700;
+
+  border-radius: 12px;
+  text-decoration: none;
+  color: #fff;
+
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.hero-actions .cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.25);
+}
+
+.hero-actions .whatsapp {
+  background: #25D366;
+}
+
+.hero-actions .call {
+  background: #8b5a2b;
+}
+
+
+    .hero-actions {
+      display: flex;
+      gap: 0.7rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-actions .cta {
+      flex: 1;
+      text-align: center;
+    }
+
+    .hero-actions .cta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-indent: 0 !important;
+      overflow: visible !important;
+    }
+
+    .hero-actions .whatsapp {
+      background: #25D366;
+    }
+
+    .hero-actions .call {
+      background: var(--primary);
+    }
+
+    section{padding:4rem 1.5rem}
+    .container{max-width:1200px;margin:auto}
+
+    .card{background:#fff;padding:2rem;border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.12);transition:.3s}
+    .card:hover{transform:translateY(-5px)}
+
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem}
+
+    /* FORM */
+    input,textarea,select{width:100%;padding:.9rem;margin-bottom:1rem;border-radius:8px;border:1px solid #ccc;font-size:16px}
+    button{background:var(--primary);color:#fff;padding:.9rem;border:none;border-radius:8px;width:100%;font-size:1rem;cursor:pointer;transition:all 0.3s}
+    button:hover{background:var(--secondary);transform:scale(1.02)}
+
+    /* REVIEWS */
+    .review{background:#fff;padding:1.5rem;border-radius:12px;transition:all 0.3s}
+    .review:hover{transform:translateY(-3px)}
+    .stars{color:#f1c40f;font-size:1.2rem}
+
+    /* MAP */
+    iframe{width:100%;border:0;border-radius:12px;height:320px}
+
+    footer{background:var(--secondary);color:#aaa;padding:3rem 1.5rem;text-align:center}
+    footer a{color:#aaa;text-decoration:none}
+    footer h4{color:#fff;margin-bottom:1rem}
+
+    @media(max-width:900px){
+      .hero{grid-template-columns:1fr}
+      nav{flex-direction:column;gap:1rem}
+      nav a{margin:0 .5rem}
+    }
+  
+    /* FOOTER BRANDING */
+    .footer-grid {
+      align-items: flex-start;
+    }
+
+    .footer-brand {
+      text-align: left;
+    }
+
+    .footer-logo {
+      max-width: 80px;
+      height: auto;
+      margin-bottom: 0.6rem;
+      display: block;
+    }
+
+    .footer-tagline {
+      font-style: italic;
+      color: #ccc;
+      margin: 0.3rem 0;
+    }
+
+    .footer-desc {
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+
+
+    /* BEFORE / AFTER SLIDER */
+    .ba-container{position:relative;overflow:hidden;border-radius:14px;height:400px}
+    .ba-container img{width:100%;height:100%;display:block;object-fit:cover}
+    .ba-after{position:absolute;top:0;left:0;height:100%;width:50%;overflow:hidden}
+    .ba-after img{height:100%;object-fit:cover}
+    .ba-slider{position:absolute;top:0;left:50%;height:100%;width:4px;background:#fff;cursor:ew-resize;z-index:10}
+    .ba-handle{position:absolute;top:50%;left:-14px;transform:translateY(-50%);background:var(--primary);color:#fff;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px}
+  
+    /* GALLERY */
+    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-top:2rem}
+    .gallery img{width:100%;height:180px;object-fit:cover;border-radius:12px;transition:.3s}
+    .gallery img:hover{transform:scale(1.05)}
+
+    /* SCROLL ANIMATIONS */
+    .reveal{opacity:0;transform:translateY(40px);transition:all .8s ease}
+    .reveal.active{opacity:1;transform:none}
+  
+
+    /* FLOATING CONTACT BUTTONS 
+    .float-whatsapp,
+    .float-call {
+      position: fixed;
+      right: 20px;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      text-decoration: none !important;
+      line-height: 1;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+
+      z-index: 1000;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .float-whatsapp {
+      bottom: 90px;
+      background: #25D366;
+    }
+
+    .float-call {
+      bottom: 20px;
+      background: #8b5a2b; 
+    }
+
+    .float-whatsapp i,
+    .float-call i {
+      font-size: 24px;
+      color: #fff;
+      line-height: 1;
+      display: block;
+      pointer-events: none;
+    }
+
+    /* Hover polish 
+    .float-whatsapp:hover,
+    .float-call:hover {
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 14px 30px rgba(0,0,0,0.3);
+    }
+
+    /* FLOATING ACTIONS STACK */
+    .floating-actions {
+      position: fixed;
+      right: 20px;
+      bottom: 100px; /* stays above footer */
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      z-index: 999;
+    }
+
+    /* SHARED BUTTON STYLE */
+    .floating-actions button,
+    .floating-actions .fab {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: none;
+      background: #6b3f1d; /* brand brown */
+      color: #fff;
+      font-size: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    /* HOVER */
+    .floating-actions button:hover,
+    .floating-actions .fab:hover {
+      background: #8a5629;
+      transform: translateY(-2px);
+    }
+
+
+    /* BACK TO TOP BUTTON 
+    #backToTop {
+      position: fixed;
+      right: 20px;
+      bottom: 160px; /* Stacks nicely above WhatsApp & Call 
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--secondary);
+      color: #fff;
+      border: none;
+      font-size: 22px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      z-index: 998;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }*/
+
+    #backToTop:hover {
+      background: var(--primary);
+      transform: translateY(-4px);
+    }
+
+    /* Show when scrolling */
+    #backToTop.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* BADGES */
+    .badges{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1rem}
+    .badge {
+      background: rgba(255, 255, 255, 0.2);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    @media (max-width: 768px) {
+      /* Hero section mobile fixes */
+      .hero h1 { font-size: 2rem; }
+      .hero h2 { font-size: 1.4rem; }
+      
+      /* Before/after section mobile */
+      .before-after-container {
+        flex-direction: column;
+      }
+      
+      /* Contact buttons */
+      .cta { padding: 0.8rem 1.2rem; font-size: 0.9rem; }
+    }
+
+    @media (max-width: 768px) {
+      .footer-brand {
+        text-align: center;
+      }
+
+      .footer-logo {
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+
+    /* Before/After Comparison Styles */
+    .comparison-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease;
+    }
+
+    .comparison-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .detail-item {
+      text-align: center;
+      min-width: 120px;
+    }
+
+    .detail-icon {
+      transition: transform 0.3s ease;
+    }
+
+    .detail-item:hover .detail-icon {
+      transform: scale(1.1);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .comparison-card {
+        min-width: 100%;
+      }
+      
+      .detail-item {
+        min-width: 100px;
+      }
+    }
+
+
+
+  </style>
+</head>
+
+
+<div class="floating-actions">
+
+  <!-- BACK TO TOP -->
+  <button id="backToTop" aria-label="Back to top">
+    ↑
+  </button>
+
+  <!-- CALL -->
+  <a href="tel:+14253958807" class="fab fab-call" aria-label="Call us">
+    ☎
+  </a>
+
+  <!-- EMAIL -->
+  <a href="mailto:pro360contact@gmail.com" class="fab fab-email" aria-label="Email us">
+    ✉
+  </a>
+
+</div>
+
+<div class="floating-actions">
+
+  <button id="backToTop" aria-label="Back to top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <a href="tel:+14253958807" class="fab fab-call" aria-label="Call us">
+    <i class="fa-solid fa-phone"></i>
+  </a>
+
+  <a href="mailto:pro360contact@gmail.com" class="fab fab-email" aria-label="Email us">
+    <i class="fa-solid fa-envelope"></i>
+  </a>
+
+</div>
+
+
+<body>
+<header>
+  <nav>
+    <div style="display:flex;align-items:center;gap:.7rem">
+      <img src="logo.jpg" alt="Pro360Hauling Logo - Professional junk removal services" style="height:44px;border-radius:8px">
+      <h1>Pro360Hauling</h1><i class="fa-solid fa-truck"></i>
+    </div>
+  
+    <div>
+      <a href="#quote">Free Quote</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#services">Services</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#map">Location</a>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <div>
+      <h1 style="font-size:2.8rem;margin-bottom:1rem">WE GRIND, YOU SHINE.</h1>
+      <h2 style="font-size:1.8rem;margin-bottom:1.5rem;color:var(--accent)">Professional Junk Removal</h2>
+      <p style="font-size:1.2rem;margin-bottom:2rem">Book online • Get instant pricing • Same-day service • Licensed & Insured</p>
+      <div class="badges">
+        <div class="badge">✅ Same-Day Service</div>
+        <div class="badge">✅ Free Quotes</div>
+        <div class="badge">✅ Licensed & Insured</div>
+        <div class="badge">✅ Eco-Friendly</div>
+      </div>
+      <a href="#quote" class="cta" style="margin-top:1.5rem"><i class="fa-solid fa-calendar-check"></i> Book Free Pickup</a>
+    </div>
+    <div class="card hero-contact">
+      <h3>Contact Us Now</h3>
+
+      <p><i class="fa-solid fa-phone"></i> <strong>(425) 395-8807</strong></p>
+      <p><i class="fa-solid fa-envelope"></i> pro360contact@gmail.com</p>
+      <!-- p><i class="fa-solid fa-location-dot"></i> Auburn, WA 98001</p -->
+      <p class="hours"><i class="fa-solid fa-clock"></i> Available 7 days • 7am–11.30pm</p>
+
+      <div class="hero-actions">
+        <a href="https://wa.me/14253958807" class="cta whatsapp">
+          <i class="fa-brands fa-whatsapp"></i> WhatsApp
+        </a>
+
+        <a href="tel:4253958807" class="cta call">
+          <i class="fa-solid fa-phone"></i> Call Now
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+</header>
+
+<section id="services" class="reveal">
+  <div class="container">
+    <h2 style="text-align:center;margin-bottom:2rem;color:var(--primary)"><i class="fa-solid fa-list-check"></i> Our Services</h2>
+    <div class="grid">
+      <div class="card" style="text-align:center">
+        <i class="fa-solid fa-couch" style="font-size:3rem;color:var(--accent);margin-bottom:1rem"></i>
+        <h3>Junk Removal</h3>
+        <p>Furniture, appliances, household junk, and more</p>
+      </div>
+      <div class="card" style="text-align:center">
+        <i class="fa-solid fa-tv" style="font-size:3rem;color:var(--accent);margin-bottom:1rem"></i>
+        <h3>Appliance Removal</h3>
+        <p>TVs, refrigerators, washers, dryers, microwaves</p>
+      </div>
+      <div class="card" style="text-align:center">
+        <i class="fa-solid fa-house" style="font-size:3rem;color:var(--accent);margin-bottom:1rem"></i>
+        <h3>Estate Cleanouts</h3>
+        <p>Full property cleanouts, moving cleanups</p>
+      </div>
+      <div class="card" style="text-align:center">
+        <i class="fa-solid fa-tree" style="font-size:3rem;color:var(--accent);margin-bottom:1rem"></i>
+        <h3>Yard Waste</h3>
+        <p>Branches, leaves, debris, and green waste</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="quote" class="reveal" style="background:#f6efe9">
+  <div class="container">
+    <div class="card">
+      <h3><i class="fa-solid fa-file-invoice-dollar"></i> Get a Free Quote (AI-Powered)</h3>
+      <p>Upload photos and receive a smart estimated quote instantly, followed by a final confirmation.</p>
+
+      <form action="https://formsubmit.co/pro360contact@gmail.com" method="POST" enctype="multipart/form-data" oninput="aiQuote()">
+        <input type="hidden" name="_subject" value="New AI Quote Request - Pro360Hauling">
+        <input type="hidden" name="_replyto" value="pro360contact@gmail.com">
+
+        <input name="name" placeholder="Full Name" required>
+        <input type="email" name="email" placeholder="Email Address" required>
+        <input type="tel" name="phone" placeholder="Phone Number" required>
+
+        <select id="aiService" name="service" required>
+          <option value="100">Residential Junk Removal</option>
+          <option value="150">Commercial Cleanout</option>
+          <option value="180">Construction Debris</option>
+          <option value="120">Yard Waste Removal</option>
+          <option value="200">Appliance Removal</option>
+          <option value="250">Estate Cleanout</option>
+        </select>
+
+        <select id="aiLoad" name="load_size" required>
+          <option value="1">Small Load (Pickup truck)</option>
+          <option value="1.5">Medium Load (10-15 yd)</option>
+          <option value="2">Large Load (20+ yd)</option>
+        </select>
+
+        <input type="file" name="photos" accept="image/*" multiple>
+        <textarea name="details" placeholder="Stairs, distance, heavy items, access notes" rows="3"></textarea>
+
+        <h3 id="aiPrice" style="color:var(--primary);margin:1rem 0">Estimated: $100</h3>
+        <button type="submit"><i class="fa-solid fa-paper-plane"></i> Request Final Quote</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section id="pricing" class="reveal">
+  <div class="container grid">
+    <div class="card">
+      <h3><i class="fa-solid fa-calendar-check"></i> Schedule Pickup</h3>
+      <form action="https://formsubmit.co/pro360contact@gmail.com" method="POST">
+        <input name="name" placeholder="Full Name" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="tel" name="phone" placeholder="Phone (425) 395-8807" required>
+        <input type="date" name="date" required>
+        <input type="time" name="time" required>
+        <textarea name="details" placeholder="Describe items (e.g., sofa, mattress, boxes...)" rows="3"></textarea>
+        <button><i class="fa-solid fa-calendar-plus"></i> Send Request</button>
+      </form>
+    </div>
+
+    <div class="card">
+      <h3><i class="fa-solid fa-calculator"></i> Price Estimator</h3>
+      <select id="size" onchange="estimate()">
+        <option value="100">Small Load (Pickup truck)</option>
+        <option value="200">Medium Load (10-15 yd)</option>
+        <option value="350">Large Load (20+ yd)</option>
+      </select>
+      <select id="urgency" onchange="estimate()">
+        <option value="1">Standard (Next day)</option>
+        <option value="1.3">Same Day (+30%)</option>
+        <option value="1.5">Emergency (+50%)</option>
+      </select>
+      <h2 id="price" style="color:var(--primary);margin:1rem 0">$100</h2>
+      <button onclick="pay()"><i class="fa-solid fa-credit-card"></i> Pay & Book Now</button>
+      <p style="font-size:.9rem;color:#666;margin-top:.5rem"><i class="fa-solid fa-info-circle"></i> Final price confirmed after photos</p>
+    </div>
+  </div>
+</section>
+
+<section id="media" class="reveal" style="background:#f6efe9;">
+  <div class="container">
+
+    <!-- SEO-Friendly Heading -->
+    <h2 style="text-align:center;margin-bottom:0.8rem;color:var(--primary)">
+      <i class="fa-solid fa-images"></i> Real Junk Removal Results
+    </h2>
+
+    <p style="text-align:center;max-width:720px;margin:0 auto 2.5rem;color:#666">
+      See real before & after junk removal projects completed by Pro360Hauling. 
+      From cluttered garages to clean, usable spaces — we deliver fast, professional results.
+    </p>
+
+    <!-- Comparison Cards -->
+    <div style="display:flex;flex-wrap:wrap;gap:2rem;justify-content:center">
+
+      <!-- Project 1 -->
+      <div class="comparison-card" style="flex:1;min-width:300px;max-width:420px">
+        <div class="card-header"
+             style="background:linear-gradient(to right,var(--primary),#6b4621);
+                    color:white;padding:12px;text-align:center;font-weight:600">
+          Garage Cleanout – Before & After
+        </div>
+
+        <img
+          src="https://i.pinimg.com/1200x/1c/ff/96/1cff96a3a2f7df69645530b6fba449b8.jpg"
+          alt="Garage junk removal before and after in Auburn Washington"
+          loading="lazy"
+          style="width:100%;height:280px;object-fit:cover"
+        >
+
+        <div style="padding:1rem;text-align:center">
+          <h3 style="margin-bottom:0.4rem;color:var(--dark)">Cluttered to Clean</h3>
+          <p style="font-size:0.95rem;color:#666">
+            Old furniture, scrap, and debris removed in one visit.
+          </p>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="comparison-card" style="flex:1;min-width:300px;max-width:420px">
+        <div class="card-header"
+             style="background:linear-gradient(to right,var(--accent),#d89a52);
+                    color:white;padding:12px;text-align:center;font-weight:600">
+          Residential Junk Removal – Before & After
+        </div>
+
+        <img
+          src="https://i.pinimg.com/1200x/cb/36/d6/cb36d67f2f567cca08c6a7facf2452a9.jpg"
+          alt="Residential junk removal before and after Auburn WA"
+          loading="lazy"
+          style="width:100%;height:280px;object-fit:cover"
+        >
+
+        <div style="padding:1rem;text-align:center">
+          <h3 style="margin-bottom:0.4rem;color:var(--dark)">Ready to Use Space</h3>
+          <p style="font-size:0.95rem;color:#666">
+            Clean, organized, and ready for storage or parking.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Conversion CTA -->
+    <div style="text-align:center;margin-top:3rem">
+      <p style="font-weight:600;margin-bottom:1rem;color:var(--secondary)">
+        Want results like these at your home or business?
+      </p>
+      <a href="#quote" class="cta">
+        <i class="fa-solid fa-calendar-check"></i> Get a Free Junk Removal Quote
+      </a>
+    </div>
+
+  </div>
+</section>
+
+
+    <!-- Gallery -->
+    <h2 style="margin-top:4rem;margin-bottom:1.5rem;color:var(--primary)"><i class="fa-solid fa-camera-retro"></i> Project Gallery</h2>
+    <p style="text-align:center;margin-bottom:2rem;color:#666">Real junk removal projects completed in an area</p>
+
+    <div class="gallery">
+      <!-- Your main before/after image -->
+      <img loading="lazy" 
+           src="https://i.pinimg.com/736x/b7/78/ae/b778ae1686ba283b398e89541e2b9c90.jpg" 
+           alt="Garage cleanout before and after - Auburn junk removal">
+
+      <!-- Junk removal truck -->
+      <img loading="lazy" 
+           src="https://i.pinimg.com/1200x/3d/70/dd/3d70dd6c967f4395b31df09d5adb7efc.jpg" 
+           alt="Junk removal truck loading - Pro360Hauling Auburn WA">
+      
+      <!-- Furniture removal -->
+      <img loading="lazy" 
+           src="https://i.pinimg.com/736x/54/e3/00/54e3002b42c72eca5146363d952d9019.jpg" 
+           alt="Furniture disposal service Auburn">
+      
+      <!-- Construction debris -->
+      <img loading="lazy" 
+           src="https://i.pinimg.com/1200x/4b/4e/b1/4b4eb17e207972130518edd1f0f1b916.jpg" 
+           alt="Construction debris removal Auburn WA">
+      
+      <!-- Yard waste -->
+      <img loading="lazy" 
+           src="https://i.pinimg.com/1200x/ae/6b/8a/ae6b8a70c2cb552608294c691b799bab.jpg" 
+           alt="Yard waste cleanup and removal Auburn">
+      
+      <!-- Appliance removal -->
+      <img loading="lazy" 
+           src="https://i.pinimg.com/736x/4a/bf/ca/4abfcac38d96f8f6ca75e8fed22815f8.jpg" 
+           alt="Appliance removal service Auburn Washington">
+      
+      <!-- Estate cleanout -->
+      <img loading="lazy" 
+           src="https://i.pinimg.com/1200x/d8/fa/51/d8fa519e169728d6924f0becbdd442ca.jpg" 
+           alt="Estate cleanout services Auburn WA">
+      
+      <!-- Team working -->
+      <img loading="lazy" 
+           src="https://i.pinimg.com/1200x/4e/d3/17/4ed317e3b3c407305596a600e42ac5bd.jpg" 
+           alt="Professional junk removal team Auburn">
+    </div>
+  </div>
+</section>
+
+<section id="reviews" class="reveal" style="background:#f6efe9;">
+  <div class="container">
+    <h2 style="text-align:center;margin-bottom:2rem;color:var(--primary)"><i class="fa-solid fa-star"></i> Customer Reviews</h2>
+    <div class="grid">
+      <div class="review">
+        <div class="stars">★★★★★</div>
+        <p>"Fast & professional! Had my old furniture removed same day. Highly recommend Pro360Hauling!"</p>
+        <p><strong>– Auburn Client</strong></p>
+      </div>
+      <div class="review">
+        <div class="stars">★★★★★</div>
+        <p>"Emergency cleanout after a remodel. They came within 2 hours and had everything gone. Amazing service!"</p>
+        <p><strong>– Business Owner</strong></p>
+      </div>
+      <div class="review">
+        <div class="stars">★★★★★</div>
+        <p>"Affordable & friendly crew. Removed 3 truckloads of yard waste. Will definitely use again!"</p>
+        <p><strong>– Homeowner</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="map">
+  <div class="container">
+    <h2 style="text-align:center;margin-bottom:1.5rem;color:var(--primary)"><i class="fa-solid fa-map-marker-alt"></i> Serving all communities</h2>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d21637.72064032628!2d-122.235972!3d47.30785!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDfCsDAyJzQwLjMiTiAxMjLCsDE1JzAxLjciVw!5e0!3m2!1sen!2sus!4v1699999999999!5m2!1sen!2sus" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <div style="text-align:center;margin-top:1.5rem">
+      <!-- p><strong><i class="fa-solid fa-location-dot"></i> Location:</strong> 29815 47th Pl S, Auburn, WA 98001</p -->
+      <p><strong><i class="fa-solid fa-phone"></i> Phone:</strong> <a href="tel:4253958807">(425) 395-8807</a></p>
+      <p><strong><i class="fa-solid fa-clock"></i> Hours:</strong> Mon-Sun 7:00 AM - 11:30 PM</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <!-- a href="https://wa.me/14253958807" class="whatsapp" aria-label="WhatsApp Booking"><i class="fa-brands fa-whatsapp"></i></a>
+  <a href="tel:4253958807" class="email" aria-label="Call Now"><i class="fa-solid fa-phone"></i></a -->
+  
+  <div class="container grid footer-grid" style="margin-bottom:2rem">
+
+  <!-- BRAND COLUMN -->
+  <div class="footer-brand">
+    <img 
+      src="logo.jpg" 
+      alt="Pro360Hauling Junk Removal Logo"
+      class="footer-logo"
+      loading="lazy"
+    >
+    <h4>Pro360Hauling</h4>
+    <p class="footer-tagline">"We Grind, You Shine"</p>
+    <p class="footer-desc">Professional junk removal & hauling services</p>
+  </div>
+
+    <div>
+      <h4>Quick Links</h4>
+      <p><a href="#quote">Free Quote</a></p>
+      <p><a href="#services">Services</a></p>
+      <p><a href="#pricing">Pricing</a></p>
+      <p><a href="#map">Location</a></p>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <p><i class="fa-solid fa-phone"></i> (425) 395-8807</p>
+      <p><i class="fa-solid fa-envelope"></i> pro360contact@gmail.com</p>
+      <!-- p><i class="fa-solid fa-location-dot"></i> Auburn, WA 98001</p-->
+    </div>
+  </div>
+  
+  <div style="border-top:1px solid #444;padding-top:1.5rem">
+    <p>© 2026 Pro360Hauling. All rights reserved.</p>
+    <p>Junk removal services in Auburn, Kent, Federal Way, Renton & surrounding areas</p>
+  </div>
+</footer>
+
+<script>
+  // AI QUOTE ESTIMATOR
+  function aiQuote(){
+    let service = document.getElementById('aiService')?.value || 100;
+    let load = document.getElementById('aiLoad')?.value || 1;
+    let estimate = Math.round(service * load);
+    let el = document.getElementById('aiPrice');
+    if(el) el.innerText = 'Estimated: $' + estimate;
+  }
+
+  // PRICE ESTIMATOR
+  function estimate(){
+    let size = document.getElementById('size').value;
+    let urgency = document.getElementById('urgency').value;
+    let price = Math.round(size * urgency);
+    document.getElementById('price').innerText = '$' + price;
+  }
+
+  // PAYMENT FUNCTION
+  function pay(){
+    // In production: Replace with Stripe integration
+    let price = document.getElementById('price').innerText;
+    alert('Payment integration ready! Stripe will process ' + price + ' for your booking.\n\nFor demo: Email pro360contact@gmail.com or call (425) 395-8807.');
+  }
+
+  // BEFORE / AFTER SLIDER
+  document.querySelectorAll('[data-slider]').forEach(container=>{
+    const after = container.querySelector('.ba-after');
+    const slider = container.querySelector('.ba-slider');
+    let dragging = false;
+
+    const move = (x) => {
+      const rect = container.getBoundingClientRect();
+      let pos = ((x - rect.left) / rect.width) * 100;
+      pos = Math.max(0, Math.min(100, pos));
+      after.style.width = pos + '%';
+      slider.style.left = pos + '%';
+    };
+
+    slider.addEventListener('mousedown', () => dragging = true);
+    window.addEventListener('mouseup', () => dragging = false);
+    window.addEventListener('mousemove', e => dragging && move(e.clientX));
+
+    slider.addEventListener('touchstart', () => dragging = true);
+    window.addEventListener('touchend', () => dragging = false);
+    window.addEventListener('touchmove', e => dragging && move(e.touches[0].clientX));
+  });
+
+  // SCROLL ANIMATION OBSERVER
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => e.isIntersecting && e.target.classList.add('active'));
+  }, {threshold: 0.2});
+  
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // PWA SERVICE WORKER
+  if('serviceWorker' in navigator){
+    navigator.serviceWorker.register('sw.js').catch(console.log);
+  }
+
+  // Initialize pricing
+  window.onload = function() {
+    aiQuote();
+    estimate();
+  };
+
+  // BACK TO TOP BUTTON
+  const backToTop = document.getElementById('backToTop');
+
+  window.addEventListener('scroll', () => {
+    backToTop.classList.toggle('show', window.scrollY > 400);
+  });
+
+  backToTop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  document.getElementById("backToTop").onclick = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };    
+
+</script>
+
+<!-- Google Analytics (Add your ID later) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+</script>
+</body>
+</html>
