@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Provider Dashboard - Mtaa Skills</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --mtaa-primary: #2c5aa0;
+            --mtaa-secondary: #f8a01c;
+            --mtaa-success: #28a745;
+            --mtaa-light: #f8f9fa;
+            --mtaa-dark: #343a40;
+        }
+        
+        .mtaa-bg-primary {
+            background-color: var(--mtaa-primary) !important;
+        }
+        
+        .mtaa-text-primary {
+            color: var(--mtaa-primary) !important;
+        }
+        
+        .mtaa-badge {
+            background-color: var(--mtaa-secondary);
+            color: white;
+        }
+        
+        .sidebar-link.active {
+            background-color: var(--mtaa-primary);
+            border-color: var(--mtaa-primary);
+            color: white;
+        }
+        
+        .stat-card {
+            transition: transform 0.2s;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .profile-image-container {
+            width: 150px;
+            height: 150px;
+            overflow: hidden;
+            border-radius: 50%;
+            margin: 0 auto;
+        }
+        
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .rating-stars {
+            color: var(--mtaa-secondary);
+        }
+        
+        .quick-action-btn {
+            transition: all 0.2s;
+        }
+        
+        .quick-action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark mtaa-bg-primary">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="{% url 'home' %}">
+                <img src="#" alt="Mtaa Skills Logo" height="30" class="d-inline-block align-text-top me-2">
+                Mtaa Skills
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="navbar-nav ms-auto">
+                    <a class="nav-link" href="{% url 'profile' %}">
+                        <i class="bi bi-person-circle me-1"></i>{{ user.username }}
+                    </a>
+                    <a class="nav-link" href="{% url 'logout' %}">
+                        <i class="bi bi-box-arrow-right me-1"></i>Logout
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3 mb-4">
+                <div class="card shadow-sm">
+                    <div class="card-header mtaa-bg-primary text-white">
+                        <h5 class="card-title mb-0">Dashboard</h5>
+                    </div>
+                    <div class="list-group list-group-flush">
+                        <a href="{% url 'services:provider_dashboard' %}" class="list-group-item list-group-item-action sidebar-link active" aria-current="page">
+                            <i class="bi bi-speedometer2 me-2"></i>Overview
+                        </a>
+                        <a href="{% url 'services:provider_detail' provider.id %}" class="list-group-item list-group-item-action">
+                            <i class="bi bi-eye me-2"></i>View Public Profile
+                        </a>
+                        <a href="/bookings/available-jobs/" class="list-group-item list-group-item-action">
+                            <i class="bi bi-briefcase me-2"></i>Available Jobs
+                        </a>
+                        <a href="{% url 'my_jobs' %}" class="list-group-item list-group-item-action">
+                            <i class="bi bi-list-task me-2"></i>My Assigned Jobs
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action">
+                            <i class="bi bi-chat-dots me-2"></i>Messages
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action">
+                            <i class="bi bi-graph-up me-2"></i>Earnings
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Stats Card -->
+                <div class="card mt-4 shadow-sm">
+                    <div class="card-header">
+                        <h6 class="card-title mb-0">This Month</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Jobs Completed:</span>
+                            <strong>5</strong>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Earnings:</span>
+                            <strong>KES 12,500</strong>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <span>Response Rate:</span>
+                            <strong>92%</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Main Content -->
+            <div class="col-md-9">
+                <!-- Header with Status -->
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <div>
+                        <h1 class="h2 mtaa-text-primary">Provider Dashboard</h1>
+                        <p class="text-muted mb-0">Welcome back, {{ provider.business_name }}</p>
+                    </div>
+                    <div>
+                        <span class="badge bg-success fs-6 p-2">Active</span>
+                        <span class="badge mtaa-badge fs-6 p-2 ms-1">Verified</span>
+                    </div>
+                </div>
+                
+                <!-- Messages -->
+                {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                    {% endfor %}
+                {% endif %}
+                
+                <!-- Quick Stats -->
+                <div class="row mb-4">
+                    <div class="col-md-3">
+                        <div class="card text-center stat-card shadow-sm">
+                            <div class="card-body">
+                                <h3 class="text-primary">{{ provider.total_jobs_completed }}</h3>
+                                <p class="text-muted mb-0">Jobs Completed</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card text-center stat-card shadow-sm">
+                            <div class="card-body">
+                                <h3 class="text-success">KES {{ provider.hourly_rate }}</h3>
+                                <p class="text-muted mb-0">Hourly Rate</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card text-center stat-card shadow-sm">
+                            <div class="card-body">
+                                <h3 class="text-info">{{ provider.experience_years }}</h3>
+                                <p class="text-muted mb-0">Years Experience</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card text-center stat-card shadow-sm">
+                            <div class="card-body">
+                                <h3 class="text-warning">{{ provider.average_rating|default:"0" }}</h3>
+                                <p class="text-muted mb-0">
+                                    <span class="rating-stars">
+                                        {% for i in "12345" %}
+                                            {% if forloop.counter <= provider.average_rating %}
+                                                ★
+                                            {% else %}
+                                                ☆
+                                            {% endif %}
+                                        {% endfor %}
+                                    </span>
+                                    Average Rating
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Provider Info Card -->
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="card-title mb-0">Your Profile</h5>
+                        <div>
+                            <a href="#" class="btn btn-sm btn-outline-primary me-1">
+                                <i class="bi bi-pencil me-1"></i>Edit Profile
+                            </a>
+                            <a href="#" class="btn btn-sm btn-outline-secondary">
+                                <i class="bi bi-eye me-1"></i>Preview
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-md-3 text-center">
+                                <div class="profile-image-container mb-3">
+                                    {% if provider.profile_picture %}
+                                    <img src="{{ provider.profile_picture.url }}" class="profile-image" alt="{{ provider.business_name }}">
+                                    {% else %}
+                                    <div class="bg-light h-100 d-flex align-items-center justify-content-center">
+                                        <span class="text-muted">No Image</span>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                <div class="rating mb-2">
+                                    <span class="rating-stars fs-5">
+                                        {% for i in "12345" %}
+                                            {% if forloop.counter <= provider.average_rating %}
+                                                ★
+                                            {% else %}
+                                                ☆
+                                            {% endif %}
+                                        {% endfor %}
+                                    </span>
+                                    <span class="text-muted ms-1">({{ provider.total_reviews|default:"0" }})</span>
+                                </div>
+                            </div>
+                            <div class="col-md-9">
+                                <h4 class="mb-1">{{ provider.business_name }}</h4>
+                                
+                                <div class="mb-3">
+                                    {% for category in provider.service_categories.all %}
+                                    <span class="badge bg-primary me-1">{{ category.name }}</span>
+                                    {% endfor %}
+                                </div>
+                                
+                                <p class="card-text">{{ provider.description|truncatewords:50 }}</p>
+                                
+                                <div class="row">
+                                    <div class="col-sm-6 mb-2">
+                                        <i class="bi bi-geo-alt me-1 text-muted"></i>
+                                        <strong>Location:</strong> {{ provider.location|default:"Not set" }}
+                                    </div>
+                                    <div class="col-sm-6 mb-2">
+                                        <i class="bi bi-telephone me-1 text-muted"></i>
+                                        <strong>Phone:</strong> {{ provider.phone|default:"Not set" }}
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-sm-6 mb-2">
+                                        <i class="bi bi-envelope me-1 text-muted"></i>
+                                        <strong>Email:</strong> {{ provider.email|default:"Not set" }}
+                                    </div>
+                                    <div class="col-sm-6 mb-2">
+                                        <i class="bi bi-calendar me-1 text-muted"></i>
+                                        <strong>Member Since:</strong> {{ provider.created_at|date:"M d, Y" }}
+                                    </div>
+                                </div>
+                                
+                                <div class="mt-3">
+                                    <div class="progress mb-2" style="height: 8px;">
+                                        <div class="progress-bar bg-success" role="progressbar" style="width: 85%" 
+                                             aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <small class="text-muted">Profile completeness: 85%</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Recent Activity & Quick Actions -->
+                <div class="row">
+                    <!-- Recent Activity -->
+                    <div class="col-md-6">
+                        <div class="card shadow-sm h-100">
+                            <div class="card-header">
+                                <h5 class="card-title mb-0">Recent Activity</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="list-group list-group-flush">
+                                    <div class="list-group-item px-0">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <h6 class="mb-1">New job request</h6>
+                                            <small class="text-muted">2 hours ago</small>
+                                        </div>
+                                        <p class="mb-1">Plumbing repair needed in Westlands</p>
+                                        <small class="text-muted">KES 3,500 • 3 hours estimated</small>
+                                    </div>
+                                    <div class="list-group-item px-0">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <h6 class="mb-1">Job completed</h6>
+                                            <small class="text-muted">1 day ago</small>
+                                        </div>
+                                        <p class="mb-1">Electrical installation in Karen</p>
+                                        <small class="text-muted">Rating: ★★★★☆</small>
+                                    </div>
+                                    <div class="list-group-item px-0">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <h6 class="mb-1">Payment received</h6>
+                                            <small class="text-muted">2 days ago</small>
+                                        </div>
+                                        <p class="mb-1">KES 5,000 for carpentry work</p>
+                                        <small class="text-muted">Completed on time</small>
+                                    </div>
+                                </div>
+                                <a href="#" class="btn btn-outline-primary btn-sm mt-3 w-100">View All Activity</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Quick Actions -->
+                    <div class="col-md-6">
+                        <div class="card shadow-sm h-100">
+                            <div class="card-header">
+                                <h5 class="card-title mb-0">Quick Actions</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row g-2">
+                                    <div class="col-12">
+                                        <a href="/bookings/available-jobs/" class="btn btn-outline-primary quick-action-btn w-100 py-3 d-flex align-items-center justify-content-center">
+                                            <i class="bi bi-briefcase me-2 fs-4"></i>
+                                            <div class="text-start">
+                                                <div class="fw-bold">View Available Jobs</div>
+                                                <small class="text-muted">Find new opportunities</small>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-12">
+                                        <a href="{% url 'my_jobs' %}" class="btn btn-outline-success quick-action-btn w-100 py-3 d-flex align-items-center justify-content-center">
+                                            <i class="bi bi-list-task me-2 fs-4"></i>
+                                            <div class="text-start">
+                                                <div class="fw-bold">My Assigned Jobs</div>
+                                                <small class="text-muted">Manage current work</small>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-12">
+                                        <a href="#" class="btn btn-outline-info quick-action-btn w-100 py-3 d-flex align-items-center justify-content-center">
+                                            <i class="bi bi-calendar-check me-2 fs-4"></i>
+                                            <div class="text-start">
+                                                <div class="fw-bold">Update Availability</div>
+                                                <small class="text-muted">Set your working hours</small>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-12">
+                                        <a href="#" class="btn btn-outline-warning quick-action-btn w-100 py-3 d-flex align-items-center justify-content-center">
+                                            <i class="bi bi-graph-up me-2 fs-4"></i>
+                                            <div class="text-start">
+                                                <div class="fw-bold">View Earnings</div>
+                                                <small class="text-muted">Check your income</small>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light mt-5 py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Mtaa Skills</h5>
+                    <p>Connecting skilled professionals with local opportunities.</p>
+                </div>
+                <div class="col-md-3">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="{% url 'home' %}" class="text-light">Home</a></li>
+                        <li><a href="{% url 'services:provider_list' %}" class="text-light">All Providers</a></li>
+                        <li><a href="#" class="text-light">Help Center</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>Contact</h5>
+                    <ul class="list-unstyled">
+                        <li>Email: support@mtaaskills.com</li>
+                        <li>Phone: +254 700 000 000</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="bg-light">
+            <div class="text-center">
+                <small>&copy; 2023 Mtaa Skills. All rights reserved.</small>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+</body>
+</html>

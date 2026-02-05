@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Profile - Mtaa Skills</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">Mtaa Skills</a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="/">Dashboard</a>
+                <a class="nav-link" href="/logout/">Logout</a>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>User Profile</h3>
+                    </div>
+                    <div class="card-body">
+                        <form method="post">
+                            {% csrf_token %}
+                            
+                            <div class="mb-3">
+                                <strong>Username:</strong> {{ user.username }}
+                            </div>
+                            <div class="mb-3">
+                                <strong>Email:</strong> {{ user.email|default:"Not set" }}
+                            </div>
+                            <div class="mb-3">
+                                <strong>First Name:</strong> {{ user.first_name|default:"Not set" }}
+                            </div>
+                            <div class="mb-3">
+                                <strong>Last Name:</strong> {{ user.last_name|default:"Not set" }}
+                            </div>
+                            <div class="mb-3">
+                                <strong>Member since:</strong> {{ user.date_joined|date:"F j, Y" }}
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="form-label"><strong>Your Role:</strong></label>
+                                <select name="role" class="form-select">
+                                    <option value="customer" {% if profile.role == 'customer' %}selected{% endif %}>Customer</option>
+                                    <option value="provider" {% if profile.role == 'provider' %}selected{% endif %}>Service Provider</option>
+                                </select>
+                                <div class="form-text">Change your role to access different features.</div>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary">Update Profile</button>
+                            <a href="/" class="btn btn-secondary">Back to Dashboard</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

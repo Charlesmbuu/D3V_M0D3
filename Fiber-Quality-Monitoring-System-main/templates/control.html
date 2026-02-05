@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2>Network Simulation Controls</h2>
+    
+    <div class="row my-4">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">Network Events</div>
+                <div class="card-body">
+                    <button class="btn btn-danger btn-block mb-2" 
+                            onclick="triggerEvent('LOS')">
+                        Trigger LOS
+                    </button>
+                    <button class="btn btn-warning btn-block mb-2"
+                            onclick="triggerEvent('high_power')">
+                        High Power
+                    </button>
+                    <button class="btn btn-dark btn-block"
+                            onclick="triggerEvent('fiber_cut')">
+                        Fiber Cut
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">Event Logs</div>
+                <div class="card-body logs-panel" id="logs">
+                    <!-- Logs will appear here -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+<script>
+    const socket = io();
+    
+    function triggerEvent(eventType) {
+        socket.emit('trigger_event', {type: eventType});
+    }
+
+    // Handle real-time updates
+    socket.on('log_update', function(log) {
+        const logsDiv = document.getElementById('logs');
+        logsDiv.innerHTML += `<div class="log-entry">${log}</div>`;
+        logsDiv.scrollTop = logsDiv.scrollHeight;
+    });
+</script>
+{% endblock %}

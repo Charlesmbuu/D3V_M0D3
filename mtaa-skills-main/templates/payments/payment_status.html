@@ -1,0 +1,48 @@
+<!-- templates/payments/payment_status.html -->
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Payment Status</h4>
+                </div>
+                <div class="card-body">
+                    <h5>Booking: {{ booking.job.title }}</h5>
+                    <p><strong>Provider:</strong> {{ booking.assigned_provider.business_name }}</p>
+                    <p><strong>Agreed Price:</strong> KSh {{ booking.agreed_price }}</p>
+                    
+                    {% if payment %}
+                        <div class="alert alert-{% if payment.status == 'success' %}success{% elif payment.status == 'failed' %}danger{% else %}warning{% endif %}">
+                            <strong>Payment Status:</strong> {{ payment.status|title }}
+                        </div>
+                        
+                        {% if payment.mpesa_receipt %}
+                            <p><strong>M-Pesa Receipt:</strong> {{ payment.mpesa_receipt }}</p>
+                        {% endif %}
+                        
+                        {% if payment.result_description %}
+                            <p><strong>Description:</strong> {{ payment.result_description }}</p>
+                        {% endif %}
+                        
+                        <p><strong>Payment Date:</strong> {{ payment.updated_at }}</p>
+                    {% else %}
+                        <div class="alert alert-info">
+                            No payment record found for this booking.
+                        </div>
+                    {% endif %}
+                    
+                    <div class="mt-3">
+                        <a href="{% url 'bookings:job_detail' booking.job.id %}" class="btn btn-primary">Back to Job Details</a>
+                        {% if not payment or payment.status != 'success' %}
+                            <a href="{% url 'payments:initiate_payment' booking.id %}" class="btn btn-success">Make Payment</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

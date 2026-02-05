@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Provider Profile - Mtaa Skills</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">Mtaa Skills</a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="/">Dashboard</a>
+                <a class="nav-link" href="/available-jobs/">Find Jobs</a>
+                <a class="nav-link" href="/my-jobs/">My Jobs</a>
+                <a class="nav-link" href="/provider-wallet/">Wallet</a>
+                <a class="nav-link" href="/profile/">{{ user.username }}</a>
+                <a class="nav-link" href="/logout/">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h3><i class="fas fa-user-tie"></i> Service Provider Profile</h3>
+                    </div>
+                    <div class="card-body">
+                        <form method="post">
+                            {% csrf_token %}
+                            
+                            <div class="mb-3">
+                                <label class="form-label">Business Name</label>
+                                <input type="text" name="business_name" class="form-control" 
+                                       value="{{ provider.business_name|default:'' }}" 
+                                       placeholder="Your business or professional name" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Description</label>
+                                <textarea name="description" class="form-control" rows="4" 
+                                          placeholder="Describe your services, experience, and expertise..." required>{{ provider.description|default:'' }}</textarea>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Hourly Rate (KES)</label>
+                                    <input type="number" name="hourly_rate" class="form-control" 
+                                           value="{{ provider.hourly_rate|default:'' }}" 
+                                           placeholder="e.g., 1000" min="100" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Location</label>
+                                    <input type="text" name="location" class="form-control" 
+                                           value="{{ provider.location|default:'' }}" 
+                                           placeholder="Where do you operate?" required>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Service Categories</label>
+                                <div class="row">
+                                    {% for category in categories %}
+                                    <div class="col-md-6 mb-2">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="categories" 
+                                                   value="{{ category.id }}" 
+                                                   {% if provider and category in provider.categories.all %}checked{% endif %}>
+                                            <label class="form-check-label">
+                                                <i class="{{ category.icon|default:'fas fa-tools' }}"></i> {{ category.name }}
+                                            </label>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-success btn-lg">
+                                    <i class="fas fa-save"></i> Save Profile
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

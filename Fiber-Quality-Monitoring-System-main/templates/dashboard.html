@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2>Network Status Dashboard</h2>
+    
+    <div class="row" id="network-status">
+        <!-- Nodes will be dynamically updated here -->
+    </div>
+    
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">Power Levels</div>
+                <div class="card-body">
+                    <canvas id="powerChart"></canvas>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">Latency</div>
+                <div class="card-body">
+                    <canvas id="latencyChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const socket = io();
+    const powerCtx = document.getElementById('powerChart').getContext('2d');
+    const latencyCtx = document.getElementById('latencyChart').getContext('2d');
+
+    // Initialize charts
+    const powerChart = new Chart(powerCtx, {
+        type: 'line',
+        data: { datasets: [] },
+        options: { responsive: true }
+    });
+
+    const latencyChart = new Chart(latencyCtx, {
+        type: 'bar',
+        data: { datasets: [] },
+        options: { responsive: true }
+    });
+
+    // Handle network updates
+    socket.on('network_update', function(nodes) {
+        updateNetworkStatus(nodes);
+        updateCharts(nodes);
+    });
+
+    function updateNetworkStatus(nodes) {
+        let html = '';
+        for (const [name, data] of Object.entries(nodes)) {
+            html += `
+            <div class="col-md-4 mb-3">
+                <div class="card node-card ${data.status}">
+                    <div class="card-body">
+                        <h5>${name}</h5>
+                        <p>Status: <span class="status">${data.status}</span></p>
+                        <p>Power: ${data.power.toFixed(1)}dBm</p>
+                        <p>Latency: ${data.latency.toFixed(1)}ms</p>
+                    </div>
+                </div>
+            </div>`;
+        }
+        document.getElementById('network-status').innerHTML = html;
+    }
+
+    function updateCharts(nodes) {
+        // Update power chart
+        powerChart.data.labels = Object.keys(nodes);
+        powerChart.data.datasets = [{
+            label: 'Power Level (dBm)',
+            data: Object.values(nodes).map(n => n.power),
+            borderColor: 'rgb(255, 99, 132)'
+        }];
+        powerChart.update();
+
+        // Update latency chart
+        latencyChart.data.labels = Object.keys(nodes);
+        latencyChart.data.datasets = [{
+            label: 'Latency (ms)',
+            data: Object.values(nodes).map(n => n.latency),
+            backgroundColor: 'rgb(54, 162, 235)'
+        }];
+        latencyChart.update();
+    }
+</script>
+{% endblock %}

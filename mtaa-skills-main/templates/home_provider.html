@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Provider Dashboard - Mtaa Skills | Find Local Service Jobs</title>
+    <meta name="description" content="Manage your service provider profile, find local jobs, and track your earnings on Mtaa Skills.">
+    
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #4361ee;
+            --primary-dark: #3a56d4;
+            --secondary: #7209b7;
+            --accent: #f72585;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #4cc9f0;
+            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            --gradient-light: linear-gradient(135deg, #4cc9f0 0%, #4361ee 100%);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+        
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: #f9fafc;
+            color: var(--dark);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+        
+        .dashboard-header {
+            background: var(--gradient);
+            color: white;
+            padding: 2rem 0;
+            border-radius: 16px;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .dashboard-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        
+        .action-card {
+            transition: all 0.4s ease;
+            cursor: pointer;
+            border-radius: 16px;
+            overflow: hidden;
+            height: 100%;
+            box-shadow: var(--shadow);
+            background: white;
+            border: none;
+        }
+        
+        .action-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            background: var(--gradient-light);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .stat-card {
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            border: none;
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-available { background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); }
+        .stat-active { background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); }
+        .stat-completed { background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%); }
+        .stat-total { background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%); }
+        
+        .btn-primary {
+            background: var(--primary);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-weight: 500;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
+        }
+        
+        .btn-success {
+            background: var(--accent);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-weight: 500;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-success:hover {
+            background: #e11574;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(247, 37, 133, 0.3);
+        }
+        
+        .profile-badge {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 1rem;
+            display: inline-block;
+        }
+        
+        .tip-card {
+            border-radius: 12px;
+            border: none;
+            box-shadow: var(--shadow);
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .tip-card:hover {
+            transform: translateY(-3px);
+        }
+        
+        .nav-link {
+            border-radius: 8px;
+            margin: 0 0.2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 0 1.5rem;
+            margin-top: 3rem;
+        }
+        
+        @media (max-width: 768px) {
+            .dashboard-header {
+                padding: 1.5rem 0;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background: var(--gradient);">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'home' %}">
+                <i class="fas fa-hands-helping me-2"></i> Mtaa Skills
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'home' %}">
+                            <i class="fas fa-home me-1"></i> Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'available_jobs' %}">
+                            <i class="fas fa-search me-1"></i> Find Jobs
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'provider_jobs' %}">
+                            <i class="fas fa-tasks me-1"></i> My Jobs
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'provider_wallet' %}">
+                            <i class="fas fa-wallet me-1"></i> Wallet
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-user me-1"></i> {{ user.username }}
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'profile' %}"><i class="fas fa-user-edit me-2"></i>Edit Profile</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="/logout/"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mt-4">
+        <!-- Welcome Header -->
+        <div class="dashboard-header">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-8">
+                        <h1 class="h2 mb-2 fw-bold">
+                            <i class="fas fa-tools me-2"></i> Provider Dashboard
+                        </h1>
+                        <p class="mb-3">Welcome back, <strong>{{ user.username }}</strong>! Ready to find your next job?</p>
+                        <!--
+                        <div class="d-flex flex-wrap gap-2">
+                            <a href="{% url 'available_jobs' %}" class="btn btn-light btn-sm">
+                                <i class="fas fa-search me-1"></i> Find Jobs
+                            </a>
+                            <a href="{% url 'provider_jobs' %}" class="btn btn-outline-light btn-sm">
+                                <i class="fas fa-tasks me-1"></i> My Jobs
+                            </a>
+                        </div>
+                        -->
+                    </div>
+                    <div class="col-md-4 text-md-end">
+                        <div class="profile-badge">
+                            <small class="text-light">Provider Since</small><br>
+                            <strong class="h5 mb-0">
+                                {{ user.date_joined|date:"M Y" }}
+                            </strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Main Content Area -->
+            <div class="col-lg-8">
+                <!-- Quick Actions -->
+                <div class="row mb-4">
+                    <div class="col-md-6 mb-4">
+                        <div class="action-card">
+                            <div class="card-body text-center p-4">
+                                <div class="card-icon">
+                                    <i class="fas fa-search"></i>
+                                </div>
+                                <h5 class="card-title">Find Jobs</h5>
+                                <p class="card-text text-muted">Browse available jobs matching your skills.</p>
+                                <a href="{% url 'available_jobs' %}" class="btn btn-primary">
+                                    <i class="fas fa-search me-2"></i> Browse Jobs
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="action-card">
+                            <div class="card-body text-center p-4">
+                                <div class="card-icon">
+                                    <i class="fas fa-tasks"></i>
+                                </div>
+                                <h5 class="card-title">My Jobs</h5>
+                                <p class="card-text text-muted">Manage your assigned and completed jobs.</p>
+                                <a href="{% url 'my_jobs' %}" class="btn btn-success">
+                                    <i class="fas fa-tasks me-2"></i> View Jobs
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Statistics -->
+                <div class="card shadow-sm mb-4 border-0">
+                    <div class="card-header bg-white border-0 py-3">
+                        <h5 class="card-title mb-0 fw-bold">
+                            <i class="fas fa-chart-bar me-2 text-primary"></i> Business Performance
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-3 mb-3">
+                                <div class="stat-card stat-available">
+                                    <div class="stat-number text-primary">{{ available_jobs_count|default:"0" }}</div>
+                                    <small class="text-muted fw-medium">Available Jobs</small>
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <div class="stat-card stat-active">
+                                    <div class="stat-number text-success">{{ active_jobs_count|default:"0" }}</div>
+                                    <small class="text-muted fw-medium">Active Jobs</small>
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <div class="stat-card stat-completed">
+                                    <div class="stat-number text-warning">{{ completed_jobs_count|default:"0" }}</div>
+                                    <small class="text-muted fw-medium">Completed Jobs</small>
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <div class="stat-card stat-total">
+                                    <div class="stat-number text-info">{{ my_jobs_count|default:"0" }}</div>
+                                    <small class="text-muted fw-medium">Total Jobs</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Wallet Card -->
+                <div class="card shadow-sm mb-4 border-0">
+                    <div class="card-body p-4">
+                        <div class="row align-items-center">
+                            <div class="col-md-8">
+                                <h5 class="card-title fw-bold mb-2">
+                                    <i class="fas fa-wallet me-2 text-warning"></i> My Wallet
+                                </h5>
+                                <p class="card-text text-muted mb-0">Track your earnings and manage payments.</p>
+                            </div>
+                            <div class="col-md-4 text-md-end">
+                                <a href="{% url 'provider_wallet' %}" class="btn btn-warning text-white">
+                                    <i class="fas fa-wallet me-2"></i> View Wallet
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+                <!-- Profile Card -->
+                <div class="card shadow-sm border-0 mb-4">
+                    <div class="card-header bg-white border-0 py-3">
+                        <h5 class="card-title mb-0 fw-bold">
+                            <i class="fas fa-user-circle me-2 text-primary"></i> My Profile
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <div class="d-flex align-items-center mb-2">
+                                <i class="fas fa-user text-primary me-2"></i>
+                                <strong>Username:</strong>
+                            </div>
+                            <span class="ms-4">{{ user.username }}</span>
+                        </div>
+                        <div class="mb-3">
+                            <div class="d-flex align-items-center mb-2">
+                                <i class="fas fa-envelope text-info me-2"></i>
+                                <strong>Email:</strong>
+                            </div>
+                            <span class="ms-4">{{ user.email|default:"Not set" }}</span>
+                        </div>
+                        <div class="mb-3">
+                            <div class="d-flex align-items-center mb-2">
+                                <i class="fas fa-calendar text-success me-2"></i>
+                                <strong>Member since:</strong>
+                            </div>
+                            <span class="ms-4">{{ user.date_joined|date:"F j, Y" }}</span>
+                        </div>
+                        
+                        <hr>
+                        
+                        <div class="d-grid gap-2">
+                            <a href="{% url 'available_jobs' %}" class="btn btn-primary btn-sm">
+                                <i class="fas fa-search me-2"></i> Find Jobs
+                            </a>
+                            <a href="{% url 'provider_jobs' %}" class="btn btn-outline-primary btn-sm">
+                                <i class="fas fa-tasks me-2"></i> My Jobs
+                            </a>
+                            <a href="{% url 'profile' %}" class="btn btn-outline-info btn-sm">
+                                <i class="fas fa-edit me-2"></i> Edit Profile
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tips Card -->
+                <div class="card shadow-sm border-0">
+                    <div class="card-header bg-white border-0 py-3">
+                        <h5 class="card-title mb-0 fw-bold">
+                            <i class="fas fa-lightbulb me-2 text-warning"></i> Success Tips
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="tip-card alert alert-info border-0">
+                            <div class="d-flex">
+                                <i class="fas fa-info-circle me-2 mt-1 text-info"></i>
+                                <div>
+                                    <strong class="d-block">Complete Your Profile</strong>
+                                    <small class="text-muted">Add skills, experience, and portfolio to get more job matches</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tip-card alert alert-success border-0">
+                            <div class="d-flex">
+                                <i class="fas fa-clock me-2 mt-1 text-success"></i>
+                                <div>
+                                    <strong class="d-block">Respond Quickly</strong>
+                                    <small class="text-muted">Fast responses increase your chances of getting hired</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tip-card alert alert-warning border-0">
+                            <div class="d-flex">
+                                <i class="fas fa-star me-2 mt-1 text-warning"></i>
+                                <div>
+                                    <strong class="d-block">Maintain High Ratings</strong>
+                                    <small class="text-muted">Quality work leads to better reviews and more opportunities</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5><i class="fas fa-hands-helping me-2"></i> Mtaa Skills</h5>
+                    <p class="mb-0">Connecting skilled professionals with local opportunities.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-0">&copy; 2025 Mtaa Skills. All rights reserved.</p>
+                    <p class="mb-0">Crafted and Built by Charles Mburu's Technologies</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

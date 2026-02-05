@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Apply for Job - Mtaa Skills</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'home' %}">Mtaa Skills</a>
+            <div class="navbar-nav ms-auto">
+                {% if user.is_authenticated %}
+                    <a class="nav-link" href="{% url 'profile' %}">{{ user.username }}</a>
+                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                {% else %}
+                    <a class="nav-link" href="{% url 'login' %}">Login</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <h1>Apply for Job</h1>
+
+                <!-- Messages -->
+                {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }} alert-dismissible fade show">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                    {% endfor %}
+                {% endif %}
+
+                <!-- Job Summary -->
+                <div class="card mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">Job Details</h5>
+                    </div>
+                    <div class="card-body">
+                        <h5>{{ job.title }}</h5>
+                        <p><strong>Customer:</strong> {{ job.customer.username }}</p>
+                        <p><strong>Description:</strong> {{ job.description }}</p>
+                        <p><strong>Location:</strong> {{ job.location }}</p>
+                        <p><strong>Customer Budget:</strong> KES {{ job.budget }}</p>
+                        <p><strong>Category:</strong> {{ job.service_category.name }}</p>
+                    </div>
+                </div>
+
+                <!-- Application Form -->
+                <div class="card">
+                    <div class="card-header bg-success text-white">
+                        <h5 class="mb-0">Your Proposal</h5>
+                    </div>
+                    <div class="card-body">
+                        <form method="POST">
+                            {% csrf_token %}
+                            
+                            <!-- Proposal -->
+                            <div class="mb-3">
+                                <label for="proposal" class="form-label">Your Proposal *</label>
+                                <textarea class="form-control" id="proposal" name="proposal" 
+                                          rows="5" placeholder="Describe how you will complete this job, your approach, timeline, etc..." required></textarea>
+                                <div class="form-text">Explain why you're the right person for this job</div>
+                            </div>
+
+                            <!-- Proposed Amount -->
+                            <div class="mb-3">
+                                <label for="proposed_amount" class="form-label">Your Proposed Amount (KES) *</label>
+                                <input type="number" class="form-control" id="proposed_amount" name="proposed_amount" 
+                                       placeholder="e.g., 2500" min="1" step="0.01" required
+                                       value="{{ job.budget }}">
+                                <div class="form-text">Your proposed price for completing this job</div>
+                            </div>
+
+                            <!-- Provider Info -->
+                            <div class="mb-3">
+                                <label class="form-label">Applying As</label>
+                                <div class="form-control bg-light">
+                                    <strong>{{ provider.business_name }}</strong><br>
+                                    <small class="text-muted">
+                                        {{ provider.service_categories.all|join:", " }} • 
+                                        {{ provider.experience_years }} years experience • 
+                                        KES {{ provider.hourly_rate }}/hour
+                                    </small>
+                                </div>
+                            </div>
+
+                            <div class="alert alert-info">
+                                <h6>💡 Tips for a Great Proposal:</h6>
+                                <ul class="mb-0">
+                                    <li>Be specific about your approach</li>
+                                    <li>Mention your relevant experience</li>
+                                    <li>Provide a realistic timeline</li>
+                                    <li>Explain why you're the best choice</li>
+                                </ul>
+                            </div>
+
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-success btn-lg">
+                                    📨 Submit Application
+                                </button>
+                                <a href="{% url 'available_jobs' %}" class="btn btn-outline-secondary">
+                                    ← Back to Available Jobs
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Debug Info -->
+                <div class="mt-4 alert alert-info">
+                    <h6>Debug Information:</h6>
+                    <p><strong>Job ID:</strong> {{ job.id }}</p>
+                    <p><strong>Provider:</strong> {{ provider.business_name }}</p>
+                    <p><strong>Job Status:</strong> {{ job.status }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('form');
+            
+            form.addEventListener('submit', function(e) {
+                const proposal = document.getElementById('proposal').value.trim();
+                const amount = document.getElementById('proposed_amount').value;
+                
+                if (!proposal) {
+                    alert('Please provide a proposal');
+                    e.preventDefault();
+                    return;
+                }
+                
+                if (!amount || parseFloat(amount) <= 0) {
+                    alert('Please enter a valid amount');
+                    e.preventDefault();
+                    return;
+                }
+                
+                // Show loading state
+                const submitBtn = form.querySelector('button[type="submit"]');
+                submitBtn.innerHTML = '⏳ Submitting...';
+                submitBtn.disabled = true;
+            });
+        });
+    </script>
+</body>
+</html>

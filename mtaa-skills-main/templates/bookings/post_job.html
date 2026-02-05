@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if provider %}Hire {{ provider.business_name }} - {% endif %}Post a Job - Mtaa Skills</title>
+    <meta name="description" content="Post your service job on Mtaa Skills and connect with skilled local professionals. Get your work done efficiently and affordably.">
+    
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #4361ee;
+            --primary-dark: #3a56d4;
+            --secondary: #7209b7;
+            --accent: #f72585;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #4cc9f0;
+            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+        
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: #f9fafc;
+            color: var(--dark);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+        
+        .post-job-card {
+            border: none;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+        
+        .card-header-custom {
+            background: var(--gradient);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .provider-card {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border-radius: 16px;
+            padding: 1.5rem;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .form-control {
+            border-radius: 12px;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 0.2rem rgba(67, 97, 238, 0.15);
+        }
+        
+        .form-label {
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            border: none;
+            padding: 0.75rem 2rem;
+            font-weight: 500;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
+        }
+        
+        .btn-success {
+            background: var(--accent);
+            border: none;
+            padding: 0.75rem 2rem;
+            font-weight: 500;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-success:hover {
+            background: #e11574;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(247, 37, 133, 0.3);
+        }
+        
+        .category-badge {
+            background: var(--gradient);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85em;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background: var(--gradient);">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'home' %}">
+                <i class="fas fa-hands-helping me-2"></i> Mtaa Skills
+            </a>
+            <div class="navbar-nav ms-auto">
+                {% if user.is_authenticated %}
+                    <a class="nav-link" href="{% url 'profile' %}">{{ user.username }}</a>
+                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                {% else %}
+                    <a class="nav-link" href="{% url 'login' %}">Login</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card post-job-card">
+                    <div class="card-header-custom">
+                        <h2 class="card-title fw-bold mb-2">
+                            <i class="fas fa-plus-circle me-2"></i>
+                            {% if provider %}
+                                Hire {{ provider.business_name }}
+                            {% else %}
+                                Post a New Job
+                            {% endif %}
+                        </h2>
+                        <p class="mb-0">
+                            {% if provider %}
+                                Get your work done by this trusted professional
+                            {% else %}
+                                Describe what you need and find the right professional
+                            {% endif %}
+                        </p>
+                    </div>
+                    <div class="card-body p-4">
+                        {% if provider %}
+                        <div class="provider-card mb-4">
+                            <div class="row align-items-center">
+                                <div class="col-md-8">
+                                    <h5 class="fw-bold mb-2">{{ provider.business_name }}</h5>
+                                    <p class="mb-2">
+                                        <strong>Services:</strong> 
+                                        {% for category in provider.service_categories.all %}
+                                        <span class="category-badge">{{ category.name }}</span>
+                                        {% endfor %}
+                                    </p>
+                                    <p class="mb-0">
+                                        <i class="fas fa-star text-warning me-1"></i>
+                                        <strong>Rate:</strong> KES {{ provider.hourly_rate }}/hour
+                                    </p>
+                                </div>
+                                <div class="col-md-4 text-md-end">
+                                    <span class="badge bg-success px-3 py-2">
+                                        <i class="fas fa-check me-1"></i> Available
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        <form method="POST">
+                            {% csrf_token %}
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-4">
+                                        <label class="form-label">
+                                            <i class="fas fa-tag me-2 text-primary"></i>Service Needed *
+                                        </label>
+                                        {{ form.service_category }}
+                                        <div class="form-text mt-2">
+                                            <i class="fas fa-info-circle me-1"></i>
+                                            Select the category that best matches your needs
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-4">
+                                        <label class="form-label">
+                                            <i class="fas fa-money-bill-wave me-2 text-success"></i>Your Budget (KES) *
+                                        </label>
+                                        {{ form.budget }}
+                                        <div class="form-text mt-2">
+                                            <i class="fas fa-lightbulb me-1"></i>
+                                            How much are you willing to pay for this service?
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label class="form-label">
+                                    <i class="fas fa-heading me-2 text-primary"></i>Job Title *
+                                </label>
+                                {{ form.title }}
+                                <div class="form-text mt-2">
+                                    <i class="fas fa-pencil-alt me-1"></i>
+                                    Brief title describing what you need (e.g., "Fix leaking kitchen sink")
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label class="form-label">
+                                    <i class="fas fa-file-alt me-2 text-primary"></i>Job Description *
+                                </label>
+                                {{ form.description }}
+                                <div class="form-text mt-2">
+                                    <i class="fas fa-list me-1"></i>
+                                    Be specific about what needs to be done, materials needed, and any special requirements
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-4">
+                                        <label class="form-label">
+                                            <i class="fas fa-map-marker-alt me-2 text-danger"></i>Location *
+                                        </label>
+                                        {{ form.location }}
+                                        <div class="form-text mt-2">
+                                            <i class="fas fa-home me-1"></i>
+                                            Where should the work be done? Include area and specific address if possible
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-4">
+                                        <label class="form-label">
+                                            <i class="fas fa-calendar me-2 text-info"></i>Preferred Date & Time
+                                        </label>
+                                        {{ form.preferred_date }}
+                                        <div class="form-text mt-2">
+                                            <i class="fas fa-clock me-1"></i>
+                                            When would you like this work to be completed?
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="d-grid gap-3">
+                                <button type="submit" class="btn btn-success btn-lg py-3">
+                                    <i class="fas fa-paper-plane me-2"></i>
+                                    {% if provider %}
+                                        Hire This Provider
+                                    {% else %}
+                                        Post Job & Find Professionals
+                                    {% endif %}
+                                </button>
+                                <a href="{% url 'home' %}" class="btn btn-outline-secondary">
+                                    <i class="fas fa-arrow-left me-2"></i> Cancel
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

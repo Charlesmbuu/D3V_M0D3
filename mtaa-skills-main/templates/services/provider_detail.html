@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ provider.business_name }} - Professional Service Provider | Mtaa Skills</title>
+    <meta name="description" content="Hire {{ provider.business_name }} for {{ provider.service_categories.all|join:', ' }} services in {{ provider.location }}. {{ provider.experience_years }} years experience, KES {{ provider.hourly_rate }}/hour. Rated {{ provider.average_rating|default:'5' }}/5 stars.">
+    <meta name="keywords" content="{{ provider.business_name }}, {{ provider.service_categories.all|join:', ' }}, {{ provider.location }}, service provider, handyman, professional services">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="{{ provider.business_name }} - Professional Service Provider | Mtaa Skills">
+    <meta property="og:description" content="Professional {{ provider.service_categories.all|join:', ' }} services in {{ provider.location }}. {{ provider.experience_years }} years experience.">
+    <meta property="og:type" content="profile">
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    {% if provider.profile_picture %}
+    <meta property="og:image" content="{{ provider.profile_picture.url }}">
+    {% endif %}
+    
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "{{ provider.business_name }}",
+        "description": "{{ provider.description|striptags|truncatewords:30 }}",
+        "serviceType": "{{ provider.service_categories.all|join:', ' }}",
+        "areaServed": "{{ provider.location }}",
+        "provider": {
+            "@type": "Person",
+            "name": "{{ provider.business_name }}",
+            "image": "{% if provider.profile_picture %}{{ provider.profile_picture.url }}{% endif %}",
+            "telephone": "{{ provider.phone }}",
+            "email": "{{ provider.email }}"
+        },
+        "offers": {
+            "@type": "Offer",
+            "price": "{{ provider.hourly_rate }}",
+            "priceCurrency": "KES"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "{{ provider.average_rating|default:'5' }}",
+            "reviewCount": "{{ provider.stats.total_reviews|default:'0' }}"
+        }
+    }
+    </script>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --mtaa-primary: #2c5aa0;
+            --mtaa-secondary: #f8a01c;
+            --mtaa-success: #28a745;
+            --mtaa-light: #f8f9fa;
+            --mtaa-dark: #343a40;
+        }
+        
+        .mtaa-bg-primary {
+            background-color: var(--mtaa-primary) !important;
+        }
+        
+        .mtaa-text-primary {
+            color: var(--mtaa-primary) !important;
+        }
+        
+        .mtaa-badge {
+            background-color: var(--mtaa-secondary);
+            color: white;
+        }
+        
+        .rating-stars {
+            color: var(--mtaa-secondary);
+        }
+        
+        .profile-image-container {
+            width: 200px;
+            height: 200px;
+            overflow: hidden;
+            border-radius: 50%;
+            margin: 0 auto;
+            border: 4px solid var(--mtaa-primary);
+        }
+        
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: rgba(44, 90, 160, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+        }
+        
+        .service-badge {
+            background: linear-gradient(135deg, var(--mtaa-primary), #1e3a68);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+        
+        .hire-btn {
+            background: linear-gradient(135deg, var(--mtaa-secondary), #e68900);
+            border: none;
+            padding: 12px 30px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .hire-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(248, 160, 28, 0.4);
+        }
+        
+        .stat-card {
+            transition: transform 0.3s;
+            border-left: 4px solid var(--mtaa-primary);
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-3px);
+        }
+        
+        .breadcrumb-item a {
+            color: var(--mtaa-primary);
+            text-decoration: none;
+        }
+        
+        .breadcrumb-item.active {
+            color: var(--mtaa-dark);
+        }
+        
+        .testimonial-card {
+            border-left: 4px solid var(--mtaa-secondary);
+        }
+        
+        .contact-info {
+            background-color: rgba(44, 90, 160, 0.05);
+            border-radius: 10px;
+            padding: 15px;
+        }
+        
+        .trust-badge {
+            display: inline-flex;
+            align-items: center;
+            background-color: rgba(40, 167, 69, 0.1);
+            color: var(--mtaa-success);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark mtaa-bg-primary">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="{% url 'home' %}">
+                <i class="bi bi-hammer me-2"></i>
+                Mtaa Skills
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="navbar-nav ms-auto">
+                    <a class="nav-link" href="{% url 'services:provider_list' %}">
+                        <i class="bi bi-people me-1"></i>All Providers
+                    </a>
+                    {% if user.is_authenticated %}
+                        <a class="nav-link" href="{% url 'profile' %}">
+                            <i class="bi bi-person-circle me-1"></i>{{ user.username }}
+                        </a>
+                        <a class="nav-link" href="{% url 'logout' %}">
+                            <i class="bi bi-box-arrow-right me-1"></i>Logout
+                        </a>
+                    {% else %}
+                        <a class="nav-link" href="{% url 'login' %}">
+                            <i class="bi bi-box-arrow-in-right me-1"></i>Login
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <!-- Breadcrumb -->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'services:provider_list' %}">Service Providers</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ provider.business_name }}</li>
+            </ol>
+        </nav>
+
+        <div class="row">
+            <!-- Main Content -->
+            <div class="col-lg-8">
+                <!-- Provider Header Card -->
+                <div class="card shadow-sm border-0 mb-4">
+                    <div class="card-body p-4">
+                        <div class="row align-items-center">
+                            <div class="col-md-3 text-center">
+                                <div class="profile-image-container mb-3">
+                                    {% if provider.profile_picture %}
+                                    <img src="{{ provider.profile_picture.url }}" class="profile-image" alt="{{ provider.business_name }} - Professional Service Provider">
+                                    {% else %}
+                                    <div class="bg-light h-100 d-flex align-items-center justify-content-center">
+                                        <i class="bi bi-person-circle text-muted" style="font-size: 4rem;"></i>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                
+                                <!-- Trust Indicators -->
+                                <div class="d-flex flex-column align-items-center">
+                                    {% if provider.is_verified %}
+                                    <span class="trust-badge mb-2">
+                                        <i class="bi bi-patch-check-fill me-1"></i>Verified Provider
+                                    </span>
+                                    {% endif %}
+                                    
+                                    {% if provider.total_jobs_completed > 50 %}
+                                    <span class="badge bg-success mb-1">
+                                        <i class="bi bi-award me-1"></i>Top Performer
+                                    </span>
+                                    {% endif %}
+                                    
+                                    {% if provider.response_rate > 90 %}
+                                    <span class="badge bg-info">
+                                        <i class="bi bi-lightning-charge me-1"></i>Fast Responder
+                                    </span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-9">
+                                <h1 class="h2 mb-2 mtaa-text-primary">{{ provider.business_name }}</h1>
+                                
+                                <!-- Service Categories -->
+                                <div class="mb-3">
+                                    {% for category in provider.service_categories.all %}
+                                    <span class="service-badge me-2 mb-2 d-inline-block">{{ category.name }}</span>
+                                    {% endfor %}
+                                </div>
+                                
+                                <!-- Key Stats -->
+                                <div class="row mb-3">
+                                    <div class="col-sm-6 mb-2">
+                                        <div class="d-flex align-items-center">
+                                            <div class="feature-icon">
+                                                <i class="bi bi-currency-exchange text-primary"></i>
+                                            </div>
+                                            <div>
+                                                <strong class="d-block">KES {{ provider.hourly_rate }}/hour</strong>
+                                                <small class="text-muted">Competitive Rate</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 mb-2">
+                                        <div class="d-flex align-items-center">
+                                            <div class="feature-icon">
+                                                <i class="bi bi-calendar-check text-primary"></i>
+                                            </div>
+                                            <div>
+                                                <strong class="d-block">{{ provider.experience_years }} Years</strong>
+                                                <small class="text-muted">Professional Experience</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 mb-2">
+                                        <div class="d-flex align-items-center">
+                                            <div class="feature-icon">
+                                                <i class="bi bi-geo-alt text-primary"></i>
+                                            </div>
+                                            <div>
+                                                <strong class="d-block">{{ provider.location|default:"Nairobi" }}</strong>
+                                                <small class="text-muted">Service Area</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 mb-2">
+                                        <div class="d-flex align-items-center">
+                                            <div class="feature-icon">
+                                                <i class="bi bi-star-fill text-warning"></i>
+                                            </div>
+                                            <div>
+                                                <strong class="d-block">{{ provider.average_rating|default:"5.0" }}/5</strong>
+                                                <small class="text-muted">Customer Rating</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Quick Contact Info -->
+                                <div class="contact-info mb-3">
+                                    <div class="row">
+                                        {% if provider.phone %}
+                                        <div class="col-sm-6 mb-2">
+                                            <i class="bi bi-telephone-fill me-2 text-primary"></i>
+                                            <strong>{{ provider.phone }}</strong>
+                                        </div>
+                                        {% endif %}
+                                        {% if provider.email %}
+                                        <div class="col-sm-6 mb-2">
+                                            <i class="bi bi-envelope-fill me-2 text-primary"></i>
+                                            <strong>{{ provider.email }}</strong>
+                                        </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- About Section -->
+                <div class="card shadow-sm border-0 mb-4">
+                    <div class="card-header bg-transparent border-0 py-3">
+                        <h3 class="h4 mb-0 mtaa-text-primary">
+                            <i class="bi bi-person-badge me-2"></i>About {{ provider.business_name }}
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text fs-5">{{ provider.description|linebreaks }}</p>
+                        
+                        <!-- Key Strengths -->
+                        <div class="mt-4">
+                            <h5 class="mb-3">Why Choose {{ provider.business_name }}?</h5>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <div class="d-flex">
+                                        <i class="bi bi-check-circle-fill text-success me-2"></i>
+                                        <span>{{ provider.experience_years }}+ Years Experience</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="d-flex">
+                                        <i class="bi bi-check-circle-fill text-success me-2"></i>
+                                        <span>{{ provider.total_jobs_completed }}+ Jobs Completed</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="d-flex">
+                                        <i class="bi bi-check-circle-fill text-success me-2"></i>
+                                        <span>Professional & Reliable</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="d-flex">
+                                        <i class="bi bi-check-circle-fill text-success me-2"></i>
+                                        <span>Quality Guaranteed</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Recent Work/Portfolio Section -->
+                <div class="card shadow-sm border-0 mb-4">
+                    <div class="card-header bg-transparent border-0 py-3">
+                        <h3 class="h4 mb-0 mtaa-text-primary">
+                            <i class="bi bi-images me-2"></i>Service Gallery
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <div class="bg-light rounded d-flex align-items-center justify-content-center" style="height: 150px;">
+                                    <span class="text-muted">Work Sample 1</span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="bg-light rounded d-flex align-items-center justify-content-center" style="height: 150px;">
+                                    <span class="text-muted">Work Sample 2</span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="bg-light rounded d-flex align-items-center justify-content-center" style="height: 150px;">
+                                    <span class="text-muted">Work Sample 3</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center mt-3">
+                            <a href="#" class="btn btn-outline-primary btn-sm">View More Work</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Call to Action -->
+                <div class="card shadow-sm border-0 mb-4 bg-gradient" style="background: linear-gradient(135deg, var(--mtaa-primary), #1e3a68);">
+                    <div class="card-body text-center text-white p-4">
+                        <h3 class="h4 mb-3">Ready to Get Started?</h3>
+                        <p class="mb-4">Hire {{ provider.business_name }} for professional {{ provider.service_categories.all|join:', ' }} services today!</p>
+                        
+                        <div class="d-flex flex-column flex-md-row justify-content-center gap-3">
+                            {% if not user.is_authenticated or user.user_type == 'customer' %}
+                            <a href="/bookings/post/?provider={{ provider.id }}" class="btn hire-btn btn-lg">
+                                <i class="bi bi-calendar-check me-2"></i>Hire Now
+                            </a>
+                            {% endif %}
+                            <a href="{% url 'services:provider_list' %}" class="btn btn-outline-light btn-lg">
+                                <i class="bi bi-arrow-left me-2"></i>Browse Other Providers
+                            </a>
+                        </div>
+                        
+                        <div class="mt-3">
+                            <small class="text-light">
+                                <i class="bi bi-shield-check me-1"></i>100% Satisfaction Guarantee • Secure Booking
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+                <!-- Quick Stats Card -->
+                <div class="card shadow-sm border-0 mb-4">
+                    <div class="card-header bg-transparent border-0 py-3">
+                        <h5 class="card-title mb-0 mtaa-text-primary">
+                            <i class="bi bi-graph-up me-2"></i>Performance Stats
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="stat-card p-3 mb-3 bg-light rounded">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h4 class="mb-0 text-primary">{{ provider.total_jobs_completed }}</h4>
+                                    <small class="text-muted">Jobs Completed</small>
+                                </div>
+                                <i class="bi bi-check-circle-fill text-success fs-4"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card p-3 mb-3 bg-light rounded">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h4 class="mb-0 text-primary">{{ provider.response_rate|default:"95" }}%</h4>
+                                    <small class="text-muted">Response Rate</small>
+                                </div>
+                                <i class="bi bi-lightning-charge-fill text-warning fs-4"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card p-3 mb-3 bg-light rounded">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h4 class="mb-0 text-primary">{{ provider.on_time_rate|default:"98" }}%</h4>
+                                    <small class="text-muted">On Time Delivery</small>
+                                </div>
+                                <i class="bi bi-clock-fill text-info fs-4"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card p-3 bg-light rounded">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h4 class="mb-0 text-primary">{{ provider.repeat_clients|default:"45" }}</h4>
+                                    <small class="text-muted">Repeat Clients</small>
+                                </div>
+                                <i class="bi bi-arrow-repeat text-success fs-4"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Rating & Reviews -->
+                <div class="card shadow-sm border-0 mb-4">
+                    <div class="card-header bg-transparent border-0 py-3">
+                        <h5 class="card-title mb-0 mtaa-text-primary">
+                            <i class="bi bi-star-fill me-2"></i>Customer Reviews
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        {% if provider.stats.total_reviews > 0 %}
+                            <div class="text-center mb-4">
+                                <div class="display-4 fw-bold text-warning mb-1">{{ provider.stats.average_rating|floatformat:1 }}</div>
+                                <div class="rating-stars fs-5 mb-2">
+                                    {% for i in "12345" %}
+                                        {% if forloop.counter <= provider.stats.average_rating %}
+                                            ★
+                                        {% else %}
+                                            ☆
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                                <small class="text-muted">Based on {{ provider.stats.total_reviews }} review{{ provider.stats.total_reviews|pluralize }}</small>
+                            </div>
+                            
+                            <!-- Rating Breakdown -->
+                            <div class="rating-breakdown">
+                                {% for rating in "54321" %}
+                                    {% with rating=rating|add:0 %}
+                                    <div class="row align-items-center mb-2">
+                                        <div class="col-3">
+                                            <small class="text-muted">{{ rating }} ★</small>
+                                        </div>
+                                        <div class="col-7">
+                                            <div class="progress" style="height: 8px;">
+                                                {% with rating_count=provider.stats.rating_breakdown|default:"" %}
+                                                {% if rating_count %}
+                                                    {% if rating == 5 %}
+                                                        {% widthratio provider.stats.rating_breakdown.5 provider.stats.total_reviews 100 as percentage %}
+                                                    {% elif rating == 4 %}
+                                                        {% widthratio provider.stats.rating_breakdown.4 provider.stats.total_reviews 100 as percentage %}
+                                                    {% elif rating == 3 %}
+                                                        {% widthratio provider.stats.rating_breakdown.3 provider.stats.total_reviews 100 as percentage %}
+                                                    {% elif rating == 2 %}
+                                                        {% widthratio provider.stats.rating_breakdown.2 provider.stats.total_reviews 100 as percentage %}
+                                                    {% elif rating == 1 %}
+                                                        {% widthratio provider.stats.rating_breakdown.1 provider.stats.total_reviews 100 as percentage %}
+                                                    {% endif %}
+                                                {% else %}
+                                                    {% widthratio 0 1 100 as percentage %}
+                                                {% endif %}
+                                                <div class="progress-bar bg-warning" style="width: {{ percentage }}%"></div>
+                                                {% endwith %}
+                                            </div>
+                                        </div>
+                                        <div class="col-2 text-end">
+                                            <small class="text-muted">
+                                                {% if provider.stats.rating_breakdown %}
+                                                    {% if rating == 5 %}{{ provider.stats.rating_breakdown.5|default:0 }}
+                                                    {% elif rating == 4 %}{{ provider.stats.rating_breakdown.4|default:0 }}
+                                                    {% elif rating == 3 %}{{ provider.stats.rating_breakdown.3|default:0 }}
+                                                    {% elif rating == 2 %}{{ provider.stats.rating_breakdown.2|default:0 }}
+                                                    {% elif rating == 1 %}{{ provider.stats.rating_breakdown.1|default:0 }}
+                                                    {% endif %}
+                                                {% else %}
+                                                    0
+                                                {% endif %}
+                                            </small>
+                                        </div>
+                                    </div>
+                                    {% endwith %}
+                                {% endfor %}
+                            </div>
+                            
+                            <!-- Sample Testimonials -->
+                            <div class="mt-4">
+                                <h6 class="mb-3">What Clients Say:</h6>
+                                
+                                <div class="testimonial-card bg-light p-3 rounded mb-3">
+                                    <div class="rating-stars mb-2">
+                                        ★★★★★
+                                    </div>
+                                    <p class="mb-2">"{{ provider.business_name }} did an excellent job! Professional, punctual, and high-quality work."</p>
+                                    <small class="text-muted">- Sarah M.</small>
+                                </div>
+                                
+                                <div class="testimonial-card bg-light p-3 rounded">
+                                    <div class="rating-stars mb-2">
+                                        ★★★★☆
+                                    </div>
+                                    <p class="mb-2">"Great service at a reasonable price. Will definitely hire again for future projects."</p>
+                                    <small class="text-muted">- John K.</small>
+                                </div>
+                            </div>
+                            
+                            <div class="text-center mt-3">
+                                <a href="#" class="btn btn-outline-primary btn-sm">Read All Reviews</a>
+                            </div>
+                        {% else %}
+                            <div class="text-center py-4">
+                                <i class="bi bi-star text-muted fs-1 mb-3 d-block"></i>
+                                <p class="text-muted">No reviews yet. Be the first to hire {{ provider.business_name }}!</p>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+                
+                <!-- Contact Card -->
+                <div class="card shadow-sm border-0">
+                    <div class="card-header bg-transparent border-0 py-3">
+                        <h5 class="card-title mb-0 mtaa-text-primary">
+                            <i class="bi bi-telephone me-2"></i>Contact {{ provider.business_name }}
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        {% if provider.phone or provider.email %}
+                            <div class="d-grid gap-2">
+                                {% if provider.phone %}
+                                <a href="tel:{{ provider.phone }}" class="btn btn-outline-primary">
+                                    <i class="bi bi-telephone-fill me-2"></i>Call Now
+                                </a>
+                                {% endif %}
+                                
+                                {% if provider.email %}
+                                <a href="mailto:{{ provider.email }}" class="btn btn-outline-primary">
+                                    <i class="bi bi-envelope-fill me-2"></i>Send Email
+                                </a>
+                                {% endif %}
+                                
+                                {% if not user.is_authenticated or user.user_type == 'customer' %}
+                                <a href="/bookings/post/?provider={{ provider.id }}" class="btn hire-btn mt-2">
+                                    <i class="bi bi-calendar-check me-2"></i>Book Service
+                                </a>
+                                {% endif %}
+                            </div>
+                            
+                            <div class="mt-3 text-center">
+                                <small class="text-muted">
+                                    <i class="bi bi-clock me-1"></i>Typically responds within 2 hours
+                                </small>
+                            </div>
+                        {% else %}
+                            <p class="text-muted text-center">Contact information not provided</p>
+                            {% if not user.is_authenticated or user.user_type == 'customer' %}
+                            <div class="d-grid">
+                                <a href="/bookings/post/?provider={{ provider.id }}" class="btn hire-btn">
+                                    <i class="bi bi-calendar-check me-2"></i>Book Service
+                                </a>
+                            </div>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light mt-5 py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Mtaa Skills</h5>
+                    <p>Connecting skilled professionals with local opportunities.</p>
+                </div>
+                <div class="col-md-3">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="{% url 'home' %}" class="text-light">Home</a></li>
+                        <li><a href="{% url 'services:provider_list' %}" class="text-light">All Providers</a></li>
+                        <li><a href="#" class="text-light">Help Center</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>Contact</h5>
+                    <ul class="list-unstyled">
+                        <li>Email: support@mtaaskills.com</li>
+                        <li>Phone: +254 700 000 000</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="bg-light">
+            <div class="text-center">
+                <small>&copy; 2023 Mtaa Skills. All rights reserved.</small>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags for responsiveness -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Dynamic title block -->
+    <title>FiberQMS - {% block title %}{% endblock %}</title>
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" 
+          href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" 
+          href="{{ url_for('static', filename='css/styles.css') }}">
+    
+    <!-- Block for additional head content -->
+    {% block head %}{% endblock %}
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <!-- Brand/Logo -->
+            <a class="navbar-brand" href="{{ url_for('main.index') }}">FiberQMS</a>
+            
+            <!-- Mobile Menu Button -->
+            <button class="navbar-toggler" type="button" 
+                    data-toggle="collapse" data-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Navigation Items -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="navbar-nav ml-auto">
+                    {% if current_user.is_authenticated %}
+                        <!-- Authenticated User Menu -->
+                        {% if current_user.is_admin %}
+                            <a class="nav-item nav-link" 
+                               href="{{ url_for('admin.dashboard') }}">
+                                Admin Dashboard
+                            </a>
+                        {% else %}
+                            <a class="nav-item nav-link" 
+                               href="{{ url_for('main.dashboard') }}">
+                                My Dashboard
+                            </a>
+                        {% endif %}
+                        <a class="nav-item nav-link" 
+                           href="{{ url_for('auth.logout') }}">
+                            Logout
+                        </a>
+                    {% else %}
+                        <!-- Guest Menu -->
+                        <a class="nav-item nav-link" 
+                           href="{{ url_for('auth.login') }}">
+                            Login
+                        </a>
+                        <a class="nav-item nav-link" 
+                           href="{{ url_for('auth.register') }}">
+                            Register
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Container -->
+    <div class="container mt-4">
+        <!-- Flash Messages Display -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} alert-dismissible fade show">
+                        {{ message }}
+                        <button type="button" class="close" data-dismiss="alert">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <!-- Main Content Block -->
+        {% block content %}{% endblock %}
+    </div>
+
+    <!-- Required Scripts -->
+    <script src="{{ url_for('static', filename='js/jquery-3.5.1.slim.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+    
+    <!-- Block for additional scripts -->
+    {% block scripts %}{% endblock %}
+</body>
+</html>

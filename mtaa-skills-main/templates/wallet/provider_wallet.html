@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Wallet - Mtaa Skills</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --mtaa-primary: #2c5aa0;
+            --mtaa-secondary: #f8a01c;
+            --mtaa-success: #28a745;
+            --mtaa-light: #f8f9fa;
+            --mtaa-dark: #343a40;
+        }
+        
+        .wallet-card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+        
+        .wallet-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .balance-card {
+            background: linear-gradient(135deg, var(--mtaa-primary), #1e3a68);
+            color: white;
+            border-radius: 15px;
+            padding: 2rem;
+        }
+        
+        .stat-card {
+            border-left: 4px solid var(--mtaa-primary);
+            transition: all 0.3s;
+        }
+        
+        .stat-card:hover {
+            background-color: rgba(44, 90, 160, 0.05);
+        }
+        
+        .transaction-item {
+            border-bottom: 1px solid #eee;
+            padding: 1rem 0;
+            transition: background-color 0.2s;
+        }
+        
+        .transaction-item:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .quick-action-btn {
+            border-radius: 10px;
+            padding: 12px;
+            transition: all 0.3s;
+            border: none;
+            font-weight: 500;
+        }
+        
+        .quick-action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .withdraw-btn {
+            background: linear-gradient(135deg, var(--mtaa-secondary), #e68900);
+            color: white;
+        }
+        
+        .security-badge {
+            background: rgba(40, 167, 69, 0.1);
+            color: var(--mtaa-success);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body class="bg-light">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-tools"></i> Mtaa Skills
+            </a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="/">Dashboard</a>
+                <a class="nav-link" href="/available-jobs/">Find Jobs</a>
+                <a class="nav-link" href="/provider-jobs/">My Jobs</a>
+                <a class="nav-link active" href="/provider-wallet/">Wallet</a>
+                <a class="nav-link" href="/profile/">{{ user.username }}</a>
+                <a class="nav-link" href="/logout/">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-8">
+                <!-- Page Header -->
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <div>
+                        <h1 class="h2 text-primary">
+                            <i class="fas fa-wallet me-2"></i>My Wallet
+                        </h1>
+                        <p class="text-muted mb-0">Manage your earnings and track your financial growth</p>
+                    </div>
+                    <div class="badge bg-success fs-6 p-2">
+                        <i class="fas fa-check-circle me-1"></i>Active
+                    </div>
+                </div>
+                
+                <!-- Balance Overview -->
+                <div class="balance-card mb-4">
+                    <div class="row align-items-center">
+                        <div class="col-md-8">
+                            <p class="mb-1">Available Balance</p>
+                            <h1 class="display-4 fw-bold mb-2">KES {{ wallet.balance|default:0 }}</h1>
+                            <p class="mb-0">
+                                <span class="badge bg-light text-dark me-2">
+                                    <i class="fas fa-arrow-up text-success me-1"></i>Ready to Withdraw
+                                </span>
+                                <span class="text-light">Updated: {{ wallet.last_updated|date:"M d, Y H:i"|default:"Just now" }}</span>
+                            </p>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <div class="bg-white rounded p-3 text-dark">
+                                <i class="fas fa-piggy-bank fs-1 text-success mb-2 d-block"></i>
+                                <p class="mb-0 fw-bold">Total Earnings</p>
+                                <h4 class="text-success mb-0">KES {{ wallet.total_earnings|default:0 }}</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Quick Stats -->
+                <div class="row mb-4">
+                    <div class="col-md-4 mb-3">
+                        <div class="card wallet-card stat-card h-100">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div>
+                                        <h6 class="card-title text-muted">Pending Clearance</h6>
+                                        <h3 class="text-warning">KES {{ pending_balance|default:0 }}</h3>
+                                        <small class="text-muted">Awaiting payment</small>
+                                    </div>
+                                    <div class="bg-warning bg-opacity-10 p-3 rounded">
+                                        <i class="fas fa-clock text-warning fs-4"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="card wallet-card stat-card h-100">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div>
+                                        <h6 class="card-title text-muted">Completed Jobs</h6>
+                                        <h3 class="text-primary">{{ completed_jobs|default:0 }}</h3>
+                                        <small class="text-success">
+                                            <i class="fas fa-check-circle me-1"></i>All delivered
+                                        </small>
+                                    </div>
+                                    <div class="bg-primary bg-opacity-10 p-3 rounded">
+                                        <i class="fas fa-check-circle text-primary fs-4"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="card wallet-card stat-card h-100">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div>
+                                        <h6 class="card-title text-muted">Avg. Job Value</h6>
+                                        <h3 class="text-info">KES {{ avg_job_value|floatformat:0 }}</h3>
+                                        <small class="text-muted">Per completed job</small>
+                                    </div>
+                                    <div class="bg-info bg-opacity-10 p-3 rounded">
+                                        <i class="fas fa-chart-line text-info fs-4"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Withdrawal Section -->
+                <div class="card wallet-card mb-4">
+                    <div class="card-header bg-transparent border-0 pb-0">
+                        <h5 class="card-title text-primary">
+                            <i class="fas fa-money-bill-wave me-2"></i>Withdraw Funds
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">Transfer your earnings to your M-Pesa account instantly.</p>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Withdrawal Amount</label>
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-text">KES</span>
+                                <input type="number" class="form-control" 
+                                       placeholder="Enter amount" 
+                                       value="{{ wallet.balance }}"
+                                       max="{{ wallet.balance }}"
+                                       min="100">
+                            </div>
+                            <small class="text-muted">Minimum withdrawal: KES 100 | Available: KES {{ wallet.balance }}</small>
+                        </div>
+                        
+                        <div class="d-grid gap-2">
+                            <button class="btn withdraw-btn quick-action-btn" 
+                                    {% if wallet.balance < 100 %}disabled{% endif %}>
+                                <i class="fas fa-arrow-up-circle me-2"></i>
+                                {% if wallet.balance >= 100 %}
+                                    Withdraw to M-Pesa
+                                {% else %}
+                                    Minimum KES 100 Required
+                                {% endif %}
+                            </button>
+                            <button class="btn btn-outline-primary">
+                                <i class="fas fa-cog me-2"></i>Set Up Auto-Withdrawal
+                            </button>
+                        </div>
+                        
+                        <div class="mt-3">
+                            <span class="security-badge">
+                                <i class="fas fa-shield-alt me-1"></i>Secure M-Pesa Transfer
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Recent Transactions -->
+                <div class="card wallet-card">
+                    <div class="card-header bg-transparent border-0">
+                        <h5 class="card-title text-primary mb-0">
+                            <i class="fas fa-history me-2"></i>Recent Transactions
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        {% if transactions %}
+                            <div class="list-group list-group-flush">
+                                {% for transaction in transactions %}
+                                <div class="list-group-item transaction-item px-0">
+                                    <div class="row align-items-center">
+                                        <div class="col-auto">
+                                            <div class="bg-success bg-opacity-10 rounded-circle p-3">
+                                                <i class="fas fa-money-bill-wave text-success"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <h6 class="mb-1">Payment Received</h6>
+                                            <small class="text-muted">
+                                                {{ transaction.booking.job.title }} • 
+                                                {{ transaction.created_at|date:"M d, Y" }}
+                                            </small>
+                                        </div>
+                                        <div class="col-auto text-end">
+                                            <h6 class="mb-1 text-success">+KES {{ transaction.amount }}</h6>
+                                            <span class="badge bg-success">
+                                                <i class="fas fa-check me-1"></i>Completed
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            <div class="text-center py-4">
+                                <i class="fas fa-receipt text-muted fa-3x mb-3"></i>
+                                <h5 class="text-muted">No Transactions Yet</h5>
+                                <p class="text-muted">Your transaction history will appear here once you receive payments.</p>
+                                <a href="/available-jobs/" class="btn btn-primary">
+                                    <i class="fas fa-search me-2"></i>Find Jobs
+                                </a>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sidebar -->
+            <div class="col-md-4">
+                <!-- Quick Actions -->
+                <div class="card wallet-card mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0"><i class="fas fa-bolt me-2"></i>Quick Actions</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-grid gap-2">
+                            <a href="/available-jobs/" class="btn btn-success quick-action-btn">
+                                <i class="fas fa-search me-2"></i> Find Jobs
+                            </a>
+                            <a href="/provider-jobs/" class="btn btn-outline-primary quick-action-btn">
+                                <i class="fas fa-tasks me-2"></i> My Jobs
+                            </a>
+                            <a href="/" class="btn btn-outline-secondary quick-action-btn">
+                                <i class="fas fa-home me-2"></i> Dashboard
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Payment Statistics -->
+                <div class="card wallet-card">
+                    <div class="card-header bg-transparent border-0">
+                        <h5 class="card-title text-primary mb-0">
+                            <i class="fas fa-chart-bar me-2"></i>Earnings Overview
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <small class="text-muted d-block">This Month</small>
+                            <h4 class="text-success">KES {{ this_month_earnings|floatformat:0 }}</h4>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <small class="text-muted d-block">Last Month</small>
+                            <h4 class="text-primary">KES {{ last_month_earnings|floatformat:0 }}</h4>
+                        </div>
+                        
+                        <div class="progress mb-2" style="height: 8px;">
+                            <div class="progress-bar bg-success" role="progressbar" 
+                                 style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <small class="text-muted">65% towards monthly goal</small>
+                    </div>
+                </div>
+                
+                <!-- Support Card -->
+                <div class="card wallet-card mt-4">
+                    <div class="card-body text-center">
+                        <i class="fas fa-headset text-primary fa-2x mb-3"></i>
+                        <h6>Need Help?</h6>
+                        <p class="small text-muted mb-3">Our support team is here to help with any payment issues.</p>
+                        <a href="#" class="btn btn-outline-primary btn-sm">
+                            <i class="fas fa-envelope me-1"></i> Contact Support
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Enhanced wallet functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Withdrawal amount validation
+            const withdrawalInput = document.querySelector('input[type="number"]');
+            const withdrawBtn = document.querySelector('.withdraw-btn');
+            
+            if (withdrawalInput && withdrawBtn) {
+                withdrawalInput.addEventListener('input', function() {
+                    const amount = parseFloat(this.value) || 0;
+                    const maxAmount = parseFloat(this.max) || 0;
+                    
+                    if (amount < 100) {
+                        withdrawBtn.disabled = true;
+                        withdrawBtn.innerHTML = '<i class="fas fa-arrow-up-circle me-2"></i>Minimum KES 100 Required';
+                    } else if (amount > maxAmount) {
+                        withdrawBtn.disabled = true;
+                        withdrawBtn.innerHTML = '<i class="fas fa-exclamation-triangle me-2"></i>Insufficient Balance';
+                    } else {
+                        withdrawBtn.disabled = false;
+                        withdrawBtn.innerHTML = '<i class="fas fa-arrow-up-circle me-2"></i>Withdraw KES ' + amount.toLocaleString();
+                    }
+                });
+            }
+            
+            // Add loading state to withdrawal button
+            if (withdrawBtn) {
+                withdrawBtn.addEventListener('click', function(e) {
+                    if (!this.disabled) {
+                        const originalText = this.innerHTML;
+                        this.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Processing...';
+                        this.disabled = true;
+                        
+                        // Simulate withdrawal processing
+                        setTimeout(() => {
+                            alert('Withdrawal simulation: In production, this would initiate an M-Pesa transfer to your registered phone number.');
+                            this.innerHTML = originalText;
+                            this.disabled = false;
+                        }, 2000);
+                    }
+                });
+            }
+            
+            // Add hover effects to transaction items
+            const transactionItems = document.querySelectorAll('.transaction-item');
+            transactionItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateX(5px)';
+                });
+                item.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateX(0)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Provider Jobs - Mtaa Skills | Manage Your Work</title>
+    <meta name="description" content="Manage your assigned jobs and applications on Mtaa Skills. Track progress and grow your service business.">
+    
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #4361ee;
+            --primary-dark: #3a56d4;
+            --secondary: #7209b7;
+            --accent: #f72585;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #4cc9f0;
+            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+        
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: #f9fafc;
+            color: var(--dark);
+        }
+        
+        .dashboard-card {
+            border-radius: 20px;
+            border: none;
+            box-shadow: var(--shadow);
+            transition: all 0.4s ease;
+            overflow: hidden;
+        }
+        
+        .dashboard-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .stat-card {
+            text-align: center;
+            padding: 2rem 1.5rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            line-height: 1;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+        
+        .stat-icon {
+            font-size: 2.5rem;
+            opacity: 0.8;
+            margin-top: 1rem;
+        }
+        
+        .job-card {
+            transition: all 0.3s ease;
+            border-radius: 16px;
+            border: none;
+            box-shadow: var(--shadow);
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .job-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .job-card.completed {
+            border-left-color: #28a745;
+        }
+        
+        .job-card.in-progress {
+            border-left-color: #ffc107;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 3rem 2rem;
+            color: #6c757d;
+        }
+        
+        .empty-state-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-weight: 500;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
+        }
+        
+        .page-header {
+            background: var(--gradient);
+            color: white;
+            padding: 2rem 0;
+            border-radius: 16px;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid py-4">
+        <!-- Header -->
+        <div class="page-header">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-8">
+                        <h1 class="h2 fw-bold mb-2">
+                            <i class="fas fa-tools me-2"></i> Provider Jobs Dashboard
+                        </h1>
+                        <p class="lead mb-0">Manage your assigned jobs and grow your service business</p>
+                    </div>
+                    <div class="col-md-4 text-md-end">
+                        <a href="{% url 'available_jobs' %}" class="btn btn-light">
+                            <i class="fas fa-search me-2"></i> Browse Available Jobs
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Statistics Cards -->
+        <div class="container">
+            <div class="row mb-4">
+                <div class="col-xl-4 col-md-6 mb-4">
+                    <div class="card dashboard-card" style="background: var(--gradient);">
+                        <div class="card-body stat-card">
+                            <div class="stat-number">{{ total_assigned }}</div>
+                            <div class="stat-label">Assigned Jobs</div>
+                            <i class="fas fa-briefcase stat-icon"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-md-6 mb-4">
+                    <div class="card dashboard-card" style="background: linear-gradient(135deg, #ffc107 0%, #ffb300 100%);">
+                        <div class="card-body stat-card text-dark">
+                            <div class="stat-number">{{ in_progress_jobs }}</div>
+                            <div class="stat-label">In Progress</div>
+                            <i class="fas fa-tasks stat-icon"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-md-6 mb-4">
+                    <div class="card dashboard-card" style="background: linear-gradient(135deg, #28a745 0%, #218838 100%);">
+                        <div class="card-body stat-card">
+                            <div class="stat-number">{{ completed_jobs }}</div>
+                            <div class="stat-label">Completed</div>
+                            <i class="fas fa-check-circle stat-icon"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Assigned Jobs -->
+                <div class="col-lg-6 mb-4">
+                    <div class="card dashboard-card">
+                        <div class="card-header bg-white py-3">
+                            <h5 class="fw-bold mb-0">
+                                <i class="fas fa-clipboard-check me-2 text-primary"></i> Assigned Jobs
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            {% if assigned_jobs %}
+                                {% for job in assigned_jobs %}
+                                <div class="card job-card {{ job.status }} mb-3">
+                                    <div class="card-body">
+                                        <h6 class="fw-bold mb-2">{{ job.title }}</h6>
+                                        <p class="text-muted small mb-3">{{ job.description|truncatewords:15 }}</p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <span class="badge bg-{% if job.status == 'completed' %}success{% elif job.status == 'in_progress' %}primary{% else %}warning{% endif %}">
+                                                    {{ job.status|title }}
+                                                </span>
+                                                <small class="text-muted ms-2">KES {{ job.budget }}</small>
+                                            </div>
+                                            <a href="{% url 'job_detail' job.id %}" class="btn btn-primary btn-sm">
+                                                <i class="fas fa-eye me-1"></i> View
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            {% else %}
+                                <div class="empty-state">
+                                    <div class="empty-state-icon">
+                                        <i class="fas fa-clipboard-list"></i>
+                                    </div>
+                                    <h6 class="mb-3">No Assigned Jobs</h6>
+                                    <p class="text-muted small mb-3">You haven't been assigned any jobs yet</p>
+                                    <a href="{% url 'available_jobs' %}" class="btn btn-primary btn-sm">
+                                        Browse Jobs
+                                    </a>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Applied Jobs -->
+                <div class="col-lg-6 mb-4">
+                    <div class="card dashboard-card">
+                        <div class="card-header bg-white py-3">
+                            <h5 class="fw-bold mb-0">
+                                <i class="fas fa-paper-plane me-2 text-info"></i> Job Applications
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            {% if applied_jobs %}
+                                {% for job in applied_jobs %}
+                                <div class="card job-card mb-3">
+                                    <div class="card-body">
+                                        <h6 class="fw-bold mb-2">{{ job.title }}</h6>
+                                        <p class="text-muted small mb-3">{{ job.description|truncatewords:15 }}</p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <span class="badge bg-info">Applied</span>
+                                                <small class="text-muted ms-2">KES {{ job.budget }}</small>
+                                            </div>
+                                            <a href="{% url 'job_detail' job.id %}" class="btn btn-outline-primary btn-sm">
+                                                <i class="fas fa-eye me-1"></i> View
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            {% else %}
+                                <div class="empty-state">
+                                    <div class="empty-state-icon">
+                                        <i class="fas fa-paper-plane"></i>
+                                    </div>
+                                    <h6 class="mb-3">No Applications</h6>
+                                    <p class="text-muted small mb-3">You haven't applied to any jobs yet</p>
+                                    <a href="{% url 'available_jobs' %}" class="btn btn-primary btn-sm">
+                                        Browse Jobs
+                                    </a>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

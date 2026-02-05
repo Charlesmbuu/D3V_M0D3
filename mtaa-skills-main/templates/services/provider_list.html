@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top Service Providers | Find Skilled Professionals - Mtaa Skills</title>
+    <meta name="description" content="Browse our verified service providers for plumbing, electrical, carpentry, cleaning and more. Hire trusted professionals with ratings, reviews and competitive pricing.">
+    <meta name="keywords" content="service providers, skilled professionals, handyman, plumbing, electrical, carpentry, cleaning services, home services">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Top Service Providers | Find Skilled Professionals - Mtaa Skills">
+    <meta property="og:description" content="Browse verified service providers for all your home and business needs. Hire trusted professionals with ratings and reviews.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "Service Providers Directory",
+        "description": "Directory of skilled service providers for various home and business services",
+        "numberOfItems": "{{ providers|length }}",
+        "itemListElement": [
+            {% for provider in providers %}
+            {
+                "@type": "ListItem",
+                "position": {{ forloop.counter }},
+                "item": {
+                    "@type": "Service",
+                    "name": "{{ provider.business_name }}",
+                    "description": "{{ provider.description|striptags|truncatewords:20 }}",
+                    "serviceType": "{{ provider.service_categories.all|join:', ' }}",
+                    "areaServed": "{{ provider.location }}",
+                    "provider": {
+                        "@type": "Person",
+                        "name": "{{ provider.business_name }}"
+                    },
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "{{ provider.hourly_rate }}",
+                        "priceCurrency": "KES"
+                    }
+                }
+            }{% if not forloop.last %},{% endif %}
+            {% endfor %}
+        ]
+    }
+    </script>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --mtaa-primary: #2c5aa0;
+            --mtaa-secondary: #f8a01c;
+            --mtaa-success: #28a745;
+            --mtaa-light: #f8f9fa;
+            --mtaa-dark: #343a40;
+        }
+        
+        .mtaa-bg-primary {
+            background-color: var(--mtaa-primary) !important;
+        }
+        
+        .mtaa-text-primary {
+            color: var(--mtaa-primary) !important;
+        }
+        
+        .mtaa-badge {
+            background-color: var(--mtaa-secondary);
+            color: white;
+        }
+        
+        .rating-stars {
+            color: var(--mtaa-secondary);
+        }
+        
+        .provider-card {
+            transition: all 0.3s ease;
+            border: none;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+        
+        .provider-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .provider-image {
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .provider-card:hover .provider-image {
+            transform: scale(1.05);
+        }
+        
+        .service-badge {
+            background: linear-gradient(135deg, var(--mtaa-primary), #1e3a68);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .hire-btn {
+            background: linear-gradient(135deg, var(--mtaa-secondary), #e68900);
+            border: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .hire-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(248, 160, 28, 0.4);
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, var(--mtaa-primary), #1e3a68);
+            color: white;
+            padding: 3rem 0;
+            border-radius: 0 0 20px 20px;
+            margin-bottom: 2rem;
+        }
+        
+        .filter-section {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stats-badge {
+            display: inline-flex;
+            align-items: center;
+            background-color: rgba(44, 90, 160, 0.1);
+            color: var(--mtaa-primary);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+        
+        .verified-badge {
+            background: linear-gradient(135deg, var(--mtaa-success), #1e7e34);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-size: 0.7rem;
+            font-weight: 500;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 3rem 1rem;
+        }
+        
+        .empty-state-icon {
+            font-size: 4rem;
+            color: #dee2e6;
+            margin-bottom: 1rem;
+        }
+        
+        .category-filter {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .category-btn {
+            background: white;
+            border: 1px solid #dee2e6;
+            border-radius: 20px;
+            padding: 8px 16px;
+            transition: all 0.2s;
+            font-size: 0.9rem;
+        }
+        
+        .category-btn:hover, .category-btn.active {
+            background: var(--mtaa-primary);
+            color: white;
+            border-color: var(--mtaa-primary);
+        }
+        
+        .search-box {
+            position: relative;
+        }
+        
+        .search-box .form-control {
+            padding-left: 2.5rem;
+            border-radius: 20px;
+        }
+        
+        .search-box .bi-search {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark mtaa-bg-primary">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="{% url 'home' %}">
+                <i class="bi bi-hammer me-2"></i>
+                Mtaa Skills
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="navbar-nav ms-auto">
+                    {% if user.is_authenticated %}
+                        <a class="nav-link" href="{% url 'profile' %}">
+                            <i class="bi bi-person-circle me-1"></i>Welcome, {{ user.username }}
+                        </a>
+                        {% if user.user_type == 'provider' %}
+                            <a class="nav-link" href="{% url 'services:provider_dashboard' %}">
+                                <i class="bi bi-speedometer2 me-1"></i>Dashboard
+                            </a>
+                        {% endif %}
+                        <a class="nav-link" href="{% url 'logout' %}">
+                            <i class="bi bi-box-arrow-right me-1"></i>Logout
+                        </a>
+                    {% else %}
+                        <a class="nav-link" href="{% url 'login' %}">
+                            <i class="bi bi-box-arrow-in-right me-1"></i>Login
+                        </a>
+                        <a class="nav-link" href="{% url 'register' %}">
+                            <i class="bi bi-person-plus me-1"></i>Register
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h1 class="display-5 fw-bold mb-3">Find Trusted Service Providers</h1>
+                    <p class="lead mb-4">Connect with verified professionals for all your home and business needs. Quality service guaranteed.</p>
+                    
+                    <!-- Stats -->
+                    <div class="d-flex flex-wrap">
+                        <div class="me-4 mb-2">
+                            <h4 class="fw-bold mb-0">{{ providers|length }}+</h4>
+                            <small>Verified Providers</small>
+                        </div>
+                        <div class="me-4 mb-2">
+                            <h4 class="fw-bold mb-0">98%</h4>
+                            <small>Satisfaction Rate</small>
+                        </div>
+                        <div class="me-4 mb-2">
+                            <h4 class="fw-bold mb-0">24/7</h4>
+                            <small>Customer Support</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 text-center">
+                    <div class="bg-white rounded p-4 text-dark">
+                        <h5 class="mb-3">Need help finding the right provider?</h5>
+                        <p class="small text-muted mb-3">Our team can match you with the perfect professional for your project.</p>
+                        <a href="#" class="btn hire-btn w-100">Get Personalized Recommendations</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Filters and Search -->
+        <div class="filter-section">
+            <div class="row align-items-center">
+                <div class="col-md-6 mb-3 mb-md-0">
+                    <h5 class="mb-3 mtaa-text-primary">Filter by Service Category</h5>
+                    <div class="category-filter">
+                        <button class="category-btn active">All Services</button>
+                        <button class="category-btn">Plumbing</button>
+                        <button class="category-btn">Electrical</button>
+                        <button class="category-btn">Carpentry</button>
+                        <button class="category-btn">Cleaning</button>
+                        <button class="category-btn">Painting</button>
+                        <button class="category-btn">More +</button>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="search-box">
+                        <i class="bi bi-search"></i>
+                        <input type="text" class="form-control" placeholder="Search providers by name, service, or location...">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Additional Filters -->
+            <div class="row mt-3">
+                <div class="col-md-4 mb-2">
+                    <select class="form-select">
+                        <option selected>Sort by: Recommended</option>
+                        <option>Highest Rated</option>
+                        <option>Most Experienced</option>
+                        <option>Lowest Price</option>
+                        <option>Newest Providers</option>
+                    </select>
+                </div>
+                <div class="col-md-4 mb-2">
+                    <select class="form-select">
+                        <option selected>Location: All Areas</option>
+                        <option>Nairobi</option>
+                        <option>Mombasa</option>
+                        <option>Kisumu</option>
+                        <option>Nakuru</option>
+                    </select>
+                </div>
+                <div class="col-md-4 mb-2">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="verifiedOnly">
+                        <label class="form-check-label" for="verifiedOnly">
+                            Show verified providers only
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Providers Grid -->
+        {% if providers %}
+        <div class="row">
+            {% for provider in providers %}
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card provider-card h-100">
+                    <!-- Provider Image -->
+                    <div class="position-relative">
+                        {% if provider.profile_picture %}
+                        <img src="{{ provider.profile_picture.url }}" class="card-img-top provider-image" alt="{{ provider.business_name }} - Professional Service Provider">
+                        {% else %}
+                        <div class="card-img-top provider-image bg-light d-flex align-items-center justify-content-center">
+                            <i class="bi bi-person-circle text-muted" style="font-size: 3rem;"></i>
+                        </div>
+                        {% endif %}
+                        
+                        <!-- Trust Badges -->
+                        <div class="position-absolute top-0 end-0 m-2">
+                            {% if provider.is_verified %}
+                            <span class="verified-badge">
+                                <i class="bi bi-patch-check-fill me-1"></i>Verified
+                            </span>
+                            {% endif %}
+                        </div>
+                        
+                        <!-- Service Categories -->
+                        <div class="position-absolute bottom-0 start-0 m-2">
+                            {% for category in provider.service_categories.all|slice:":2" %}
+                            <span class="service-badge me-1 mb-1">{{ category.name }}</span>
+                            {% endfor %}
+                            {% if provider.service_categories.all|length > 2 %}
+                            <span class="badge bg-light text-dark">+{{ provider.service_categories.all|length|add:"-2" }}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <!-- Card Body -->
+                    <div class="card-body">
+                        <h5 class="card-title">{{ provider.business_name }}</h5>
+                        
+                        <p class="card-text text-muted small">{{ provider.description|truncatewords:25 }}</p>
+                        
+                        <!-- Key Stats -->
+                        <div class="d-flex flex-wrap mb-3">
+                            <span class="stats-badge">
+                                <i class="bi bi-currency-exchange me-1"></i>KES {{ provider.hourly_rate }}/hr
+                            </span>
+                            <span class="stats-badge">
+                                <i class="bi bi-star-fill me-1"></i>{{ provider.average_rating|default:"5.0" }}/5
+                            </span>
+                            <span class="stats-badge">
+                                <i class="bi bi-briefcase me-1"></i>{{ provider.experience_years }} yrs
+                            </span>
+                        </div>
+                        
+                        <!-- Location and Availability -->
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <small class="text-muted">
+                                <i class="bi bi-geo-alt me-1"></i>{{ provider.location|default:"Nairobi" }}
+                            </small>
+                            <small class="text-success">
+                                <i class="bi bi-circle-fill me-1"></i>Available Now
+                            </small>
+                        </div>
+                        
+                        <!-- Rating and Reviews -->
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <div class="rating-stars small mb-1">
+                                    {% for i in "12345" %}
+                                        {% if forloop.counter <= provider.average_rating %}
+                                            ★
+                                        {% else %}
+                                            ☆
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                                <small class="text-muted">
+                                    {{ provider.total_reviews|default:"12" }} reviews
+                                </small>
+                            </div>
+                            <div class="text-end">
+                                <small class="text-muted d-block">
+                                    <i class="bi bi-check-circle text-success me-1"></i>{{ provider.total_jobs_completed }} jobs
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Card Footer -->
+                    <div class="card-footer bg-transparent border-0 pt-0">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <a href="{% url 'services:provider_detail' provider.id %}" class="btn btn-outline-primary btn-sm">
+                                <i class="bi bi-eye me-1"></i>View Profile
+                            </a>
+                            
+                            {% if not user.is_authenticated or user.user_type == 'customer' %}
+                            <a href="/bookings/post/?provider={{ provider.id }}" class="btn hire-btn btn-sm">
+                                <i class="bi bi-calendar-check me-1"></i>Hire Now
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <!-- Pagination -->
+        <nav aria-label="Provider pagination" class="mt-5">
+            <ul class="pagination justify-content-center">
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                </li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#">Next</a>
+                </li>
+            </ul>
+        </nav>
+        
+        {% else %}
+        <!-- Empty State -->
+        <div class="empty-state">
+            <div class="empty-state-icon">
+                <i class="bi bi-people"></i>
+            </div>
+            <h3 class="mb-3">No Service Providers Available Yet</h3>
+            <p class="text-muted mb-4">Be the first to join our platform as a service provider and start connecting with clients.</p>
+            
+            {% if user.is_authenticated and user.user_type == 'provider' %}
+            <a href="{% url 'services:become_provider' %}" class="btn hire-btn btn-lg">
+                <i class="bi bi-plus-circle me-2"></i>Create Your Provider Profile
+            </a>
+            {% else %}
+            <div class="d-flex flex-column flex-md-row justify-content-center gap-3">
+                <a href="{% url 'register' %}" class="btn hire-btn">
+                    <i class="bi bi-person-plus me-2"></i>Join as Provider
+                </a>
+                <a href="{% url 'login' %}" class="btn btn-outline-primary">
+                    <i class="bi bi-box-arrow-in-right me-2"></i>Sign In
+                </a>
+            </div>
+            {% endif %}
+            
+            <div class="mt-4">
+                <small class="text-muted">
+                    Have questions? <a href="#" class="mtaa-text-primary">Contact our support team</a>
+                </small>
+            </div>
+        </div>
+        {% endif %}
+        
+        <!-- Trust Section -->
+        <div class="row mt-5 pt-4 border-top">
+            <div class="col-12 text-center mb-4">
+                <h3 class="mtaa-text-primary">Why Choose Mtaa Skills Providers?</h3>
+            </div>
+            <div class="col-md-3 text-center mb-4">
+                <div class="feature-icon mx-auto mb-3">
+                    <i class="bi bi-shield-check text-primary fs-4"></i>
+                </div>
+                <h5>Verified Professionals</h5>
+                <p class="text-muted small">All providers are thoroughly vetted and background checked</p>
+            </div>
+            <div class="col-md-3 text-center mb-4">
+                <div class="feature-icon mx-auto mb-3">
+                    <i class="bi bi-star text-primary fs-4"></i>
+                </div>
+                <h5>Rated & Reviewed</h5>
+                <p class="text-muted small">Read genuine reviews from previous clients</p>
+            </div>
+            <div class="col-md-3 text-center mb-4">
+                <div class="feature-icon mx-auto mb-3">
+                    <i class="bi bi-currency-dollar text-primary fs-4"></i>
+                </div>
+                <h5>Fair Pricing</h5>
+                <p class="text-muted small">Transparent pricing with no hidden costs</p>
+            </div>
+            <div class="col-md-3 text-center mb-4">
+                <div class="feature-icon mx-auto mb-3">
+                    <i class="bi bi-headset text-primary fs-4"></i>
+                </div>
+                <h5>24/7 Support</h5>
+                <p class="text-muted small">Our team is always here to help you</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light mt-5 py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Mtaa Skills</h5>
+                    <p>Connecting skilled professionals with local opportunities.</p>
+                </div>
+                <div class="col-md-3">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="{% url 'home' %}" class="text-light">Home</a></li>
+                        <li><a href="{% url 'services:provider_list' %}" class="text-light">All Providers</a></li>
+                        <li><a href="#" class="text-light">Help Center</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>Contact</h5>
+                    <ul class="list-unstyled">
+                        <li>Email: support@mtaaskills.com</li>
+                        <li>Phone: +254 700 000 000</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="bg-light">
+            <div class="text-center">
+                <small>&copy; 2023 Mtaa Skills. All rights reserved.</small>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

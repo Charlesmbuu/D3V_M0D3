@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h4>Reviews for {{ provider.business_name }}</h4>
+                    <span class="badge bg-primary">{{ reviews.count }} review{{ reviews.count|pluralize }}</span>
+                </div>
+                <div class="card-body">
+                    {% if reviews %}
+                        {% for review in reviews %}
+                        <div class="review-item mb-4 pb-3 border-bottom">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <div>
+                                    <h6 class="mb-1">{{ review.reviewer.get_full_name|default:review.reviewer.username }}</h6>
+                                    <div class="text-warning mb-1">
+                                        {{ review.stars }}
+                                    </div>
+                                </div>
+                                <small class="text-muted">{{ review.created_at|date }}</small>
+                            </div>
+                            {% if review.comment %}
+                                <p class="mb-0">{{ review.comment }}</p>
+                            {% else %}
+                                <p class="text-muted mb-0"><em>No comment provided</em></p>
+                            {% endif %}
+                            <small class="text-muted">Service: {{ review.booking.job.title }}</small>
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="text-center py-4">
+                            <p class="text-muted">No reviews yet for this provider.</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h3 class="text-warning">{{ stats.average_rating|floatformat:1 }}</h3>
+                    <div class="text-warning mb-2">
+                        {% for i in "12345" %}
+                            {% if forloop.counter <= stats.average_rating %}
+                                ⭐
+                            {% else %}
+                                ☆
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <p class="text-muted">{{ stats.total_reviews }} review{{ stats.total_reviews|pluralize }}</p>
+                    
+                    <!-- Rating breakdown -->
+                    <div class="rating-breakdown mt-3">
+                        {% for rating in "54321" %}
+                            {% with rating=rating|add:0 %}
+                            <div class="row align-items-center mb-2">
+                                <div class="col-3">
+                                    <small>{{ rating }} ⭐</small>
+                                </div>
+                                <div class="col-6">
+                                    <div class="progress" style="height: 8px;">
+                                        {% widthratio stats.rating_breakdown|get_item:rating stats.total_reviews 100 as percentage %}
+                                        <div class="progress-bar bg-warning" style="width: {{ percentage }}%"></div>
+                                    </div>
+                                </div>
+                                <div class="col-3 text-end">
+                                    <small class="text-muted">{{ stats.rating_breakdown|get_item:rating }}</small>
+                                </div>
+                            </div>
+                            {% endwith %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-3">
+                <a href="{% url 'services:provider_detail' provider.id %}" class="btn btn-outline-primary w-100">
+                    Back to Provider Profile
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

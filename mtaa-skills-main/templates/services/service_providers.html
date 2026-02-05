@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ provider.business_name }} - Professional Service Provider | Mtaa Skills</title>
+    <meta name="description" content="Hire {{ provider.business_name }} for professional {{ provider.service_categories.all|join:', ' }} services in {{ provider.location }}. {{ provider.experience_years }} years experience, KES {{ provider.hourly_rate }}/hour.">
+    <meta name="keywords" content="{{ provider.business_name }}, {{ provider.service_categories.all|join:', ' }}, {{ provider.location }}, service provider, handyman, professional services">
+    <meta property="og:title" content="{{ provider.business_name }} - Mtaa Skills">
+    <meta property="og:description" content="Professional {{ provider.service_categories.all|join:', ' }} services in {{ provider.location }}">
+    {% if provider.profile_picture %}
+    <meta property="og:image" content="{{ provider.profile_picture.url }}">
+    {% endif %}
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    <meta name="twitter:card" content="summary_large_image">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --mtaa-primary: #2c5aa0;
+            --mtaa-secondary: #f8a01c;
+            --mtaa-accent: #e74c3c;
+            --mtaa-light: #f8f9fa;
+            --mtaa-dark: #2c3e50;
+            --mtaa-success: #28a745;
+        }
+        
+        .mtaa-bg-primary { background-color: var(--mtaa-primary) !important; }
+        .mtaa-bg-secondary { background-color: var(--mtaa-secondary) !important; }
+        .mtaa-text-primary { color: var(--mtaa-primary) !important; }
+        .mtaa-text-secondary { color: var(--mtaa-secondary) !important; }
+        .mtaa-border-primary { border-color: var(--mtaa-primary) !important; }
+        
+        .btn-mtaa-primary {
+            background-color: var(--mtaa-primary);
+            border-color: var(--mtaa-primary);
+            color: white;
+        }
+        
+        .btn-mtaa-primary:hover {
+            background-color: #1e4080;
+            border-color: #1e4080;
+        }
+        
+        .btn-mtaa-secondary {
+            background-color: var(--mtaa-secondary);
+            border-color: var(--mtaa-secondary);
+            color: white;
+        }
+        
+        .btn-mtaa-secondary:hover {
+            background-color: #e0910a;
+            border-color: #e0910a;
+        }
+        
+        .badge-mtaa {
+            background-color: var(--mtaa-secondary);
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, var(--mtaa-primary) 0%, #1e4080 100%);
+            color: white;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+        }
+        
+        .profile-image-container {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 5px solid white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .rating-stars {
+            color: var(--mtaa-secondary);
+        }
+        
+        .feature-card {
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: none;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+        
+        .stat-highlight {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--mtaa-primary);
+        }
+        
+        .breadcrumb-item a {
+            color: var(--mtaa-primary);
+            text-decoration: none;
+        }
+        
+        .breadcrumb-item.active {
+            color: var(--mtaa-dark);
+        }
+        
+        .action-btn {
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        
+        .trust-badge {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(40, 167, 69, 0.1);
+            color: var(--mtaa-success);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-weight: 500;
+        }
+        
+        .service-tag {
+            background-color: rgba(44, 90, 160, 0.1);
+            color: var(--mtaa-primary);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-weight: 500;
+            display: inline-block;
+            margin: 0.25rem;
+        }
+        
+        .testimonial-card {
+            border-left: 4px solid var(--mtaa-secondary);
+            background-color: var(--mtaa-light);
+        }
+        
+        .nav-pills .nav-link.active {
+            background-color: var(--mtaa-primary);
+        }
+        
+        footer {
+            background-color: var(--mtaa-dark);
+            color: white;
+        }
+        
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255,255,255,0.1);
+            color: white;
+            transition: all 0.3s;
+        }
+        
+        .social-icon:hover {
+            background-color: var(--mtaa-secondary);
+            transform: translateY(-3px);
+        }
+        
+        /* SEO-friendly content styling */
+        .content-section h2, .content-section h3 {
+            color: var(--mtaa-dark);
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .content-section p {
+            line-height: 1.7;
+            color: #555;
+        }
+        
+        /* Schema markup styling */
+        .schema-rating {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(248, 160, 28, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            margin: 0.5rem 0;
+        }
+        
+        /* Call-to-action emphasis */
+        .cta-section {
+            background: linear-gradient(135deg, var(--mtaa-primary) 0%, #1e4080 100%);
+            color: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        /* Mobile optimizations */
+        @media (max-width: 768px) {
+            .profile-image-container {
+                width: 150px;
+                height: 150px;
+                margin: 0 auto 1rem;
+            }
+            
+            .hero-section {
+                text-align: center;
+                padding: 1.5rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Schema.org markup for Service Provider -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "provider": {
+            "@type": "LocalBusiness",
+            "name": "{{ provider.business_name }}",
+            "description": "{{ provider.description|truncatewords:30 }}",
+            {% if provider.profile_picture %}
+            "image": "{{ provider.profile_picture.url }}",
+            {% endif %}
+            "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "{{ provider.location }}"
+            },
+            "telephone": "{{ provider.phone }}",
+            "priceRange": "KES {{ provider.hourly_rate }}"
+        },
+        "areaServed": "{{ provider.location }}",
+        "serviceType": "{{ provider.service_categories.all|join:', ' }}",
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Service Offers",
+            "itemListElement": [
+                {% for category in provider.service_categories.all %}
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "{{ category.name }}"
+                    }
+                }{% if not forloop.last %},{% endif %}
+                {% endfor %}
+            ]
+        }
+    }
+    </script>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark mtaa-bg-primary sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="{% url 'home' %}">
+                <i class="bi bi-hammer me-2"></i>Mtaa Skills
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'services:provider_list' %}">
+                            <i class="bi bi-people me-1"></i>All Providers
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'services:service_categories' %}">
+                            <i class="bi bi-grid me-1"></i>Services
+                        </a>
+                    </li>
+                </ul>
+                <div class="navbar-nav ms-auto">
+                    {% if user.is_authenticated %}
+                        <a class="nav-link" href="{% url 'profile' %}">
+                            <i class="bi bi-person-circle me-1"></i>{{ user.username }}
+                        </a>
+                        <a class="nav-link" href="{% url 'logout' %}">
+                            <i class="bi bi-box-arrow-right me-1"></i>Logout
+                        </a>
+                    {% else %}
+                        <a class="nav-link" href="{% url 'login' %}">
+                            <i class="bi bi-box-arrow-in-right me-1"></i>Login
+                        </a>
+                        <a class="nav-link btn btn-outline-light btn-sm ms-2" href="{% url 'register' %}">
+                            Sign Up
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb" style="--bs-breadcrumb-divider-color: rgba(255,255,255,0.7);">
+                            <li class="breadcrumb-item"><a href="{% url 'home' %}" class="text-white">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{% url 'services:provider_list' %}" class="text-white">Providers</a></li>
+                            <li class="breadcrumb-item active text-white" aria-current="page">{{ provider.business_name }}</li>
+                        </ol>
+                    </nav>
+                    <h1 class="display-5 fw-bold mb-2">{{ provider.business_name }}</h1>
+                    <div class="d-flex flex-wrap align-items-center mb-3">
+                        {% for category in provider.service_categories.all %}
+                        <span class="service-tag me-2 mb-2">{{ category.name }}</span>
+                        {% endfor %}
+                    </div>
+                    <div class="d-flex flex-wrap align-items-center">
+                        <div class="schema-rating me-3">
+                            <span class="rating-stars me-2">
+                                {% with avg_rating=provider.average_rating|default:0 %}
+                                {% for i in "12345" %}
+                                    {% if forloop.counter <= avg_rating %}
+                                        ★
+                                    {% else %}
+                                        ☆
+                                    {% endif %}
+                                {% endfor %}
+                                {% endwith %}
+                            </span>
+                            <strong>{{ provider.average_rating|default:"0" }}/5</strong>
+                            <span class="ms-1">({{ provider.total_reviews|default:"0" }} reviews)</span>
+                        </div>
+                        {% if provider.is_verified %}
+                        <div class="trust-badge">
+                            <i class="bi bi-patch-check-fill me-2"></i>Verified Professional
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-md-4 text-center">
+                    <div class="profile-image-container mx-auto">
+                        {% if provider.profile_picture %}
+                        <img src="{{ provider.profile_picture.url }}" class="profile-image" alt="{{ provider.business_name }} - Professional Service Provider">
+                        {% else %}
+                        <div class="h-100 d-flex align-items-center justify-content-center bg-light">
+                            <i class="bi bi-person-circle text-muted" style="font-size: 4rem;"></i>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mb-5">
+        <div class="row">
+            <!-- Main Content -->
+            <div class="col-lg-8">
+                <!-- Provider Overview -->
+                <div class="card feature-card mb-4">
+                    <div class="card-body">
+                        <h2 class="card-title h4 mb-3">About {{ provider.business_name }}</h2>
+                        <div class="content-section">
+                            <p class="card-text">{{ provider.description|linebreaks }}</p>
+                        </div>
+                        
+                        <div class="row mt-4">
+                            <div class="col-md-6 mb-3">
+                                <div class="d-flex align-items-center">
+                                    <div class="bg-light rounded p-3 me-3">
+                                        <i class="bi bi-geo-alt-fill mtaa-text-primary" style="font-size: 1.5rem;"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="mb-1">Service Area</h5>
+                                        <p class="mb-0">{{ provider.location|default:"Not specified" }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="d-flex align-items-center">
+                                    <div class="bg-light rounded p-3 me-3">
+                                        <i class="bi bi-clock-fill mtaa-text-primary" style="font-size: 1.5rem;"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="mb-1">Response Time</h5>
+                                        <p class="mb-0">Usually within 2 hours</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="d-flex align-items-center">
+                                    <div class="bg-light rounded p-3 me-3">
+                                        <i class="bi bi-award-fill mtaa-text-primary" style="font-size: 1.5rem;"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="mb-1">Experience</h5>
+                                        <p class="mb-0">{{ provider.experience_years }} years</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="d-flex align-items-center">
+                                    <div class="bg-light rounded p-3 me-3">
+                                        <i class="bi bi-cash-coin mtaa-text-primary" style="font-size: 1.5rem;"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="mb-1">Hourly Rate</h5>
+                                        <p class="mb-0">KES {{ provider.hourly_rate }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Services Offered -->
+                <div class="card feature-card mb-4">
+                    <div class="card-body">
+                        <h2 class="card-title h4 mb-3">Services Offered</h2>
+                        <div class="row">
+                            {% for category in provider.service_categories.all %}
+                            <div class="col-md-6 mb-3">
+                                <div class="d-flex align-items-center p-3 border rounded">
+                                    <i class="bi bi-check-circle-fill mtaa-text-primary me-3"></i>
+                                    <span class="fw-medium">{{ category.name }}</span>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Reviews Section -->
+                <div class="card feature-card mb-4">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h2 class="card-title h4 mb-0">Customer Reviews</h2>
+                            <span class="badge bg-primary rounded-pill">{{ provider.total_reviews|default:"0" }} reviews</span>
+                        </div>
+                        
+                        {% if provider.stats.total_reviews > 0 %}
+                        <!-- Rating Summary -->
+                        <div class="row align-items-center mb-4 p-3 bg-light rounded">
+                            <div class="col-md-4 text-center">
+                                <div class="display-4 fw-bold mtaa-text-primary">{{ provider.stats.average_rating|floatformat:1 }}</div>
+                                <div class="rating-stars mb-2">
+                                    {% for i in "12345" %}
+                                        {% if forloop.counter <= provider.stats.average_rating %}
+                                            ★
+                                        {% else %}
+                                            ☆
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                                <small class="text-muted">Based on {{ provider.stats.total_reviews }} review{{ provider.stats.total_reviews|pluralize }}</small>
+                            </div>
+                            <div class="col-md-8">
+                                <!-- Rating breakdown -->
+                                <div class="rating-breakdown">
+                                    {% for rating in "54321" %}
+                                        {% with rating=rating|add:0 %}
+                                        <div class="row align-items-center mb-2">
+                                            <div class="col-2">
+                                                <small>{{ rating }} <span class="rating-stars">★</span></small>
+                                            </div>
+                                            <div class="col-8">
+                                                <div class="progress" style="height: 10px;">
+                                                    {% with rating_count=provider.stats.rating_breakdown|default:"" %}
+                                                    {% if rating_count %}
+                                                        {% if rating == 5 %}
+                                                            {% widthratio provider.stats.rating_breakdown.5 provider.stats.total_reviews 100 as percentage %}
+                                                        {% elif rating == 4 %}
+                                                            {% widthratio provider.stats.rating_breakdown.4 provider.stats.total_reviews 100 as percentage %}
+                                                        {% elif rating == 3 %}
+                                                            {% widthratio provider.stats.rating_breakdown.3 provider.stats.total_reviews 100 as percentage %}
+                                                        {% elif rating == 2 %}
+                                                            {% widthratio provider.stats.rating_breakdown.2 provider.stats.total_reviews 100 as percentage %}
+                                                        {% elif rating == 1 %}
+                                                            {% widthratio provider.stats.rating_breakdown.1 provider.stats.total_reviews 100 as percentage %}
+                                                        {% endif %}
+                                                    {% else %}
+                                                        {% widthratio 0 1 100 as percentage %}
+                                                    {% endif %}
+                                                    <div class="progress-bar bg-warning" style="width: {{ percentage }}%"></div>
+                                                    {% endwith %}
+                                                </div>
+                                            </div>
+                                            <div class="col-2 text-end">
+                                                <small class="text-muted">
+                                                    {% if provider.stats.rating_breakdown %}
+                                                        {% if rating == 5 %}{{ provider.stats.rating_breakdown.5|default:0 }}
+                                                        {% elif rating == 4 %}{{ provider.stats.rating_breakdown.4|default:0 }}
+                                                        {% elif rating == 3 %}{{ provider.stats.rating_breakdown.3|default:0 }}
+                                                        {% elif rating == 2 %}{{ provider.stats.rating_breakdown.2|default:0 }}
+                                                        {% elif rating == 1 %}{{ provider.stats.rating_breakdown.1|default:0 }}
+                                                        {% endif %}
+                                                    {% else %}
+                                                        0
+                                                    {% endif %}
+                                                </small>
+                                            </div>
+                                        </div>
+                                        {% endwith %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Sample Reviews (in a real app, these would be dynamic) -->
+                        <div class="testimonial-card p-3 mb-3">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="fw-bold">John M.</span>
+                                <div class="rating-stars">
+                                    ★★★★★
+                                </div>
+                            </div>
+                            <p class="mb-0">"Excellent service! {{ provider.business_name }} completed the job on time and with great attention to detail. Highly recommended!"</p>
+                        </div>
+                        
+                        <div class="testimonial-card p-3">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="fw-bold">Sarah K.</span>
+                                <div class="rating-stars">
+                                    ★★★★☆
+                                </div>
+                            </div>
+                            <p class="mb-0">"Professional and reliable. The work was done perfectly and the pricing was fair. Will definitely hire again for future projects."</p>
+                        </div>
+                        {% else %}
+                        <div class="text-center py-4">
+                            <i class="bi bi-chat-quote display-4 text-muted mb-3"></i>
+                            <h5 class="text-muted">No reviews yet</h5>
+                            <p class="text-muted">Be the first to review this provider</p>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+                <!-- Contact & Hire Card -->
+                <div class="card feature-card mb-4 sticky-top" style="top: 100px;">
+                    <div class="card-body">
+                        <h3 class="card-title h5 mb-3">Hire {{ provider.business_name }}</h3>
+                        
+                        <div class="d-grid gap-2 mb-4">
+                            {% if not user.is_authenticated or user.user_type == 'customer' %}
+                            <a href="/bookings/post/?provider={{ provider.id }}" class="btn btn-mtaa-secondary action-btn">
+                                <i class="bi bi-calendar-check me-2"></i>Book This Provider
+                            </a>
+                            {% endif %}
+                            <a href="{% url 'services:provider_list' %}" class="btn btn-outline-primary action-btn">
+                                <i class="bi bi-arrow-left me-2"></i>Back to All Providers
+                            </a>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <h5 class="mb-3">Provider Stats</h5>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Jobs Completed:</span>
+                                <strong class="mtaa-text-primary">{{ provider.total_jobs_completed }}</strong>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Member Since:</span>
+                                <strong>{{ provider.created_at|date:"F Y" }}</strong>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Response Rate:</span>
+                                <strong>95%</strong>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <span>On-Time Completion:</span>
+                                <strong>98%</strong>
+                            </div>
+                        </div>
+                        
+                        <hr>
+                        
+                        <h5 class="mb-3">Contact Information</h5>
+                        {% if provider.phone or provider.email %}
+                            {% if provider.phone %}
+                            <div class="d-flex align-items-center mb-3">
+                                <i class="bi bi-telephone-fill mtaa-text-primary me-3"></i>
+                                <div>
+                                    <div class="fw-medium">Phone</div>
+                                    <a href="tel:{{ provider.phone }}" class="text-decoration-none">{{ provider.phone }}</a>
+                                </div>
+                            </div>
+                            {% endif %}
+                            {% if provider.email %}
+                            <div class="d-flex align-items-center mb-3">
+                                <i class="bi bi-envelope-fill mtaa-text-primary me-3"></i>
+                                <div>
+                                    <div class="fw-medium">Email</div>
+                                    <a href="mailto:{{ provider.email }}" class="text-decoration-none">{{ provider.email }}</a>
+                                </div>
+                            </div>
+                            {% endif %}
+                        {% else %}
+                            <p class="text-muted">Contact information available after booking</p>
+                        {% endif %}
+                        
+                        {% if provider.is_verified %}
+                        <div class="alert alert-success mt-3">
+                            <div class="d-flex">
+                                <i class="bi bi-shield-check me-2"></i>
+                                <div>
+                                    <strong>Verified Provider</strong>
+                                    <p class="mb-0 small">This provider has been verified by Mtaa Skills for quality and reliability.</p>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                
+                <!-- Trust Indicators -->
+                <div class="card feature-card">
+                    <div class="card-body">
+                        <h5 class="card-title mb-3">Why Choose Mtaa Skills</h5>
+                        <div class="d-flex mb-3">
+                            <i class="bi bi-shield-check text-success me-3"></i>
+                            <div>
+                                <h6 class="mb-1">Verified Professionals</h6>
+                                <p class="small text-muted mb-0">All providers are thoroughly vetted</p>
+                            </div>
+                        </div>
+                        <div class="d-flex mb-3">
+                            <i class="bi bi-currency-dollar text-success me-3"></i>
+                            <div>
+                                <h6 class="mb-1">Secure Payments</h6>
+                                <p class="small text-muted mb-0">Your money is protected until job completion</p>
+                            </div>
+                        </div>
+                        <div class="d-flex">
+                            <i class="bi bi-star-fill text-success me-3"></i>
+                            <div>
+                                <h6 class="mb-1">Quality Guarantee</h6>
+                                <p class="small text-muted mb-0">We ensure satisfaction with every job</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Call to Action Section -->
+    <div class="cta-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <h3 class="fw-bold mb-2">Ready to get started?</h3>
+                    <p class="mb-0">Book {{ provider.business_name }} for your project today and experience quality service.</p>
+                </div>
+                <div class="col-md-4 text-md-end">
+                    {% if not user.is_authenticated or user.user_type == 'customer' %}
+                    <a href="/bookings/post/?provider={{ provider.id }}" class="btn btn-light btn-lg action-btn">
+                        <i class="bi bi-calendar-check me-2"></i>Book Now
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5 class="fw-bold mb-3">
+                        <i class="bi bi-hammer me-2"></i>Mtaa Skills
+                    </h5>
+                    <p class="mb-3">Connecting you with trusted local service professionals for all your home and business needs.</p>
+                    <div class="d-flex">
+                        <a href="#" class="social-icon me-2">
+                            <i class="bi bi-facebook"></i>
+                        </a>
+                        <a href="#" class="social-icon me-2">
+                            <i class="bi bi-twitter"></i>
+                        </a>
+                        <a href="#" class="social-icon me-2">
+                            <i class="bi bi-instagram"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="bi bi-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h5 class="fw-bold mb-3">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="{% url 'home' %}" class="text-white text-decoration-none">Home</a></li>
+                        <li class="mb-2"><a href="{% url 'services:provider_list' %}" class="text-white text-decoration-none">All Providers</a></li>
+                        <li class="mb-2"><a href="{% url 'services:service_categories' %}" class="text-white text-decoration-none">Services</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">How It Works</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5 class="fw-bold mb-3">For Providers</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="{% url 'services:become_provider' %}" class="text-white text-decoration-none">Become a Provider</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Provider Resources</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Success Stories</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 mb-4">
+                    <h5 class="fw-bold mb-3">Contact Us</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="bi bi-envelope me-2"></i>support@mtaaskills.com</li>
+                        <li class="mb-2"><i class="bi bi-telephone me-2"></i>+254 700 000 000</li>
+                        <li class="mb-2"><i class="bi bi-geo-alt me-2"></i>Nairobi, Kenya</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4" style="border-color: rgba(255,255,255,0.1);">
+            <div class="text-center">
+                <p class="mb-0">&copy; 2023 Mtaa Skills. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
