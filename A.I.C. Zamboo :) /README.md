@@ -1,2060 +1,1692 @@
-# African Inland Church (AIC) Zambezi Outstation
-## Comprehensive Website Development Blueprint
-
-**Location:** Zambezi, Kiambu, Kenya  
-**Purpose:** Complete digital platform for church management, community engagement, and evangelism  
-**Document Version:** 1.0  
-**Date:** February 11, 2026
+# AIC Zambezi Outstation Website Blueprint
+## Comprehensive Development Guide
 
 ---
 
-## Table of Contents
-1. [Comprehensive Feature List](#1-comprehensive-feature-list)
-2. [User Roles and Permissions](#2-user-roles-and-permissions)
-3. [Design Recommendations](#3-design-recommendations)
-4. [Dynamic Elements](#4-dynamic-elements)
-5. [Technical Recommendations](#5-technical-recommendations)
-6. [Evangelism and Community Growth Tools](#6-evangelism-and-community-growth-tools)
-7. [Innovative Features](#7-innovative-features)
-8. [Implementation Roadmap](#8-implementation-roadmap)
+## 1. COMPREHENSIVE FEATURE LIST
 
----
+### A. Church Information & History
 
-## 1. Comprehensive Feature List
-
-### 1.1 Church Information & History
-
-#### About Us Section
-- **Church History**: Timeline of the Zambezi outstation from founding to present
-- **Vision & Mission Statement**: Clear articulation of church purpose and goals
-- **Core Beliefs & Doctrines**: AIC statement of faith and theological positions
-- **Leadership Team**: 
-  - Pastor/clergy profiles with photos and contact information
-  - Church council/elders with responsibilities
-  - Ministry leaders and department heads
-- **Photo Gallery**: Historical photos, building development, major events
-- **Church Location & Directions**: 
+#### Core Features:
+- **About Us Section**
+  - Church history and founding story
+  - Connection to AIC Kenya denomination
+  - Mission, vision, and core values
+  - Statement of faith and doctrinal beliefs
+  - Leadership structure and hierarchy
+  
+- **Leadership Profiles**
+  - Pastor and associate ministers
+  - Church elders and deacons
+  - Department heads
+  - Photo galleries and biographical information
+  - Contact information for each leader
+  
+- **Location & Contact**
   - Interactive Google Maps integration
-  - Matatu routes and directions from major landmarks
-  - GPS coordinates for digital mapping
-- **Contact Information**: 
-  - Physical address
-  - Phone numbers (office, emergency)
-  - Email addresses
-  - Social media links
+  - Physical address: Zambezi, Kiambu County
+  - Multiple contact methods (phone, email, WhatsApp)
+  - Directions and landmarks
+  - Service times and location
+  
+- **Photo & Video Galleries**
+  - Historical photos archive
+  - Church building and facilities
+  - Major events and milestones
+  - Community activities
 
-#### Statistics Dashboard
-- Current membership count
-- Active ministries count
-- Upcoming events
-- Recent baptisms/confirmations
-- Community impact metrics
+### B. Worship & Services
 
-### 1.2 Worship & Services
-
-#### Service Information
-- **Service Schedule**: 
-  - Sunday worship times (multiple services if applicable)
+#### Service Information:
+- **Service Schedule**
+  - Sunday worship times
   - Midweek services
-  - Special services (Kesha, conventions, etc.)
-  - Language options (English, Kikuyu, Swahili)
-- **Order of Service**: Typical worship flow for newcomers
-- **Live Streaming**: 
-  - Live broadcast of Sunday services
-  - Archive of past services
-  - Multi-platform streaming (YouTube, Facebook Live)
-- **Sermon Library**:
-  - Searchable database by date, topic, speaker, scripture
-  - Audio sermons (downloadable MP3)
-  - Video sermons
-  - Sermon notes/transcripts in PDF
-  - Sermon series organization
-- **Upcoming Themes**: Monthly preaching calendar
+  - Special services (Youth, Women, Men)
+  - Prayer meetings
+  - Bible study sessions
+  
+- **Live Streaming**
+  - Real-time service broadcasts
+  - YouTube/Facebook integration
+  - Chat feature for online attendees
+  - Virtual attendance counter
+  
+- **Sermon Archive**
+  - Video sermon library
+  - Audio podcasts
+  - Written sermon notes/transcripts
+  - Search by date, topic, scripture, or speaker
+  - Download options
+  - Sermon series tracking
+  
+- **Bulletin & Order of Service**
+  - Weekly digital bulletin
+  - Announcements section
+  - Upcoming events preview
+  - Downloadable PDF versions
 
-#### Music & Worship
-- Choir information and schedules
-- Praise & worship team details
-- Song lyrics repository
-- Audio/video recordings of church choir
-- Downloadable hymn books or worship resources
+### C. Community Engagement
 
-### 1.3 Community Engagement
+#### Member Features:
+- **Member Portal (Login Required)**
+  - Personal profile management
+  - Membership certificate download
+  - Contribution statements
+  - Event registration
+  - Small group enrollment
+  
+- **Departments & Ministries**
+  - Youth Ministry
+  - Women's Fellowship (Wema wa Manyumba)
+  - Men's Fellowship
+  - Sunday School
+  - Choir and Worship Team
+  - Evangelism Team
+  - Each with dedicated pages, leaders, and schedules
+  
+- **Small Groups/Cell Groups**
+  - Group directory
+  - Meeting schedules and locations
+  - Online group sign-up
+  - Group leader resources
+  
+- **Prayer Requests & Testimonies**
+  - Submit prayer requests (public/private options)
+  - Testimony submission form
+  - Prayer wall (moderated display)
+  - Prayer team notification system
+  
+- **Event Calendar**
+  - Church-wide events
+  - Department-specific events
+  - Community outreach activities
+  - RSVP functionality
+  - Google Calendar integration
+  - Reminder notifications
+  
+- **Discussion Forum/Community Board**
+  - Topic-based discussions
+  - Moderated environment
+  - Member-only access
+  - Scripture discussion threads
+  - Announcement board
 
-#### Ministries & Departments
-- **Children's Ministry**:
-  - Sunday School programs
-  - Age-specific activities
-  - Children's resources and lesson plans
-- **Youth Ministry**:
-  - Youth group schedule
-  - Events calendar
-  - Youth leadership team
-  - Social activities and outreach
-- **Women's Ministry (AIC Sisters)**:
-  - Meeting schedules
-  - Projects and initiatives
-  - Women's conference information
-- **Men's Ministry (AIC Brotherhood)**:
-  - Men's fellowship details
-  - Activities and outreach programs
-- **Evangelism Team**: Outreach programs and mission trips
-- **Music Ministry**: Choir, praise teams, instrument training
-- **Ushering/Hospitality**: Service teams
-- **Media & Technical Team**: Production and streaming
+### D. Evangelism & Outreach
 
-#### Small Groups & Bible Studies
-- List of active small groups by location/neighborhood
-- Meeting times and leaders
-- How to join or start a new group
-- Study materials and guides
+#### Outreach Tools:
+- **Evangelism Resources**
+  - Gospel presentation materials
+  - Tract downloads (Swahili & English)
+  - Evangelism training videos
+  - Door-to-door campaign schedules
+  - Outreach event calendar
+  
+- **Online Gospel Presentation**
+  - Salvation message page
+  - Interactive decision card
+  - Follow-up contact form
+  - New believer resources
+  - Baptism information
+  
+- **Community Outreach Programs**
+  - Medical camps
+  - Educational initiatives
+  - Feeding programs
+  - Skills training programs
+  - Application forms for beneficiaries
+  
+- **Missions & Partnerships**
+  - Partner churches and organizations
+  - Missionary updates
+  - Support opportunities
+  - Impact stories and reports
+  
+- **Social Media Integration**
+  - Share buttons for sermons and content
+  - Social media feeds embedded
+  - Hashtag campaigns
+  - Testimonial sharing tools
 
-#### Events & Activities
-- **Church Calendar**: Interactive calendar with all events
-- **Event Registration**: Online sign-up for events
-- **Past Events Gallery**: Photos and recaps
-- **Annual Events**:
-  - Easter celebrations
-  - Christmas programs
-  - Harvest thanksgiving
-  - Church anniversary
-  - AIC conventions and conferences
-- **Special Programs**:
-  - Weddings
-  - Dedications
-  - Funerals
-  - Baptism/confirmation classes
+### E. Administration & Management
 
-#### Member Directory
-- Searchable member database (privacy-protected)
-- Birthday/anniversary notifications
-- Member profiles (opt-in)
-- Family groupings
-
-### 1.4 Evangelism & Outreach
-
-#### Missions & Outreach
-- **Local Outreach**: Community service projects in Zambezi area
-- **Mission Trips**: Information about missions supported by the church
-- **Missionary Support**: List of missionaries and how to support them
-- **Testimonies**: Video/written testimonies from members
-- **New Believer Resources**: 
-  - Salvation message
-  - What to expect when visiting
-  - New member orientation materials
-  - Discipleship resources
-
-#### Online Engagement
-- **Virtual Church Tours**: 360° photos or video tour
-- **Online Guest Book**: Visitor information capture
-- **Evangelistic Resources**: 
-  - Gospel presentations
-  - Apologetics articles
-  - FAQ about Christianity and AIC
-- **Invite a Friend**: Share church information via email/social media
-
-### 1.5 Administration & Management
-
-#### Church Management Tools
-- **Membership Management**:
-  - Member registration and profiles
-  - Attendance tracking
-  - Family records
-  - Member status (active, inactive, transferred)
-- **Financial Management**:
-  - Online giving/donations (M-PESA integration essential)
-  - Tithe and offering tracking for members
-  - Building fund contributions
-  - Special projects donations
-  - Automated receipt generation
-  - Financial reports (for authorized users)
-  - Budget transparency reports
-- **Communication Tools**:
-  - Email newsletter system
-  - SMS notifications (via Safaricom/Airtel APIs)
-  - WhatsApp group management integration
-  - Announcement system
-  - Emergency communication protocols
-- **Volunteer Management**:
-  - Sign-up for ministry opportunities
-  - Volunteer schedules
-  - Training resources
-  - Hour tracking
-
-#### Forms & Requests
-- **Online Forms**:
-  - Membership application
-  - Baptism request
-  - Wedding application
-  - Baby dedication request
-  - Prayer request submission
-  - Counseling appointment booking
-  - Facility rental request
-  - Ministry involvement form
-- **Document Center**: 
+#### Administrative Features:
+- **Attendance Tracking**
+  - Service attendance records
+  - Member check-in system
+  - Department attendance
+  - Statistical reports and dashboards
+  
+- **Financial Management**
+  - Online giving/donations portal
+  - M-PESA integration (Paybill/Till number)
+  - Bank transfer details
+  - Tithe and offering tracking
+  - Building fund campaigns
+  - Project-specific giving
+  - Contribution receipts
+  - Financial transparency reports
+  
+- **Member Management**
+  - Member database
+  - Registration forms (new members)
+  - Transfer requests
+  - Family units management
+  - Visitor follow-up system
+  
+- **Communication Tools**
+  - Mass SMS/Email system
+  - Newsletter distribution
+  - Push notifications
+  - WhatsApp group links
+  - Targeted messaging by department
+  
+- **Document Repository**
   - Church constitution
-  - Policies and procedures
-  - Meeting minutes (authorized access)
-  - Annual reports
+  - Policy documents
+  - Meeting minutes (restricted access)
+  - Reports and statements
+  - Forms and templates
 
-### 1.6 Multimedia & Resources
+### F. Multimedia & Resources
 
-#### Media Library
-- **Sermon Archive**: Audio, video, and text sermons
-- **Photo Gallery**: Organized by events and ministries
-- **Video Gallery**: Church activities, testimonies, teachings
-- **Podcast**: Church podcast for easy mobile listening
-- **Live Radio Stream**: If church has radio ministry
+#### Content Library:
+- **Sermon Resources**
+  - Video library
+  - Audio podcasts
+  - Sermon notes and study guides
+  - PowerPoint presentations
+  
+- **Bible Study Materials**
+  - Study guides
+  - Curriculum downloads
+  - Recommended reading lists
+  - Online Bible tools integration
+  
+- **Worship Resources**
+  - Song lyrics database
+  - Choir music sheets
+  - Worship team schedules
+  - Musical instrument tutorials
+  
+- **Digital Library**
+  - E-books (Christian literature)
+  - Devotional materials
+  - Youth resources
+  - Children's materials
+  - AIC denominational resources
+  
+- **Newsletter Archive**
+  - Monthly/quarterly newsletters
+  - Special edition publications
+  - Email subscription management
 
-#### Educational Resources
-- **Bible Study Materials**: Downloadable study guides
-- **Sunday School Curriculum**: Resources for teachers
-- **Devotional Content**: Daily/weekly devotionals
-- **Christian Living Articles**: Blog posts on faith and life
-- **Book Recommendations**: Curated reading lists
-- **Online Library**: Digital versions of church resources
+### G. Additional Dynamic Features
 
-#### Downloads
-- Church bulletin templates
-- Event flyers
-- Letterhead and branding materials (for ministry leaders)
-- Forms in PDF format
-- Mobile app (if developed)
-
-### 1.7 Additional Features
-
-#### Prayer Ministry
-- **Prayer Request Submission**: Confidential prayer requests
-- **Prayer Wall**: Public prayer requests (moderated)
-- **Prayer Chain**: Organized prayer groups
-- **Answered Prayers**: Testimonies of answered prayers
-- **Prayer Points**: Weekly prayer focuses
-
-#### Counseling & Support
-- **Counseling Services**: Information about pastoral counseling
-- **Appointment Booking**: Schedule counseling sessions
-- **Support Groups**: Grief support, addiction recovery, etc.
-- **Crisis Resources**: Emergency contacts and resources
-
-#### Community News & Blog
-- Church news and updates
-- Pastor's blog
-- Member stories and testimonies
-- Community announcements
-- Educational articles
+- **Birthday & Anniversary Notifications**
+  - Member birthday calendar
+  - Anniversary reminders
+  - Automated greetings system
+  
+- **Baptism & Dedication Registry**
+  - Upcoming baptism dates
+  - Certificate requests
+  - Baptism class registration
+  - Child dedication scheduling
+  
+- **Wedding Services**
+  - Wedding inquiry form
+  - Pre-marital counseling information
+  - Available dates calendar
+  - Wedding guidelines document
+  
+- **Funeral & Bereavement Support**
+  - Memorial service information
+  - Condolence messages
+  - Grief support resources
+  
+- **Job Board & Classifieds**
+  - Member job postings
+  - Items for sale/wanted
+  - Community announcements
+  - Moderated listings
 
 ---
 
-## 2. User Roles and Permissions
+## 2. USER ROLES & PERMISSIONS
 
-### 2.1 Role Definitions
+### Role Hierarchy:
 
-#### **Super Admin**
-**Who:** Head Pastor or designated tech lead  
-**Access Level:** Full access to all features  
-**Permissions:**
-- Full website configuration and settings
-- User role management
-- Financial data access and reports
+#### **1. Super Admin**
+**Full System Access**
+- Complete website management
+- User role assignment
 - Database management
 - Security settings
-- Backup and restore
-- Delete any content
-- Access to all admin panels
-- System logs and analytics
+- Plugin/module installation
+- Theme customization
+- System backups
+- Analytics access
 
-#### **Pastor/Church Leadership**
-**Who:** Senior Pastor, Associate Pastors, Church Elders  
-**Access Level:** Administrative access with ministry focus  
-**Permissions:**
-- Publish/edit sermons and teachings
-- Manage events and calendar
-- View member information and directory
-- Access prayer requests
-- View financial reports (summary level)
-- Publish announcements
-- Moderate forums and comments
-- Manage ministry content
-- Approve member applications
-- View attendance reports
-- Cannot delete users or change system settings
+#### **2. Church Administrator**
+**Administrative Functions**
+- Content management (all sections)
+- Member database management
+- Financial records access
+- Report generation
+- Communication tools
+- Event creation and management
+- User account approval
+- Cannot: Change system settings, assign admin roles
 
-#### **Ministry Leader**
-**Who:** Heads of departments (Youth, Women, Men, Children, Music, etc.)  
-**Access Level:** Department-specific administrative access  
-**Permissions:**
-- Manage their ministry's content (events, resources, photos)
-- Edit their ministry's page
-- View members in their ministry
-- Create event registrations for their department
-- Upload ministry photos and videos
-- Send communications to their ministry members
-- View ministry-specific reports
-- Cannot access financial data or other ministries' information
+#### **3. Pastor/Senior Leader**
+**Leadership Access**
+- Sermon upload and management
+- Content approval workflows
+- Member information viewing
+- Prayer request access
+- Financial reports viewing (read-only)
+- Event management
+- Newsletter creation
+- Cannot: Delete members, change financial settings
 
-#### **Content Manager**
-**Who:** Designated staff or volunteers for website updates  
-**Access Level:** Content creation and publishing  
-**Permissions:**
-- Create and edit blog posts
-- Upload sermons (audio/video)
-- Manage photo and video galleries
-- Update event information
-- Create announcements
-- Moderate comments (if enabled)
-- Manage resource library
-- Cannot access member data or financial information
+#### **4. Department Leader**
+**Ministry-Specific Access**
+- Department page management
+- Event creation (department events)
+- Member communication (department-specific)
+- Content posting (department section)
+- Attendance tracking (their department)
+- Cannot: Access other departments' data, financial information
 
-#### **Financial Secretary**
-**Who:** Church treasurer or finance team  
-**Access Level:** Financial system access  
-**Permissions:**
-- View all financial transactions
-- Generate financial reports
-- Manage donation records
-- Send giving statements
-- Manage M-PESA integration settings
-- View member giving history
-- Cannot edit member information or content
-- Cannot change financial settings without Super Admin
+#### **5. Content Manager/Media Team**
+**Media Management**
+- Upload sermons (video/audio)
+- Manage photo galleries
+- Update news and announcements
+- Social media posting
+- Newsletter drafting
+- Cannot: Access member data, financial information, system settings
 
-#### **Registered Member**
-**Who:** Church members who have created accounts  
-**Access Level:** Enhanced member features  
-**Permissions:**
-- Update personal profile and family information
-- View complete member directory
-- Access member-only resources
-- Submit prayer requests
-- Register for events
-- View personal giving history
-- Download giving statements
-- Access small group information
-- Receive member communications
-- Comment on blogs/forums (if moderated)
-- Cannot view other members' financial data
+#### **6. Financial Secretary**
+**Financial Access**
+- Donation processing
+- Contribution records
+- Financial report generation
+- Receipt issuance
+- Cannot: Access member personal data, content management
 
-#### **Visitor/Guest**
-**Who:** Public website visitors, non-members  
-**Access Level:** Public content only  
-**Permissions:**
-- View church information and service times
+#### **7. Registered Member**
+**Member Portal Access**
+- Personal profile editing
+- View member directory
+- Event registration
+- Online giving
+- Prayer request submission
+- Forum participation
+- Resource downloads
+- Cannot: View other members' financial data, access admin sections
+
+#### **8. Visitor/Public User**
+**Public Access Only**
+- View public pages
 - Watch/listen to sermons
-- View event calendar (public events)
-- Submit contact form
-- Submit public prayer requests
-- View testimonies and resources
-- Make one-time donations
-- Register as a guest for public events
-- Cannot access member directory or member-only content
-
-### 2.2 Permission Matrix
-
-| Feature | Super Admin | Pastor | Ministry Leader | Content Manager | Financial Sec. | Member | Visitor |
-|---------|-------------|---------|-----------------|-----------------|----------------|--------|---------|
-| System Settings | ✓ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
-| User Management | ✓ | ✓ (view) | ✗ | ✗ | ✗ | ✗ | ✗ |
-| Financial Reports | ✓ | ✓ (summary) | ✗ | ✗ | ✓ | ✓ (own) | ✗ |
-| Sermon Upload | ✓ | ✓ | ✗ | ✓ | ✗ | ✗ | ✗ |
-| Event Creation | ✓ | ✓ | ✓ (dept only) | ✓ | ✗ | ✗ | ✗ |
-| Member Directory | ✓ | ✓ | ✓ (dept only) | ✗ | ✗ | ✓ | ✗ |
-| Prayer Requests (view) | ✓ | ✓ | ✓ (dept) | ✗ | ✗ | ✓ | ✓ (public) |
-| Content Publishing | ✓ | ✓ | ✓ (dept only) | ✓ | ✗ | ✗ | ✗ |
-| Make Donations | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| Event Registration | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ (public) |
-
-### 2.3 Registration & Verification Process
-
-#### Member Registration
-1. **Initial Registration**: Visitor fills online form with basic info
-2. **Verification**: Church admin verifies membership status
-3. **Approval**: Member receives login credentials
-4. **Profile Completion**: Member updates full profile
-5. **Access Granted**: Full member privileges activated
-
-#### Security Measures
-- Two-factor authentication for admin roles (SMS via Safaricom)
-- Password strength requirements
-- Session timeout after inactivity
-- Login attempt limits
-- IP logging for admin access
-- Email verification for all accounts
+- Read announcements
+- View event calendar
+- Contact form submission
+- Registration form access
+- Cannot: Access member areas, forums, financial data
 
 ---
 
-## 3. Design Recommendations
+## 3. DESIGN RECOMMENDATIONS
 
-### 3.1 Official AIC Branding Colors
+### A. AIC Official Branding
 
-#### Primary Colors
-- **AIC Red**: #C8102E (Primary brand color)
-- **AIC White**: #FFFFFF (Secondary background)
-- **AIC Black**: #000000 (Text and accents)
+#### Color Palette:
+**Primary Colors:**
+- **AIC Blue**: #003366 (Deep blue - authority, trust, spirituality)
+- **AIC Gold/Yellow**: #FFD700 (Represents divine light, hope)
+- **White**: #FFFFFF (Purity, peace)
 
-#### Supporting Colors
-- **Gold/Yellow**: #FFD700 (Highlights, buttons, calls-to-action)
-- **Navy Blue**: #003366 (Trust, stability - for admin sections)
-- **Soft Grey**: #F5F5F5 (Background sections)
-- **Green**: #228B22 (Success messages, growth metrics)
+**Secondary/Accent Colors:**
+- **Light Blue**: #4A90E2 (Approachable, calming)
+- **Dark Green**: #2D5016 (Growth, life, harmony with Kenyan landscape)
+- **Warm Gray**: #F5F5F5 (Backgrounds, neutrality)
+- **Accent Red**: #C41E3A (Call-to-action buttons, alerts)
 
-#### Color Usage Guidelines
-- **Headers/Navigation**: White text on AIC Red background
-- **Body Text**: Black (#333333 for softer reading)
-- **Links**: AIC Red, underlined on hover
-- **Buttons (Primary)**: Gold/Yellow with black text
-- **Buttons (Secondary)**: AIC Red with white text
-- **Accent Borders**: Gold or AIC Red thin lines
+#### Typography:
+- **Headings**: Montserrat or Raleway (Bold, 600-700 weight) - Modern, clean
+- **Body Text**: Open Sans or Roboto (Regular, 400 weight) - Highly readable
+- **Scripture Quotes**: Georgia or Merriweather (Italic) - Traditional, reverent
+- **Swahili Text**: Ensure font supports special characters
 
-### 3.2 Typography
+### B. Layout Recommendations
 
-#### Font Recommendations
-**Primary Font (Headings):**
-- **Montserrat Bold/Semi-Bold** (Modern, readable, free)
-- Alternative: Raleway Bold
+#### **Homepage Design:**
 
-**Secondary Font (Body Text):**
-- **Open Sans Regular/Light** (Excellent readability)
-- Alternative: Lato, Roboto
+**Hero Section:**
+- Full-width image slider/video background
+- Zambezi church building or worship moments
+- Overlaid text: "Karibu AIC Zambezi" (Welcome)
+- Quick action buttons: Watch Live, Give, Visit Us, Join Us
+- Service times prominently displayed
 
-**Accent Font (Special Headings):**
-- **Playfair Display** (For scripture quotes and formal announcements)
+**Navigation Bar:**
+- Sticky header with church logo
+- Dropdown menus for main sections
+- Search functionality
+- Language toggle (English/Swahili)
+- Member login button
+- Mobile-responsive hamburger menu
 
-#### Font Sizes (Responsive)
-```css
-/* Desktop */
-H1: 48px - Page titles
-H2: 36px - Section headers
-H3: 28px - Subsections
-H4: 22px - Card titles
-Body: 16px - Regular text
-Small: 14px - Captions, metadata
+**Content Sections:**
+1. **Welcome Message** - Pastor's brief greeting
+2. **Upcoming Events** - Card-based layout, 3-4 featured events
+3. **Latest Sermon** - Embedded video with description
+4. **Quick Links Grid** - Icon-based navigation (Give, Prayer, Join Group, etc.)
+5. **Ministries Overview** - Photo cards with hover effects
+6. **Testimonies/News** - Rotating carousel
+7. **Contact & Location** - Split section with map and form
+8. **Footer** - Comprehensive links, social media, contact info
 
-/* Mobile */
-H1: 32px
-H2: 26px
-H3: 22px
-H4: 18px
-Body: 16px
-Small: 14px
-```
+#### **Internal Pages Layout:**
 
-### 3.3 Layout Recommendations
+**Standard Template:**
+- Breadcrumb navigation
+- Sidebar with quick links/related content
+- Main content area with clear hierarchy
+- Related articles/resources at bottom
+- Social sharing buttons
+- Print-friendly option
 
-#### Desktop Layout (1200px+)
+**Sermon Page:**
+- Video/audio player at top
+- Sermon title, date, speaker, scripture
+- Download options (video, audio, notes)
+- Related sermons sidebar
+- Share buttons
+- Comment/discussion section
 
-**Homepage Structure:**
-```
-┌─────────────────────────────────────────┐
-│  Top Banner: Contact Info + Social      │
-├─────────────────────────────────────────┤
-│  Logo (Left) | Navigation Menu (Right)  │
-├─────────────────────────────────────────┤
-│                                         │
-│   HERO SLIDER (Church images/events)   │
-│   - Welcome message                     │
-│   - Call to action buttons             │
-│                                         │
-├─────────────────────────────────────────┤
-│  QUICK LINKS (4 columns)                │
-│  [Sermons] [Events] [Give] [Visit]     │
-├─────────────────────────────────────────┤
-│  SERVICE TIMES (2 columns)              │
-│  Sunday | Midweek                       │
-├─────────────────────────────────────────┤
-│  UPCOMING EVENTS (3 column grid)        │
-│  [Event 1] [Event 2] [Event 3]         │
-├─────────────────────────────────────────┤
-│  LATEST SERMON (Video player)           │
-│  Recent Messages section                │
-├─────────────────────────────────────────┤
-│  MINISTRIES OVERVIEW (Icon grid)        │
-│  [Youth] [Women] [Men] [Children]      │
-├─────────────────────────────────────────┤
-│  TESTIMONIES (Carousel)                 │
-├─────────────────────────────────────────┤
-│  BLOG/NEWS (3 column cards)             │
-├─────────────────────────────────────────┤
-│  FOOTER (3-4 columns)                   │
-│  About | Quick Links | Contact | Social │
-└─────────────────────────────────────────┘
-```
+### C. Mobile Optimization
 
-**Internal Pages Layout:**
-- Sidebar navigation (left) for ministry pages
-- Breadcrumb navigation at top
-- Related content sidebar (right)
-- Social share buttons
-- Print-friendly layouts
+**Mobile-First Approach:**
+- Responsive grid system (Bootstrap 5 or Tailwind CSS)
+- Touch-friendly buttons (minimum 44x44px)
+- Collapsible menus
+- Optimized images (WebP format, lazy loading)
+- Mobile-specific features:
+  - Click-to-call phone numbers
+  - WhatsApp quick contact
+  - Mobile M-PESA giving
+  - GPS directions integration
+  - Offline viewing for downloaded sermons
 
-#### Mobile Layout (< 768px)
+**Progressive Web App (PWA) Features:**
+- Add to home screen functionality
+- Offline access to key content
+- Push notifications for events
+- Fast loading times
 
-**Mobile-First Principles:**
-- Hamburger menu for navigation
-- Stacked single-column layout
-- Thumb-friendly button sizes (44px minimum)
-- Click-to-call phone numbers
-- Click-to-navigate for maps
-- Swipe-enabled image galleries
-- Bottom navigation bar for key functions
+### D. Accessibility
 
-**Mobile Navigation:**
-```
-┌─────────────────┐
-│ Logo | ≡ Menu   │
-├─────────────────┤
-│                 │
-│  Content Area   │
-│                 │
-├─────────────────┤
-│ Bottom Nav Bar  │
-│ [Home][Sermons] │
-│ [Events][Give]  │
-└─────────────────┘
-```
-
-### 3.4 Visual Design Elements
-
-#### Logo Placement
-- AIC official logo prominently on top-left
-- Zambezi outstation name underneath or beside
-- Tagline/verse if applicable
-- Consistent sizing across all pages
-
-#### Imagery Guidelines
-- **Hero Images**: High-quality photos of church community (not stock photos)
-- **Aspect Ratios**: 
-  - Hero: 16:9 or 21:9 (panoramic)
-  - Ministry cards: 4:3
-  - Event thumbnails: 1:1 (square)
-- **Image Treatment**: Slight warm filter, good contrast
-- **Cultural Representation**: Diverse, authentic African imagery
-
-#### Icons & Graphics
-- Consistent icon set (recommend: Font Awesome, Feather Icons)
-- Gold/yellow icons on red backgrounds
-- Outline style for modern look
-- Icons for all ministries and features
-
-#### Cards & Components
-- Subtle shadows for depth (box-shadow: 0 2px 8px rgba(0,0,0,0.1))
-- Rounded corners (border-radius: 8px)
-- Hover effects: lift effect or color change
-- Clear call-to-action buttons
-
-### 3.5 Accessibility Standards
-
-#### WCAG 2.1 AA Compliance
-- Color contrast ratios (4.5:1 minimum)
+- **WCAG 2.1 AA Compliance**
+- High contrast ratios (4.5:1 minimum)
+- Alt text for all images
 - Keyboard navigation support
 - Screen reader compatibility
-- Alt text for all images
-- ARIA labels for interactive elements
-- Resizable text (up to 200%)
-- Focus indicators on all interactive elements
-
-#### Language Support
-- English (primary)
-- Swahili (secondary)
-- Kikuyu (optional, for local community)
-- Language switcher in header
-
-### 3.6 Responsive Breakpoints
-
-```css
-/* Mobile First Approach */
-/* Small phones */
-@media (min-width: 320px) { }
-
-/* Large phones */
-@media (min-width: 480px) { }
-
-/* Tablets */
-@media (min-width: 768px) { }
-
-/* Small laptops */
-@media (min-width: 1024px) { }
-
-/* Desktops */
-@media (min-width: 1200px) { }
-
-/* Large screens */
-@media (min-width: 1440px) { }
-```
+- Resizable text without breaking layout
+- Clear focus indicators
 
 ---
 
-## 4. Dynamic Elements
+## 4. DYNAMIC ELEMENTS SPECIFICATIONS
 
-### 4.1 Event Calendar System
+### A. Event Calendar System
 
-#### Features
-**Calendar Views:**
-- Month view (grid)
-- Week view
-- Day view
-- List view (upcoming events)
-- Ministry-specific filters
-- Search functionality
+**Features:**
+- **Multiple Calendar Views**: Month, week, day, list
+- **Event Categories**: Worship services, meetings, outreach, social events
+- **Color Coding**: Different colors for different event types
+- **Filtering**: By department, date range, event type
+- **RSVP System**: 
+  - Attendance confirmation
+  - Capacity limits for certain events
+  - Reminder emails/SMS
+  - Check-in QR codes
+- **Recurring Events**: Auto-populate weekly services
+- **Google Calendar Sync**: Export/subscribe options
+- **iCal Download**: Individual event downloads
 
-**Event Details:**
-- Title and description
-- Date, time, location
-- Event category/type
-- Target audience
-- Registration requirement
-- Capacity limits
-- Cost (if any)
-- Contact person
-- Related documents/attachments
-- Google Calendar integration
-- iCal export
-- Social media share buttons
+**Technical Implementation:**
+- FullCalendar.js or similar library
+- Database tables: events, event_registrations, event_categories
+- Automated reminder cron jobs
 
-**Event Registration:**
-- Online registration form
-- Attendee limit management
-- Confirmation emails (SMS for Kenyan phone numbers)
-- Waiting list if event is full
-- QR code tickets for check-in
-- Registration reports for organizers
-- Cancel/modify registration
+### B. Donation Portal
 
-**Automated Notifications:**
-- 1 week before event reminder
-- 1 day before event reminder
-- Event day notification
-- Post-event thank you message
+**Payment Integration:**
 
-#### Technical Implementation
-- Use FullCalendar.js or similar library
-- Sync with Google Calendar API
-- Mobile-optimized date picker
-- Color-coded by event type
-- Recurring event support
+**M-PESA (Primary):**
+- Paybill and Till Number options
+- STK Push (Lipa Na M-PESA Online)
+- Automated confirmation messages
+- Real-time transaction verification
 
-### 4.2 Donation Portal
+**Additional Methods:**
+- Bank transfer details display
+- PayPal integration (for diaspora)
+- Card payments (Stripe or Flutterwave)
 
-#### Features
+**Donation Features:**
+- **Multiple Giving Categories**:
+  - Tithes
+  - Offerings
+  - Building Fund
+  - Missions
+  - Specific projects
+  - Benevolence
+  
+- **Giving Options**:
+  - One-time donation
+  - Recurring donations (weekly, monthly)
+  - Pledge campaigns
+  - Anonymous giving option
+  
+- **Donor Management**:
+  - Automated receipts (email/SMS)
+  - Contribution history
+  - Tax statements (annual)
+  - Giving statistics dashboard
+  
+- **Transparency**:
+  - Project progress bars
+  - Financial reports (quarterly)
+  - Impact stories
+  - Budget allocation charts
 
-**Payment Methods:**
-- **M-PESA Integration** (Essential for Kenya):
-  - STK Push (automatic payment prompt)
-  - Paybill number integration
-  - Till number option
-  - Transaction verification
-- **Card Payments**: Visa, Mastercard (via Pesapal, Flutterwave, or PayPal)
-- **Bank Transfer**: Display bank details with reference codes
-- **Mobile Money**: Airtel Money integration
+**Security:**
+- PCI DSS compliance
+- SSL encryption
+- Secure payment gateway
+- No storage of card details
 
-**Giving Categories:**
-- Tithes
-- Offerings
-- Building Fund
-- Mission Support
-- Special Projects
-- Benevolence Fund
-- Ministry-specific giving
-- One-time vs. recurring donations
+### C. Sermon Video Upload System
 
-**Donor Features:**
-- Secure donor accounts
-- Giving history dashboard
-- Downloadable statements (for tax purposes)
-- Recurring giving setup (monthly, weekly)
-- Edit/cancel recurring donations
-- Anonymous giving option
-- Memorial/honor giving
-- Pledge management system
+**Content Management:**
 
-**Administrative Features:**
-- Real-time donation tracking
-- Automated receipt generation (email/SMS)
-- Export reports (Excel, PDF)
-- Donor management CRM
-- Campaign tracking
-- Goal thermometer display
-- Match donation campaigns
+**Upload Interface (Admin/Media Team):**
+- Drag-and-drop file upload
+- Bulk upload capability
+- Automatic video compression
+- Thumbnail generation
+- Metadata form:
+  - Title
+  - Date
+  - Speaker
+  - Scripture reference
+  - Series name
+  - Tags/categories
+  - Description
+  
+**Video Processing:**
+- Automatic transcoding to multiple formats
+- Adaptive bitrate streaming (HLS/DASH)
+- CDN distribution
+- Thumbnail extraction at intervals
 
-**Security & Compliance:**
-- PCI DSS compliance for card payments
-- SSL/TLS encryption
-- 2FA for large donations
-- Fraud detection
-- Privacy policy compliance
-- Audit trails
+**User Interface:**
+- Video player with playback controls
+- Speed adjustment (0.75x, 1x, 1.25x, 1.5x)
+- Quality selection
+- Fullscreen mode
+- Playlist creation
+- Continue watching feature
+- Watch history
 
-#### M-PESA Integration Specifics
-```
-Process Flow:
-1. User selects amount and category
-2. Enters M-PESA phone number
-3. System initiates STK push
-4. User enters M-PESA PIN on phone
-5. Transaction confirmation
-6. Auto-receipt via SMS and email
-7. Update donor dashboard
-```
-
-### 4.3 Sermon Upload System
-
-#### Upload Features
-
-**Video Sermons:**
-- Drag-and-drop upload interface
-- Large file support (up to 5GB per sermon)
-- Automatic compression and optimization
-- Multiple quality options (360p, 720p, 1080p)
-- Thumbnail selection/upload
-- Chapter markers
-- Closed captions/subtitles (Swahili, English)
-
-**Audio Sermons:**
-- MP3 format upload
-- Automatic transcoding
-- Download option
-- Playback speed control
+**Distribution:**
+- Embed codes for sharing
+- YouTube/Vimeo sync option
 - Podcast RSS feed generation
-- Embedded player for website
+- Social media auto-posting
+- Email notification to subscribers
 
-**Sermon Metadata:**
-- Title
-- Pastor/speaker name
-- Date preached
-- Scripture references (auto-linked)
-- Series name
-- Topic/category tags
-- Summary/description
-- Study guide attachment
-- Transcript upload
-- Language
+**Storage Solutions:**
+- Primary: AWS S3 or Cloudflare R2
+- Backup: Local server or secondary cloud
+- Video hosting: Vimeo Pro, YouTube (unlisted), or self-hosted
 
-**Organization & Discovery:**
-- Search by keyword, speaker, date, scripture
-- Filter by series, topic, year
-- Related sermons suggestions
-- Most popular/viewed
-- Latest additions
-- Favorites/bookmarks for members
-- Playlists (sermon series)
+### D. Newsletter System
 
-**Streaming & Hosting:**
-- Embedded video player (Video.js or Plyr)
-- YouTube integration for backup hosting
-- Progress tracking for members
-- Resume playback from where left off
-- Notes section while watching/listening
+**Newsletter Management:**
 
-#### Technical Specifications
-- Cloud storage: AWS S3, Cloudflare R2, or Bunny CDN
-- Video transcoding: AWS MediaConvert or Cloudflare Stream
-- CDN for fast delivery across Kenya
-- Mobile-optimized streaming
-- Offline download for mobile apps
-
-### 4.4 Newsletter System
-
-#### Features
-
-**Newsletter Creation:**
-- WYSIWYG editor (drag-and-drop builder)
-- Pre-designed templates
-- Mobile preview before sending
-- Image upload and gallery
-- Link insertion
-- Schedule sending
-- A/B testing capability
-
+**Creation Tools:**
+- WYSIWYG editor
+- Pre-designed templates (AIC themed)
+- Drag-and-drop layout builder
+- Image gallery integration
+- Content blocks:
+  - Pastor's message
+  - Event highlights
+  - Sermon series preview
+  - Prayer requests
+  - Birthday/anniversary list
+  - Announcements
+  
 **Subscriber Management:**
-- Subscription form on website
+- Opt-in subscription forms
 - Double opt-in confirmation
-- Unsubscribe option in all emails
-- Subscriber segmentation:
+- Preference center (topics of interest)
+- Unsubscribe management
+- Subscriber segments:
   - All members
-  - Ministry-specific groups
+  - Departments
   - Age groups
   - Location-based
-  - Custom tags
-- Import/export subscriber lists
-
-**Content Types:**
-- Weekly church bulletin
-- Event announcements
-- Prayer updates
-- Pastor's message
-- Testimony highlights
-- Ministry spotlights
-- Upcoming events
-- Donation appeals
+  
+**Distribution:**
+- Email delivery (MailChimp, SendGrid, or self-hosted)
+- SMS delivery (Africa's Talking, Twilio)
+- PDF download option
+- Website archive
+- Social media snippets
 
 **Analytics:**
 - Open rates
 - Click-through rates
-- Bounce rates
-- Unsubscribe tracking
-- Best sending times
-- Popular content metrics
+- Device/platform statistics
+- Popular content tracking
+- A/B testing capability
 
-**Automation:**
-- Welcome series for new subscribers
-- Birthday/anniversary emails
-- Event reminders
-- Giving thank-you emails
-- Follow-up sequences
+**Schedule:**
+- Automated sending (weekly/monthly)
+- Draft and preview
+- Send test emails
+- Scheduled publishing
 
-#### Technical Implementation
-- Self-hosted solution: Mautic (open-source)
-- Third-party: Mailchimp, SendGrid, Sendinblue
-- SMTP integration for reliability
-- SPF, DKIM, DMARC configuration for deliverability
-
-### 4.5 Prayer Request System
-
-#### Features
+### E. Prayer Request System
 
 **Submission Process:**
-- Public or confidential submission
-- Name (optional for anonymous requests)
-- Contact information
-- Prayer category (healing, guidance, thanksgiving, etc.)
-- Detailed description
-- Urgency level
-- Follow-up option
+- **Online Form Fields**:
+  - Name (optional for anonymous)
+  - Contact information
+  - Prayer category (health, family, financial, spiritual, other)
+  - Request details
+  - Privacy level (public, prayer team only, pastors only)
+  - Updates preference
+  
+**Prayer Wall:**
+- Public display of approved requests
+- Anonymous submission support
+- Prayer count feature (members can click "I prayed for this")
+- Comment/encouragement section (moderated)
+- Praise report updates
+- Archive after resolution
 
-**Prayer Wall (Public Requests):**
-- Display approved public requests
-- "I prayed for this" button with counter
-- Comment support (moderated)
-- Share to social media
-- Search and filter
+**Management:**
+- Admin moderation queue
+- Approval workflow
+- Assignment to prayer team members
+- Follow-up reminders
+- Prayer request reports
 
-**Confidential Requests:**
-- Direct to pastoral team only
-- Encrypted storage
-- Access restricted to designated prayer team
-- Response/follow-up tracking
-- Mark as answered
+**Notifications:**
+- Prayer team alerts (email/SMS)
+- Requestor confirmation
+- Update notifications
+- Weekly prayer digest
 
-**Prayer Team Portal:**
-- Dashboard of all requests
-- Assignment to prayer warriors
-- Status tracking (new, praying, answered)
-- Response tools (email, call back)
-- Prayer notes
-- Statistics (requests per month, answered prayers)
+### F. Discussion Forum
 
-**Testimonies:**
-- Convert answered prayers to testimonies
-- Publish with permission
-- Encourage and build faith
-
-### 4.6 Discussion Forums
-
-#### Structure
-
-**Forum Categories:**
-- General Discussion
-- Bible Study Questions
-- Prayer & Support
-- Ministry-Specific Forums
-  - Youth Forum
-  - Women's Forum
-  - Men's Forum
-- Testimonies
-- New Members
-- Technical Support
-
+**Forum Structure:**
+- **Categories**:
+  - General Discussion
+  - Bible Study & Questions
+  - Prayer & Testimonies
+  - Youth Corner
+  - Women's Fellowship
+  - Men's Fellowship
+  - Announcements (read-only)
+  
 **Features:**
-- Thread creation
-- Replies and nested comments
+- Thread creation and replies
 - Rich text editor
-- Image/video embedding
-- Tagging members (@mention)
-- Like/upvote system
-- Subscribe to threads
-- Email notifications
+- File attachments (images, PDFs)
+- Member profiles with avatars
+- Reputation system (likes, helpful votes)
+- Search functionality
+- Private messaging
+- Topic subscriptions
+- Email digests
 
 **Moderation:**
-- Pre-moderation for new members
-- Report inappropriate content
-- Moderator tools (edit, delete, lock, pin)
-- Warning system for violations
-- Ban capability
-- Community guidelines clearly posted
+- Pre-moderation for new users
+- Word filters
+- Report abuse button
+- Moderator dashboard
+- Warning/ban system
+- Community guidelines display
 
-**Gamification (Optional):**
-- Member reputation points
-- Badges for participation
-- "Helpful" awards
-- Most active members leaderboard
-
-#### Technical Implementation
-- Discourse (powerful, modern forum software)
-- bbPress (WordPress plugin)
-- Custom Laravel/Django forum
-- Mobile app integration
+**Engagement:**
+- Most active threads
+- Recent activity feed
+- Member leaderboard
+- Topic tags
+- Poll creation
 
 ---
 
-## 5. Technical Recommendations
+## 5. TECHNICAL RECOMMENDATIONS
 
-### 5.1 CMS/Framework Choice
+### A. CMS/Framework Choice
 
-#### Recommended Option 1: **WordPress + Custom Theme**
+#### **Recommended Option 1: WordPress** (Easiest, Most Flexible)
 
-**Pros:**
-- User-friendly admin interface (non-technical church staff can manage)
-- Massive plugin ecosystem
-- Great for content management
-- Excellent SEO capabilities
-- Regular updates and security patches
-- Large Kenyan developer community for support
+**Advantages:**
+- User-friendly admin interface
+- Extensive plugin ecosystem
+- Large community support
+- Church-specific themes available
+- Easy content updates by non-technical users
+- Mobile app for administration
 - Cost-effective
 
-**Cons:**
-- Can be slower with many plugins
-- Security vulnerabilities if not maintained
-- May need custom development for advanced features
+**Essential Plugins:**
+- **Church Theme Content** - Church-specific features
+- **Events Manager** or **The Events Calendar** - Event management
+- **GiveWP** or **Charitable** - Donation management
+- **BuddyPress** or **Ultimate Member** - Member portal
+- **bbPress** - Discussion forums
+- **WP Mail SMTP** - Email delivery
+- **Wordfence** or **Sucuri** - Security
+- **UpdraftPlus** - Backups
+- **WP Rocket** or **W3 Total Cache** - Performance
+- **Elementor** or **Beaver Builder** - Page builder
+- **WPML** or **Polylang** - Multilingual (Swahili/English)
 
-**Key Plugins:**
-- **Church Theme Content**: Sermon manager, events, people
-- **Give (GiveWP)**: Comprehensive donation system
-- **Event Calendar**: Modern Events Calendar or The Events Calendar
-- **BuddyPress**: Member community and profiles
-- **WP Mail SMTP**: Reliable email sending
-- **M-PESA plugins**: AfricasTalking, Flutterwave, or custom
-- **LMS**: LifterLMS for online courses/discipleship
-- **Advanced Custom Fields**: Custom content types
-- **WPForms**: Form builder
-- **Really Simple SSL**: Security
+**Recommended Theme:**
+- **Church Suite** by FlyPlugins
+- **Salvation** by TemplateMela
+- **Risen** by ChurchThemes.com
+- Custom child theme with AIC branding
 
-**Estimated Development Time:** 2-3 months
+#### **Recommended Option 2: Custom Laravel Application** (Most Scalable)
 
-#### Recommended Option 2: **Custom Laravel Application**
-
-**Pros:**
-- Complete control over functionality
-- Highly scalable
-- Excellent security
-- API-ready for mobile apps
-- Modern, clean code architecture
-- Perfect for complex requirements
-
-**Cons:**
-- Requires skilled developers
-- Higher initial development cost
-- Longer development time
-- Church staff needs training
-
-**Use Cases:**
-- Large churches (1000+ members)
-- Complex membership management needs
-- Custom workflows
-- Tight integration with church management software
-
-**Estimated Development Time:** 4-6 months
-
-#### Recommended Option 3: **JAMstack (Next.js/React + Headless CMS)**
-
-**Pros:**
-- Extremely fast performance
-- Modern development approach
-- Great for mobile apps
-- Scalable and secure
+**Advantages:**
+- Complete customization
+- Better performance at scale
+- Enhanced security control
 - API-first architecture
+- Modern development practices
+- Future-proof
 
-**Cons:**
-- Steeper learning curve
-- More complex setup
-- Requires developer for content structure changes
+**Tech Stack:**
+- **Backend**: Laravel 10+ (PHP 8.2+)
+- **Frontend**: Vue.js 3 or React
+- **Database**: MySQL 8.0 or PostgreSQL
+- **Queue Management**: Redis
+- **Search**: Algolia or MeiliSearch
+- **File Storage**: AWS S3 or Cloudflare R2
+- **Email**: SendGrid or Mailgun
+- **SMS**: Africa's Talking API
+- **Payment**: M-PESA Daraja API, Flutterwave
 
-**Stack Recommendation:**
-- **Frontend**: Next.js 14+ (React)
-- **Headless CMS**: Strapi or Contentful
-- **Hosting**: Vercel or Netlify
-- **Database**: PostgreSQL
+**Development Time:**
+- 3-6 months for full features
+- Higher initial cost
+- Requires skilled developer maintenance
 
-**Estimated Development Time:** 4-5 months
+#### **Recommended Option 3: Hybrid Approach**
 
-### 5.2 Database Design
+- **WordPress** for content (blog, sermons, events)
+- **Custom Laravel app** for member management and financial systems
+- API integration between systems
+- Best of both worlds
 
-#### Core Database Tables
+### B. Database Design
 
-**Users Table:**
+**Core Tables (Simplified Schema):**
+
 ```
-- id (primary key)
-- username
-- email
-- phone_number (Kenyan format)
-- password (encrypted)
-- role (admin, pastor, member, etc.)
-- status (active, inactive)
-- created_at
-- updated_at
-```
+Users
+- id, name, email, password, role, phone, status, created_at
 
-**Members Table:**
-```
-- id
-- user_id (foreign key)
-- first_name
-- middle_name
-- last_name
-- date_of_birth
-- gender
-- national_id
-- physical_address
-- postal_address
-- sub_county
-- county
-- marital_status
-- baptism_date
-- membership_date
-- family_id (links to families table)
-- photo
-- emergency_contact
-- occupation
-- status (active, transferred, deceased)
-```
+Members
+- id, user_id, membership_number, join_date, family_id, department_id, photo
 
-**Families Table:**
-```
-- id
-- family_name
-- head_of_household_id
-- address
-- phone_number
-```
+Departments
+- id, name, description, leader_id, meeting_schedule
 
-**Events Table:**
-```
-- id
-- title
-- description
-- event_type (service, meeting, outreach, etc.)
-- start_datetime
-- end_datetime
-- location
-- ministry_id
-- capacity
-- registration_required
-- cost
-- image
-- status (upcoming, ongoing, completed, cancelled)
+Events
+- id, title, description, start_date, end_date, location, category, capacity
+
+Event_Registrations
+- id, event_id, user_id, status, checked_in, registered_at
+
+Sermons
+- id, title, speaker, date, scripture, video_url, audio_url, notes, series_id
+
+Donations
+- id, user_id, amount, category, payment_method, transaction_id, receipt_sent
+
+Prayer_Requests
+- id, user_id, category, request_text, privacy_level, status, approved_at
+
+Forum_Topics
+- id, category_id, user_id, title, body, sticky, locked, created_at
+
+Forum_Replies
+- id, topic_id, user_id, body, created_at
+
+Attendance
+- id, service_id, member_id, check_in_time, method
+
+Communications
+- id, type, recipient_group, subject, message, sent_at, sent_by
 ```
 
-**Sermons Table:**
-```
-- id
-- title
-- pastor_id
-- sermon_date
-- scripture_reference
-- series_id
-- topic_tags
-- video_url
-- audio_url
-- thumbnail
-- transcript
-- views_count
-- downloads_count
-- duration
-```
+**Database Optimization:**
+- Proper indexing on frequently queried columns
+- Regular backups (daily automated)
+- Read replicas for reporting
+- Database caching (Redis/Memcached)
 
-**Donations Table:**
-```
-- id
-- donor_id (can be null for anonymous)
-- amount
-- currency (KES, USD, etc.)
-- donation_type (tithe, offering, building fund, etc.)
-- payment_method (mpesa, card, bank, cash)
-- transaction_id
-- transaction_status (pending, completed, failed)
-- transaction_date
-- receipt_number
-- receipt_sent (boolean)
-- notes
-```
+### C. Security Considerations
 
-**Prayer Requests Table:**
-```
-- id
-- requester_name
-- requester_contact
-- request_text
-- category (healing, guidance, thanksgiving, etc.)
-- visibility (public, confidential)
-- status (new, praying, answered)
-- submitted_date
-- answered_date
-- assigned_to (prayer team member)
-- testimony_text (if converted to testimony)
-```
+**Essential Security Measures:**
 
-**Ministries Table:**
-```
-- id
-- name
-- description
-- leader_id (foreign key to members)
-- meeting_schedule
-- contact_email
-- contact_phone
-- image
-```
+1. **SSL/TLS Certificate**
+   - HTTPS for entire site
+   - Free: Let's Encrypt
+   - Automatic renewal
 
-**Additional Tables:**
-- attendance_records
-- small_groups
-- blog_posts
-- comments
-- notifications
-- email_subscribers
-- sms_queue
-- audit_logs
+2. **Authentication Security**
+   - Password strength requirements
+   - Two-factor authentication (2FA)
+   - CAPTCHA on forms
+   - Account lockout after failed attempts
+   - Secure password reset flow
 
-#### Database Recommendations
-- **Primary Database**: MySQL 8.0+ or PostgreSQL 14+
-- **Caching**: Redis for session management and API caching
-- **Search**: Elasticsearch for fast sermon/content search (optional)
-- **File Storage**: Separate from database
+3. **Data Protection**
+   - GDPR/Data Protection Act compliance
+   - Encrypted database backups
+   - Personal data access controls
+   - Member data export/deletion features
+   - Audit logs for sensitive actions
 
-### 5.3 Security Considerations
+4. **Application Security**
+   - Regular security updates
+   - SQL injection prevention (parameterized queries)
+   - XSS protection
+   - CSRF tokens
+   - Input validation and sanitization
+   - File upload restrictions
+   - Rate limiting on APIs
 
-#### Essential Security Measures
+5. **Payment Security**
+   - PCI DSS compliance
+   - No storage of card details
+   - Secure payment gateway integration
+   - Transaction logging
+   - Fraud detection monitoring
 
-**1. SSL/TLS Certificate:**
-- Let's Encrypt (free) or paid certificate
-- Force HTTPS for entire site
-- HSTS header enabled
+6. **Backup Strategy**
+   - Daily automated backups
+   - Off-site backup storage
+   - Point-in-time recovery capability
+   - Regular backup testing
+   - Disaster recovery plan
 
-**2. Authentication & Authorization:**
-- Strong password policy (min 12 characters, complexity)
-- Password hashing (bcrypt, Argon2)
-- Two-factor authentication (SMS for Kenya)
-- Session management with timeout
-- Role-based access control (RBAC)
-- API token authentication for mobile apps
+7. **Monitoring**
+   - Security scanning (Sucuri, Wordfence)
+   - Uptime monitoring
+   - Error logging
+   - Suspicious activity alerts
+   - Server resource monitoring
 
-**3. Data Protection:**
-- **Encryption at rest**: Database encryption
-- **Encryption in transit**: SSL/TLS
-- **Personal data protection**: GDPR principles (even in Kenya)
-- **Payment data**: PCI DSS compliance
-- **Backup encryption**: All backups encrypted
+### D. Hosting Recommendations
 
-**4. Web Application Security:**
-- **SQL Injection Prevention**: Parameterized queries
-- **XSS Protection**: Input sanitization, CSP headers
-- **CSRF Protection**: Tokens for all forms
-- **Rate Limiting**: Prevent brute force attacks
-- **File Upload Security**: Type validation, size limits, virus scanning
-- **Security Headers**: 
-  ```
-  X-Frame-Options: SAMEORIGIN
-  X-Content-Type-Options: nosniff
-  X-XSS-Protection: 1; mode=block
-  Content-Security-Policy: [configured]
-  ```
+#### **Option 1: Managed WordPress Hosting** (Recommended for WordPress)
 
-**5. Regular Security Practices:**
-- Weekly automated backups (3-2-1 rule)
-- Monthly security updates
-- Quarterly security audits
-- Penetration testing annually
-- WAF (Web Application Firewall) - Cloudflare
-- DDoS protection
+**Top Providers:**
+- **Kinsta** - Premium, fast, excellent support ($35-100/month)
+- **WP Engine** - Enterprise-grade ($30-290/month)
+- **Cloudways** - Flexible, good value ($10-80/month)
+- **SiteGround** - Balanced, reliable ($3.99-14.99/month starter)
 
-**6. Kenya-Specific Considerations:**
-- Data Protection Act 2019 compliance
-- Secure M-PESA integration (official API only)
-- Protection against SIM swap attacks for 2FA
-- Regular backup to Kenyan servers
+**Features to Ensure:**
+- Daily backups
+- Free SSL certificate
+- CDN integration
+- Staging environment
+- 99.9%+ uptime guarantee
+- PHP 8.0+, MySQL 8.0+
+- At least 2GB RAM, 30GB SSD
+- Support for media-heavy content
 
-**7. Monitoring & Logging:**
-- Failed login attempts tracking
-- Admin action logs
-- Payment transaction logs
-- Error logging (Sentry or similar)
-- Uptime monitoring (UptimeRobot)
+#### **Option 2: VPS/Cloud Hosting** (For Custom Applications)
 
-### 5.4 Hosting Recommendations
+**Providers:**
+- **DigitalOcean** - Developer-friendly ($6-40/month)
+- **Linode** - Reliable, good performance ($5-40/month)
+- **AWS Lightsail** - Scalable ($3.50-40/month)
+- **Vultr** - Fast African presence ($6-40/month)
 
-#### Option 1: **Kenyan Local Hosting** (Recommended for Speed & Data Sovereignty)
+**Server Specs (Minimum):**
+- 2 CPU cores
+- 4GB RAM
+- 80GB SSD storage
+- 3TB bandwidth
+- Ubuntu 22.04 LTS or similar
 
-**Recommended Providers:**
+**Management Options:**
+- **ServerPilot** - Easy server management
+- **Cloudways** - Managed cloud hosting
+- **RunCloud** - Server control panel
+- **Hire DevOps** - Full management service
 
-**1. Safaricom Cloud (Kenya):**
-- **Pros**: Local presence, fast for Kenyan users, good support
-- **Specs**: Start with 4GB RAM, 2 vCPU, 80GB SSD
-- **Cost**: ~KES 3,000-5,000/month
-- **Backup**: Nairobi data center
+#### **Option 3: Kenyan Hosting** (Local Support, Compliance)
 
-**2. Truehost Kenya:**
-- **Pros**: Affordable, good for small-medium churches
-- **Specs**: WordPress hosting optimized
-- **Cost**: ~KES 1,500-3,000/month
-- **Suitable for**: WordPress option
+**Providers:**
+- **Truehost Kenya** - Local, affordable (KES 299-1,500/month)
+- **Safaricom Cloud** - Reliable, local (competitive pricing)
+- **Kenya Website Experts** - Church website specialists
+- **Webhost Kenya** - Established provider
 
-**3. Kenya Web Experts:**
-- **Pros**: Church-specific hosting experience
-- **Cost**: ~KES 2,500-4,500/month
+**Advantages:**
+- Local payment methods (M-PESA)
+- Kenyan support timezone
+- Compliance with local laws
+- Potentially faster for local users
 
-#### Option 2: **International Hosting with CDN**
+**Considerations:**
+- May need CDN for video content
+- Verify uptime guarantees
+- Check backup policies
 
-**1. DigitalOcean:**
-- **Location**: Use London or Frankfurt datacenter (closest to Kenya)
-- **Specs**: Droplet with 4GB RAM, 2 vCPU, 80GB SSD
-- **Cost**: $24/month (~KES 3,600)
-- **CDN**: Cloudflare free tier
-- **Pros**: Reliable, scalable, developer-friendly
+### E. CDN & Performance
 
-**2. AWS Lightsail:**
-- **Specs**: 4GB RAM, 2 vCPU, 80GB SSD
-- **Cost**: ~$40/month (~KES 6,000)
-- **Pros**: AWS ecosystem, easy to scale
+**Content Delivery Network:**
+- **Cloudflare** - Free tier available, DDoS protection
+- **BunnyCDN** - Affordable, good African coverage
+- **KeyCDN** - Pay-as-you-go pricing
 
-**3. Cloudways (Managed Hosting):**
-- **Platform**: DigitalOcean/Vultr servers
-- **Cost**: $26-42/month
-- **Pros**: Managed, optimized for WordPress
+**Performance Optimization:**
+- Image optimization (WebP format, lazy loading)
+- Minification (CSS, JS)
+- Browser caching
+- Database query optimization
+- Content caching (Redis/Varnish)
+- Gzip compression
+- Asynchronous loading
 
-#### Hosting Requirements
+**Target Metrics:**
+- Page load time: <3 seconds
+- Time to First Byte: <600ms
+- Mobile PageSpeed score: 80+
+- Lighthouse performance: 90+
 
-**Minimum Specifications:**
-- **Server**: 4GB RAM, 2 vCPU
-- **Storage**: 80GB SSD (expandable for media)
-- **Bandwidth**: Unlimited or 3TB/month
-- **Uptime**: 99.9% SLA
+### F. Scalability Considerations
 
-**Recommended Specifications (for growth):**
-- **Server**: 8GB RAM, 4 vCPU
-- **Storage**: 160GB SSD
-- **Bandwidth**: Unlimited
-- **Uptime**: 99.95% SLA
-- **CDN**: Included or Cloudflare
+**Growth Planning:**
+- Start with appropriate hosting tier
+- Monitor traffic and resource usage
+- Plan for 3-5 year growth
+- Use scalable architecture (microservices if custom)
+- Database optimization for growing data
+- Load balancing for high traffic
+- Auto-scaling capabilities
 
-#### Additional Services Needed
-
-**1. Content Delivery Network (CDN):**
-- **Cloudflare** (Free or Pro $20/month)
-- **Bunny CDN** ($1/month + usage)
-- Purpose: Fast content delivery across Kenya and globally
-
-**2. Email Service:**
-- **SendGrid** (Free up to 100 emails/day, then $15/month)
-- **Amazon SES** (Very affordable)
-- **Mailgun** (Free tier available)
-- Purpose: Reliable email delivery (welcome emails, newsletters, receipts)
-
-**3. SMS Gateway (Kenya-specific):**
-- **Africa's Talking** (Pay as you go, ~KES 0.80/SMS)
-- **Safaricom Bulk SMS API**
-- Purpose: Event reminders, prayer updates, alerts
-
-**4. M-PESA Integration:**
-- **Safaricom Daraja API** (Official M-PESA API)
-- **Africa's Talking** (Simplified API)
-- **Pesapal** (Payment gateway with M-PESA)
-- **Flutterwave** (Multiple payment options)
-
-**5. Video Hosting:**
-- **Option A**: Self-hosted (Cloudflare Stream - $1/1000 mins)
-- **Option B**: YouTube (free, but less control)
-- **Option C**: Vimeo Pro ($75/year) - better privacy
-
-**6. Backup Solution:**
-- **Automated daily backups**
-- **Off-site backup storage** (Backblaze B2, AWS S3)
-- **Cost**: ~$5-10/month
-- **Retention**: 30-day backups
-
-### 5.5 Performance Optimization
-
-#### Speed Optimization Strategies
-
-**1. Caching:**
-- Browser caching (1 week for static assets)
-- Page caching (full page cache)
-- Object caching (Redis/Memcached)
-- Database query caching
-- CDN caching for media
-
-**2. Image Optimization:**
-- WebP format with JPEG fallback
-- Lazy loading for images
-- Responsive images (srcset)
-- Image compression (TinyPNG, ImageOptim)
-- Maximum image size: 1920px width
-
-**3. Code Optimization:**
-- Minify CSS, JavaScript, HTML
-- Combine CSS/JS files
-- Defer JavaScript loading
-- Inline critical CSS
-- Remove unused CSS/JS
-
-**4. Database Optimization:**
-- Index frequently queried columns
-- Regular database optimization
-- Query optimization
-- Limit WordPress revisions
-- Archive old data
-
-**5. Mobile Optimization:**
-- Mobile-first design
-- AMP pages for blog posts (optional)
-- Touch-friendly interface
-- Reduced data usage for mobile
-
-**Target Performance Metrics:**
-- **Page Load Time**: < 3 seconds (desktop), < 4 seconds (mobile)
-- **Time to First Byte (TTFB)**: < 600ms
-- **First Contentful Paint**: < 1.8s
-- **Largest Contentful Paint**: < 2.5s
-- **Cumulative Layout Shift**: < 0.1
-- **Mobile Speed Score**: 85+ (Google PageSpeed Insights)
-
-### 5.6 Mobile App Considerations
-
-#### Progressive Web App (PWA) - Recommended First Step
-
-**Benefits:**
-- No app store approval needed
-- Works on all platforms (Android, iOS)
-- Offline functionality
-- Push notifications
-- Add to home screen
-- Automatic updates
-- Lower development cost
-
-**Features:**
-- Service worker for offline access
-- App-like navigation
-- Fast loading
-- Background sync
-
-**Implementation:**
-- Works with any of the CMS options above
-- Add manifest.json and service worker
-- Cost: Minimal (included in website development)
-
-#### Native Mobile App (Future Phase)
-
-**When to Build:**
-- After website is established (6-12 months)
-- When membership > 500 active users
-- Budget available ($8,000-$15,000 USD)
-
-**Platform:**
-- **React Native**: Single codebase for iOS and Android
-- **Flutter**: Google's framework, excellent performance
-
-**Key Features:**
-- Offline sermon listening
-- Push notifications
-- Mobile giving
-- Digital member card
-- Event check-in QR codes
-- Bible integration
-- Devotionals
+**Expected Capacity:**
+- 500-2,000 active members
+- 50-200 concurrent users during live streams
+- 10,000-50,000 monthly page views
+- 100-500 GB monthly bandwidth
+- 20-100 GB storage (growing with media)
 
 ---
 
-## 6. Evangelism and Community Growth Tools
+## 6. EVANGELISM & COMMUNITY GROWTH TOOLS
 
-### 6.1 Digital Evangelism Features
+### A. Digital Evangelism Features
 
-#### 6.1.1 Online Salvation Portal
+**1. Online Gospel Presentation**
+- Clear salvation message page
+- Video testimony testimonials
+- Interactive decision card
+- Immediate follow-up system
+- New believer resources download
+- Connect with local outreach team
 
-**Features:**
-- Clear gospel presentation (video + text)
-- Step-by-step salvation guide
-- Prayer of salvation
-- "I Made a Decision" form
-- Immediate follow-up email/SMS
-- Assign to discipleship team
-- Track decisions and follow-up
-
-**Follow-up Process:**
-- Automated welcome email series
-- Phone call within 24 hours
-- Invitation to new believers class
-- Connect with a mentor
-- Digital discipleship resources
-
-#### 6.1.2 Testimony Platform
-
-**Collection:**
-- Video testimony upload (by members)
-- Written testimony submission
-- Moderation and approval
-- Category tagging (salvation, healing, provision, etc.)
-
-**Display:**
-- Featured testimony on homepage
-- Testimony archive searchable by category
-- Share to social media
-- Email testimonies to subscribers
-- Use in evangelistic outreach
-
-**Impact:**
-- Builds faith of existing members
-- Powerful evangelism tool
-- Attracts visitors
-
-#### 6.1.3 Shareable Content
-
-**Gospel Content:**
-- Short gospel videos (2-3 minutes)
-- Infographics about Christianity
-- Scripture graphics
-- Salvation plan PDF
-- All with social share buttons
-
-**Invitations:**
-- "Invite a Friend" feature
-- Digital invitation cards for events
-- Share sermon clips
-- WhatsApp-optimized content (common in Kenya)
-
-#### 6.1.4 Virtual Guest Services
-
-**First-Time Visitor Experience:**
-- "Plan Your Visit" page
-  - What to expect
-  - Service times
-  - Directions
-  - Parking info
-  - What to wear
-  - Childcare info
-- Virtual tour video
-- Meet the pastor video
-- FAQ for visitors
-
-**Guest Registration:**
-- Digital connect card
-- QR code for in-person visitors
-- Automated welcome email
-- Assign to greeter/follow-up team
-- Track visitor-to-member conversion
-
-### 6.2 Sermon Evangelism Tools
-
-#### Sermon Clips Generator
-- Create 60-90 second clips from sermons
-- Optimized for social media (Instagram, Facebook, TikTok)
-- Automated captioning
-- Branded graphics
-- Schedule posting
-
-#### Sermon Series Landing Pages
-- Dedicated page for each sermon series
-- All sermons in series
-- Series artwork
-- Discussion guide
-- Share entire series
-
-#### Podcast Distribution
-- Automatic podcast publishing
-- Available on:
-  - Apple Podcasts
-  - Spotify
-  - Google Podcasts
-  - YouTube Music
-- RSS feed for any podcast app
-
-### 6.3 Small Groups & Community
-
-#### Small Group Finder
-- Map-based group finder
-- Filter by:
-  - Location (neighborhood)
-  - Day/time
-  - Group type (men, women, couples, youth)
-  - Language
-  - Topic/study
-- Join request system
-- Group leader portal
-
-#### Group Leader Resources
-- Curriculum library
-- Training videos
-- Leader guides
-- Attendance tracking
-- Communication tools
-- Event planning
-
-### 6.4 Online Bible Study Platform
-
-**Features:**
-- Structured Bible study courses
-- Video lessons
-- Discussion questions
-- Progress tracking
-- Certificates of completion
-- Interactive quizzes
-- Community discussion
-
-**Study Topics:**
-- New believer foundations
-- Bible book studies
-- Topical studies
-- Marriage enrichment
-- Financial stewardship
-- Leadership development
-
-### 6.5 Social Media Integration
-
-#### Auto-Posting
-- Sync sermon releases to:
-  - Facebook
-  - Instagram
-  - Twitter/X
-  - YouTube
-  - TikTok (short clips)
-- Event announcements
-- Blog post sharing
-
-#### Social Media Feeds
-- Display church's social feeds on website
-- Instagram photo gallery
-- Facebook reviews
-- YouTube channel embed
-
-#### Hashtag Campaign
-- Church-specific hashtag
-- Aggregate member posts
-- Display on website
-- Encourage testimony sharing
-
-### 6.6 Email Evangelism
-
-#### Automated Drip Campaigns
-- **Visitor Follow-up Series** (5 emails over 2 weeks)
-  - Welcome
-  - About our church
-  - Ways to get connected
-  - Invitation to small group
-  - Personal invitation from pastor
+**2. Share-Ready Content**
+- **Social Media Sermon Snippets**:
+  - 60-second video clips
+  - Quote graphics (branded)
+  - Audiograms for podcast platforms
+  - Vertical video for stories/reels
   
-- **New Believer Series** (8 emails over 4 weeks)
-  - Congratulations on decision
-  - What's next?
-  - Understanding baptism
-  - Bible reading plan
-  - Connecting with community
-  - Dealing with doubts
-  - Sharing your faith
-  - Next steps in discipleship
+- **Shareable Resources**:
+  - Gospel tracts (PDF downloads)
+  - Bible study guides
+  - Devotional series
+  - Evangelism training materials
+  
+- **One-Click Sharing**:
+  - WhatsApp share buttons
+  - Facebook/Twitter/Instagram integration
+  - Custom share messages
+  - Tracking shared content
 
-- **Easter/Christmas Campaigns**
-  - Gospel presentation
-  - Invitation to special service
-  - Follow-up
+**3. Virtual Evangelism Events**
+- Online crusades/campaigns
+- Live Q&A sessions
+- Webinar series on faith topics
+- Virtual prayer meetings
+- Real-time engagement tools
 
-### 6.7 Community Outreach Tools
+**4. Follow-up System**
+- New convert tracking
+- Automated discipleship email series
+- New believer classes schedule
+- Baptism preparation materials
+- Mentorship matching program
 
-#### Service Projects
-- List of community needs
-- Volunteer sign-up
-- Project calendar
-- Photo/impact reports
-- Partner organization info
+### B. Community Growth Strategies
 
-#### Benevolence Requests
-- Confidential assistance request form
-- Review process
-- Track assistance provided
-- Donor-restricted benevolence giving
+**1. Visitor Integration**
+- **First-time Visitor Journey**:
+  - "Plan Your Visit" page (what to expect)
+  - Online visitor card submission
+  - Welcome gift notification
+  - Automated follow-up sequence (3 emails/SMS over 2 weeks)
+  - Connect group invitation
+  - Pastor meet-and-greet scheduling
+  
+- **Visitor Tracking**:
+  - Check-in system (QR code or kiosk)
+  - Second-time visitor recognition
+  - Assimilation metrics dashboard
+  - Conversion from visitor to member
 
-#### Local Business Directory
-- Support members' businesses
-- Promote Christian-owned businesses in community
-- Job board
-- Networking opportunities
+**2. Member Engagement Tools**
+- **Spiritual Growth Tracking**:
+  - Bible reading plans (integrated)
+  - Prayer journal
+  - Spiritual gifts assessment
+  - Ministry involvement tracker
+  - Growth milestones celebration
+  
+- **Connection Points**:
+  - Small group finder (by location, interests)
+  - Ministry opportunity board
+  - Skills and talents registry
+  - Volunteer scheduling system
+  - Mentorship program matching
 
-### 6.8 Analytics for Evangelism
+**3. Community Impact Visibility**
+- **Impact Dashboard**:
+  - Lives touched counter
+  - Salvation decisions recorded
+  - Baptisms celebrated
+  - Families supported
+  - Community projects completed
+  - Map of outreach locations
+  
+- **Story Sharing**:
+  - Transformation testimonies
+  - Photo journals of outreach
+  - Before/after community projects
+  - Video interviews
+  - Impact reports (quarterly/annual)
 
-**Track Metrics:**
-- Website visitors (new vs. returning)
-- Sermon views/downloads
-- Salvation decisions submitted
-- Visitor follow-up completion rate
-- Small group participation
-- Event attendance trends
-- Social media engagement
-- Email open rates
-- Most effective evangelism channels
+**4. Diaspora/Remote Member Engagement**
+- **Virtual Membership**:
+  - Online-only membership option
+  - Live stream access
+  - Virtual small groups
+  - Online giving with recognition
+  - Digital membership cards
+  
+- **Global Community**:
+  - Member location map
+  - Time-zone appropriate events
+  - International prayer network
+  - Alumni connection program
+  - Partnership opportunities
 
-**Reports:**
-- Monthly evangelism report
-- Visitor conversion funnel
-- Ministry effectiveness
-- Geographic reach
+### C. Content Marketing for Evangelism
+
+**1. SEO Optimization**
+- **Target Keywords**:
+  - "Churches in Zambezi Kiambu"
+  - "AIC churches near me"
+  - "Christian fellowship Kiambu"
+  - "Online church services Kenya"
+  - "Gospel message"
+  
+- **Local SEO**:
+  - Google Business Profile optimization
+  - Local directory listings
+  - Church finder websites
+  - Review management
+  - Location-based content
+
+**2. Content Strategy**
+- **Blog Topics**:
+  - Faith and daily life
+  - Biblical teaching series
+  - Testimonies and stories
+  - Community issues (Christian perspective)
+  - Holidays and celebrations
+  - FAQ about Christianity
+  
+- **Video Content**:
+  - Weekly devotionals
+  - Behind-the-scenes church life
+  - Member testimonies
+  - Teaching series
+  - Q&A sessions
+  - Community service highlights
+
+**3. Social Media Strategy**
+- **Platform Focus**:
+  - Facebook: Primary (events, live streams, community)
+  - YouTube: Sermon archive, teaching series
+  - Instagram: Visual storytelling, youth engagement
+  - WhatsApp: Direct communication, groups
+  - Twitter: Scripture, quotes, quick updates
+  
+- **Content Calendar**:
+  - Daily: Scripture verse, prayer prompt
+  - Weekly: Sermon highlights, event reminders
+  - Monthly: Impact stories, newsletter
+  - Seasonal: Campaigns, special series
+
+**4. Email Evangelism**
+- **Email Sequences**:
+  - New subscriber welcome series
+  - Seeker-focused content series
+  - Holiday evangelism campaigns
+  - Life event-triggered messages (grief, marriage, etc.)
+  - Discipleship curriculum
+
+### D. Viral Growth Mechanisms
+
+**1. Referral/Invitation System**
+- **Bring-a-Friend Campaigns**:
+  - Digital invitation cards
+  - Personal invite codes
+  - Referral tracking
+  - Rewards/recognition program
+  - Friendly competition between departments
+  
+- **Share Your Story**:
+  - Member testimony submission
+  - Social media sharing incentives
+  - Video testimony recording assistance
+  - Featured story of the month
+
+**2. Event-Based Growth**
+- **Special Events**:
+  - Easter/Christmas campaigns
+  - Community service days
+  - Family fun days
+  - Concert/talent shows
+  - Sports tournaments
+  - All with online registration and promotion
+  
+- **Virtual Events**:
+  - Online conferences
+  - Webinar series
+  - Live Q&A with pastor
+  - Themed discussion nights
+  - Prayer marathons
+
+**3. Community Partnerships**
+- **Partner Display**:
+  - Local business partnerships
+  - School relationships
+  - NGO collaborations
+  - Government program involvement
+  - Cross-promotion opportunities
+  
+- **Service Projects**:
+  - Community needs board
+  - Volunteer opportunity calendar
+  - Impact measurement
+  - Partnership testimonials
 
 ---
 
-## 7. Innovative Features
+## 7. INNOVATIVE & UNIQUE FEATURES
 
-### 7.1 AI-Powered Features
+### A. AI-Powered Features
 
-#### AI Sermon Search
-- Natural language sermon search
-- "Find sermons about worry" or "What does the Bible say about money?"
-- Scripture-based recommendations
-- Topic clustering
+**1. Intelligent Search**
+- Sermon search by topic, scripture, or keywords
+- Semantic search (understand intent, not just keywords)
+- Voice search capability
+- Related content suggestions
 
-#### Chatbot Assistant
-- **"Ask Pastor AI"**: Answer common questions
-- Service times info
-- Event details
-- Prayer submission
-- Connection to real person if needed
-- Available in English, Swahili
+**2. Chatbot Assistant**
+- 24/7 basic inquiry responses
+- Event information
+- Service times
+- Location and directions
+- Prayer request submission
+- Connection to live support during office hours
 
-### 7.2 Virtual Prayer Room
+**3. Personalized Recommendations**
+- Sermon recommendations based on viewing history
+- Suggested small groups based on interests
+- Relevant events based on demographics
+- Content discovery engine
 
-**Features:**
-- 24/7 live prayer wall
-- Real-time prayer updates
-- "Join me in prayer" feature
-- Video prayer testimonies
-- Prayer partner matching
-- Corporate prayer events (online)
+### B. Mobile-First Innovations
 
-**Implementation:**
-- WebSocket for real-time updates
-- Moderation queue
-- Mobile notifications
+**1. Progressive Web App (PWA)**
+- Install on home screen (iOS/Android)
+- Offline access to recent sermons
+- Push notifications
+- Background audio playback
+- Fast loading (App-like experience)
 
-### 7.3 Digital Discipleship Pathways
+**2. Native Mobile Features**
+- **QR Code Integration**:
+  - Event check-in
+  - Digital giving
+  - Contact card exchange
+  - Resource downloads
+  
+- **Geo-Location Services**:
+  - Distance to church
+  - Nearby small groups
+  - Direction navigation
+  - Location-based notifications
 
-#### Membership Journey Tracker
-- Clear steps from visitor to mature believer
-- Gamified progress
-- Milestones:
-  - First visit
-  - Second visit
-  - Connection (small group, ministry)
-  - Membership class
-  - Baptism
-  - Service/ministry involvement
-  - Leadership development
-- Automated prompts for next steps
+**3. WhatsApp Integration**
+- Click-to-WhatsApp from website
+- WhatsApp Business API integration
+- Automated responses
+- Prayer request via WhatsApp
+- Event reminders
+- Group invite links
 
-#### Personal Dashboard
-- Member's spiritual growth tracker
-- Sermon notes library
-- Bible reading plan progress
-- Giving history
-- Volunteer hours
-- Small group attendance
-- Ministry involvement
-- Personal prayer list
+### C. Gamification & Engagement
 
-### 7.4 Live Streaming Enhancements
+**1. Engagement Rewards**
+- **Point System**:
+  - Attend services (physical/online)
+  - Participate in events
+  - Volunteer hours
+  - Complete Bible reading plans
+  - Share content
+  - Invite friends
+  
+- **Badges & Achievements**:
+  - Scripture memory milestones
+  - Service anniversaries
+  - Ministry involvement
+  - Evangelism impact
+  - Discipleship completion
 
-#### Multi-Camera Streaming
-- Professional live stream setup
-- Picture-in-picture (preacher + slides)
-- Live chat during service
-- Real-time prayer requests during service
+**2. Challenges & Campaigns**
+- 30-day prayer challenge
+- Bible reading marathons
+- Evangelism competitions
+- Service project goals
+- Department challenges
+- Leaderboards (friendly competition)
+
+### D. Multi-Language & Accessibility
+
+**1. Language Support**
+- **Primary Languages**:
+  - English
+  - Swahili
+  - Kikuyu (local language)
+  
+- **Implementation**:
+  - Language switcher (persistent preference)
+  - Content translation management
+  - Auto-translation for user-generated content
+  - Multilingual search
+
+**2. Enhanced Accessibility**
+- **Audio Features**:
+  - Text-to-speech for articles
+  - Audio descriptions for videos
+  - Transcript generation
+  
+- **Visual Aids**:
+  - High contrast mode
+  - Font size adjustment
+  - Screen reader optimization
+  - Sign language interpretation videos (major events)
+
+### E. Integration Hub
+
+**1. Third-Party Integrations**
+- **Bible Apps**:
+  - YouVersion Bible Plan integration
+  - Bible Gateway links
+  - Blue Letter Bible references
+  
+- **Calendar Apps**:
+  - Google Calendar
+  - Apple Calendar
+  - Outlook
+  - Automatic event sync
+
+**2. Social Media Aggregation**
+- **Social Wall**:
+  - Live feed from all church social media
+  - Hashtag tracking (#AICZambezi)
+  - Member social posts (with permission)
+  - Curated content display
+
+**3. Communication Platforms**
+- **Zoom/Google Meet Integration**:
+  - Virtual meeting links
+  - Online Bible study hosting
+  - Webinar management
+  
+- **Email Marketing**:
+  - Newsletter platform integration
+  - Automated campaigns
+  - Segmentation tools
+  
+- **SMS Gateway**:
+  - Africa's Talking API
+  - Bulk SMS campaigns
+  - Event reminders
+  - Prayer chain alerts
+
+### F. Advanced Analytics & Reporting
+
+**1. Member Dashboard**
+- Personal giving history
+- Attendance records
+- Involvement timeline
+- Spiritual growth tracker
+- Personal goals and milestones
+
+**2. Leadership Dashboard**
+- **Real-time Metrics**:
+  - Current service attendance
+  - Online viewership
+  - Website traffic
+  - Giving trends
+  - Member engagement scores
+  
+- **Trend Analysis**:
+  - Growth patterns
+  - Department performance
+  - Event success metrics
+  - Content engagement
+  - Retention rates
+  
+- **Custom Reports**:
+  - Demographic breakdowns
+  - Giving reports (by category, time period)
+  - Attendance trends
+  - Evangelism impact
+  - Export capabilities (PDF, Excel)
+
+### G. Virtual Reality & Immersive Experiences
+
+**1. 360° Church Tour**
+- Virtual walk-through for first-time visitors
+- Facility showcase
+- "Where to sit" guidance
+- Children's areas preview
+
+**2. Live Stream Enhancements**
+- Multiple camera angles
+- Interactive chat with moderation
+- Live prayer requests during service
 - Virtual altar call
+- Online communion instructions
+- Attendance counter
 
-#### Interactive Elements
-- Live polls during sermon
-- Q&A session after service
-- Virtual greeting (wave to camera)
-- Live giving prompts
-- Take notes during stream (saved to account)
+### H. Resource Marketplace
 
-### 7.5 Church App Gamification
+**1. Christian Resource Center**
+- **Digital Downloads**:
+  - E-books (Christian living)
+  - Study guides
+  - Music (worship songs)
+  - Sermon notes packages
+  
+- **Physical Products** (optional):
+  - Church merchandise (T-shirts, caps)
+  - Bibles and devotionals
+  - Sunday school materials
+  - AIC branded items
 
-#### Engagement Points System
-**Earn points for:**
-- Attending services (in-person or online)
-- Watching sermons
-- Reading devotionals
-- Bringing visitors
-- Volunteering
-- Completing Bible studies
-- Giving
-- Sharing content
+**2. Service Requests**
+- Counseling appointment booking
+- Wedding/funeral service requests
+- Certificate requests (baptism, membership)
+- Facility rental inquiries
+- Prayer team connection
 
-**Rewards:**
-- Badges and achievements
-- Leaderboard (optional, for youth)
-- Recognition in church
-- Special privileges (prayer with pastor, etc.)
-- Discounts at church bookstore
-- Entry into ministry leadership
+### I. Emergency & Crisis Features
 
-### 7.6 Geo-Location Features
+**1. Crisis Communication**
+- Emergency broadcast system (SMS/Email/Push)
+- Crisis hotline information
+- Disaster response coordination
+- Member safety check-in
+- Emergency prayer mobilization
 
-#### Location-Based Notifications
-- Push notification when near church building
-- Remind about small group when near meeting location
-- Find nearby members (opt-in, for networking)
-
-#### Service Reminders
-- "Service starts in 30 minutes" if user is home on Sunday morning
-- Directions to church from current location
-
-### 7.7 Blockchain-Powered Giving (Future Innovation)
-
-#### Transparent Finances
-- Blockchain ledger for all donations (optional public view)
-- Track exactly how money is used
-- Project-specific giving with progress
-- Cryptocurrency giving (Bitcoin, Ethereum) for diaspora
-- Smart contracts for recurring giving
-
-### 7.8 Virtual Reality Church Tour
-
-#### 360° Experience
-- VR tour of church building
-- Virtual walk-through for visitors
-- Experience a service virtually
-- Works on VR headsets or mobile
-- Great for shut-ins or diaspora
-
-### 7.9 SMS-Based Church Access
-
-**For Low-Data Members:**
-- SMS-based sermon summaries
-- Text-to-give (M-PESA via SMS)
-- Event reminders via SMS
-- Prayer requests via SMS
-- USSD code for quick access
-- Works for members without smartphones
-
-**Example:**
-```
-Dial *123*456# to:
-1. Today's verse
-2. Service times
-3. Give via M-PESA
-4. Submit prayer request
-5. Latest sermon summary
-```
-
-### 7.10 AI-Generated Sermon Notes
-
-**Features:**
-- Automatic sermon transcription
-- AI-generated summary
-- Key points extraction
-- Scripture references linked
-- Action items highlighted
-- Downloadable PDF
-- Available immediately after service
-- Searchable archive
-
-### 7.11 Church App for Children
-
-**Separate Kids Section:**
-- Age-appropriate content
-- Interactive Bible stories
-- Memory verse games
-- Coloring pages
-- Sunday School lessons at home
-- Kids' sermon videos
-- Parental controls
-- Progress tracking for parents
-
-### 7.12 Mentor Matching System
-
-**Features:**
-- Profile questionnaire (interests, life stage, goals)
-- AI-powered matching algorithm
-- Mentor-mentee pairing
-- Meeting tracking
-- Resource library for mentors
-- Progress check-ins
-- Community for mentors
-
-### 7.13 Church Library Management
-
-**Digital & Physical:**
-- Catalog of church library books
-- Check-out system
-- Book reviews and ratings
-- Reading challenges
-- Digital books/ebooks
-- Audio books
-- Video resources
-- Curriculum library
-
-### 7.14 Event Check-In System
-
-**QR Code Technology:**
-- Generate QR codes for event tickets
-- Scan at door for attendance
-- Contact tracing (health emergencies)
-- Capacity management
-- Check-in children to nursery/Sunday School
-- Visitor tracking
-- Name tag printing
-
-### 7.15 Voice-Enabled Features
-
-**Voice Commands:**
-- "Alexa/Google, play last Sunday's sermon"
-- "Hey Siri, what time is service at AIC Zambezi?"
-- Voice search for sermons
-- Voice-to-text for prayer requests
-- Hands-free giving commands
+**2. Support Networks**
+- Grief support groups
+- Financial assistance requests
+- Counseling referrals
+- Community resource directory
+- Crisis intervention contacts
 
 ---
 
-## 8. Implementation Roadmap
+## 8. IMPLEMENTATION ROADMAP
 
 ### Phase 1: Foundation (Months 1-2)
-**Priority: Core Website & Information**
-
 **Deliverables:**
-- Domain registration and hosting setup
-- SSL certificate installation
-- Basic website structure
-- Homepage with church info
-- About Us pages
-- Service times
-- Contact information
-- Location/directions
-- Mobile-responsive design
-- Basic SEO setup
+- Domain and hosting setup
+- CMS installation and configuration
+- Basic design implementation
+- Core pages (Home, About, Contact, Services)
+- Member registration system
+- Basic event calendar
+- Sermon archive (manual upload)
 
-**Team Needed:**
-- 1 Web Developer
-- 1 Designer
-- 1 Content Writer
-
-**Budget:** KES 80,000 - 150,000
-
-### Phase 2: Content & Sermons (Month 3)
-**Priority: Sermon Management & Media**
-
+### Phase 2: Essential Features (Months 2-3)
 **Deliverables:**
-- Sermon upload system
-- Video/audio player
-- Sermon archive with search
-- Basic blog functionality
-- Photo galleries
-- YouTube integration
-- Social media integration
-
-**Team Needed:**
-- 1 Backend Developer
-- 1 Media Specialist
-
-**Budget:** KES 60,000 - 100,000
-
-### Phase 3: Engagement Tools (Months 4-5)
-**Priority: Events, Donations, Communication**
-
-**Deliverables:**
-- Event calendar system
-- Event registration
-- M-PESA donation integration
+- Member portal with login
+- Online giving integration (M-PESA)
 - Newsletter system
-- SMS notification setup
 - Prayer request system
-- Member registration
+- Department pages
+- Photo/video galleries
+- Mobile responsiveness
 
-**Team Needed:**
-- 1 Full-Stack Developer
-- 1 Payment Integration Specialist
-
-**Budget:** KES 120,000 - 200,000
-
-### Phase 4: Member Portal (Month 6)
-**Priority: Member-Specific Features**
-
+### Phase 3: Advanced Features (Months 3-4)
 **Deliverables:**
-- Member login system
-- Personal dashboards
-- Member directory
-- Small group finder
-- Giving history
-- User roles and permissions
-- Profile management
-
-**Team Needed:**
-- 1 Backend Developer
-- 1 Security Specialist (consultant)
-
-**Budget:** KES 100,000 - 180,000
-
-### Phase 5: Advanced Features (Months 7-8)
-**Priority: Live Streaming & Advanced Tools**
-
-**Deliverables:**
+- Discussion forum
+- Advanced event management with RSVP
+- Automated email/SMS system
 - Live streaming setup
-- Discussion forums
-- Advanced sermon features
-- Ministry-specific portals
-- Automated email campaigns
-- Analytics dashboard
+- Attendance tracking
+- Financial reporting
+- Admin dashboard
 
-**Team Needed:**
-- 1 Full-Stack Developer
-- 1 Streaming Technician
-
-**Budget:** KES 150,000 - 250,000
-
-### Phase 6: Mobile & Optimization (Months 9-10)
-**Priority: Mobile Experience & Performance**
-
+### Phase 4: Optimization & Launch (Month 5)
 **Deliverables:**
-- Progressive Web App
-- Mobile optimization
-- Performance optimization
+- SEO optimization
+- Performance tuning
 - Security hardening
-- Backup system
-- Staff training
-- Documentation
+- User testing and feedback
+- Training for administrators
+- Content population
+- Soft launch (members only)
 
-**Team Needed:**
-- 1 Mobile Developer
-- 1 DevOps Engineer
-- 1 Trainer
-
-**Budget:** KES 120,000 - 200,000
-
-### Phase 7: Innovation & Growth (Months 11-12)
-**Priority: Unique Features & Future-Proofing**
-
+### Phase 5: Post-Launch & Enhancement (Month 6+)
 **Deliverables:**
-- AI chatbot
+- Public launch
+- Social media integration
+- Analytics implementation
+- Progressive Web App conversion
+- AI chatbot integration
 - Advanced analytics
-- Gamification elements
-- Virtual tour
-- Selected innovative features from section 7
-- Load testing
-- Launch campaign
-
-**Team Needed:**
-- 1 Full-Stack Developer
-- 1 AI/ML Specialist (consultant)
-- 1 Marketing Specialist
-
-**Budget:** KES 100,000 - 180,000
+- Continuous improvement based on feedback
 
 ---
 
-## Total Project Budget Estimate
+## 9. SUCCESS METRICS & KPIs
 
-### Development Costs
-- **Minimum**: KES 630,000 (~$4,700 USD)
-- **Recommended**: KES 1,060,000 (~$7,900 USD)
-- **Premium**: KES 1,500,000 (~$11,200 USD)
-
-### Ongoing Monthly Costs
-- **Hosting**: KES 3,000 - 6,000
-- **Email Service**: KES 1,500 - 3,000
-- **SMS Credits**: KES 2,000 - 5,000 (usage-based)
-- **CDN**: KES 1,000 - 2,000
-- **Backups**: KES 500 - 1,000
-- **Maintenance**: KES 10,000 - 20,000
-- **Total Monthly**: KES 18,000 - 37,000 (~$135 - $275 USD)
-
-### First Year Total Investment
-- **Development**: KES 630,000 - 1,500,000
-- **Annual Hosting**: KES 216,000 - 444,000
-- **Total Year 1**: KES 846,000 - 1,944,000 (~$6,300 - $14,500 USD)
-
----
-
-## Success Metrics
-
-### Website Performance
-- 5,000+ unique visitors per month (by month 6)
+### Website Performance:
+- 5,000+ monthly visitors (Year 1 target)
 - 70%+ mobile traffic
-- Average session duration: 4+ minutes
-- Bounce rate: <50%
-- Page load time: <3 seconds
+- <3 second average load time
+- 80%+ returning visitor rate
 
-### Engagement Metrics
-- 1,000+ sermon plays per month
-- 50+ event registrations per month
-- 200+ email subscribers (by month 6)
-- 100+ active forum members
-- 80%+ member portal adoption
+### Engagement Metrics:
+- 200+ registered members online
+- 50+ weekly sermon views
+- 30+ prayer requests monthly
+- 20+ forum posts weekly
+- 500+ newsletter subscribers
 
-### Evangelism Impact
-- 10+ online salvation decisions per month
-- 20+ first-time visitor registrations per month
-- 50+ prayer requests submitted per month
-- 5+ testimonies published per month
+### Evangelism Impact:
+- 10+ online salvation decisions monthly
+- 50+ new visitor registrations quarterly
+- 20+ baptisms annually (tracked through website)
+- 5+ community partnerships facilitated
 
-### Financial Goals
-- 30% of members giving online by month 12
-- 50% increase in overall giving transparency
-- Reduce administrative costs by 25%
+### Financial:
+- 30%+ of giving through online platform
+- 90%+ donor retention rate
+- KES 500,000+ monthly online contributions (adjust to your context)
 
 ---
 
-## Maintenance & Support Plan
+## 10. BUDGET ESTIMATION
 
-### Weekly Tasks
-- Content updates (sermons, events, announcements)
-- Monitor uptime and performance
+### One-Time Costs:
+- **Domain Registration**: KES 1,500-3,000/year (.co.ke or .org)
+- **Premium Theme**: KES 10,000-30,000 (one-time or free)
+- **Premium Plugins**: KES 20,000-50,000/year (if needed)
+- **Initial Development**: KES 100,000-500,000 (depending on complexity)
+- **Content Creation**: KES 50,000-150,000 (photos, videos, copywriting)
+- **Training**: KES 20,000-50,000
+
+**Total Initial Investment**: KES 200,000-800,000
+
+### Monthly/Annual Costs:
+- **Hosting**: KES 3,000-15,000/month
+- **CDN/Backups**: KES 1,000-5,000/month
+- **SSL Certificate**: Free (Let's Encrypt) or KES 10,000/year
+- **Email Service**: KES 2,000-10,000/month
+- **SMS Credits**: KES 5,000-20,000/month
+- **Payment Gateway Fees**: 2-3% of transactions
+- **Maintenance**: KES 10,000-30,000/month
+- **Video Hosting**: KES 5,000-20,000/month (or YouTube free)
+
+**Total Monthly**: KES 25,000-100,000 (varies by usage)
+
+### Cost-Saving Strategies:
+- Start with WordPress (lower initial cost)
+- Use free/freemium plugins initially
+- YouTube for video hosting (free)
+- Community volunteer developers/designers
+- Phased implementation (spread costs)
+- Leverage church member skills
+
+---
+
+## 11. MAINTENANCE & SUPPORT PLAN
+
+### Daily Tasks:
+- Monitor site uptime
+- Check backup completion
 - Review and approve prayer requests
-- Respond to user inquiries
-- Backup verification
+- Moderate forum posts
+- Respond to contact form submissions
 
-### Monthly Tasks
-- Security updates
-- Plugin/theme updates
-- Content calendar planning
-- Analytics review
-- Newsletter campaign
-- Database optimization
+### Weekly Tasks:
+- Upload new sermon (video/audio/notes)
+- Update event calendar
+- Send newsletter
+- Review analytics
+- Social media posting
+- Security scans
 
-### Quarterly Tasks
-- Full security audit
+### Monthly Tasks:
+- Software updates (CMS, plugins, themes)
+- Review user feedback
+- Content audit and refresh
 - Performance optimization
-- User feedback survey
-- Feature prioritization
-- Training refresher for staff
+- Financial reconciliation
+- Backup testing
+- SEO review
 
-### Annual Tasks
-- Comprehensive backup test
+### Quarterly Tasks:
+- Comprehensive security audit
+- Major content updates
+- Feature additions based on feedback
+- User training refreshers
+- Analytics deep dive
+- Strategic planning review
+
+### Annual Tasks:
+- Hosting renewal
+- Domain renewal
+- License renewals
+- Full site audit
+- Design refresh assessment
+- Technology stack review
 - Disaster recovery drill
-- Contract renewals (hosting, services)
-- Major version updates
-- Strategic planning session
 
 ---
 
-## Conclusion
+## 12. TRAINING & DOCUMENTATION
 
-This comprehensive blueprint provides everything needed to build a world-class website for AIC Zambezi that will:
+### User Manuals:
+1. **Administrator Guide**
+   - Site management
+   - User account management
+   - Content publishing
+   - Event creation
+   - Financial reports
 
-1. **Serve the congregation** with easy access to information, sermons, and resources
-2. **Facilitate community** through small groups, events, and engagement tools
-3. **Enable evangelism** with online outreach and shareable content
-4. **Streamline administration** through digital tools and automation
-5. **Grow the church** through effective follow-up and discipleship
+2. **Content Manager Guide**
+   - Sermon upload process
+   - News/announcement posting
+   - Photo gallery management
+   - Newsletter creation
 
-The modular approach allows for phased implementation based on budget and priorities, while the innovative features ensure the website remains relevant and useful for years to come.
+3. **Member Guide**
+   - Registration process
+   - Profile management
+   - Online giving
+   - Event registration
+   - Forum participation
+
+4. **Department Leader Guide**
+   - Department page editing
+   - Event creation
+   - Member communication
+   - Attendance tracking
+
+### Video Tutorials:
+- How to register as a member
+- How to give online
+- How to submit a prayer request
+- How to upload a sermon (admin)
+- How to create an event (admin)
+
+### Support Resources:
+- FAQ section
+- Troubleshooting guides
+- Contact support form
+- Live chat (if available)
+- Help videos embedded in admin panel
+
+---
+
+## 13. LEGAL & COMPLIANCE
+
+### Required Policies:
+1. **Privacy Policy**
+   - Data collection practices
+   - Data usage and storage
+   - Third-party sharing
+   - User rights (access, deletion)
+   - GDPR/Kenya Data Protection Act compliance
+
+2. **Terms of Service**
+   - Acceptable use policy
+   - User responsibilities
+   - Intellectual property rights
+   - Limitation of liability
+   - Dispute resolution
+
+3. **Cookie Policy**
+   - Types of cookies used
+   - Purpose of tracking
+   - Opt-out instructions
+
+4. **Donation Policy**
+   - Tax-deductibility information
+   - Refund policy
+   - Fund allocation transparency
+   - Receipt provision
+
+### Content Guidelines:
+- Member conduct in forums
+- Comment moderation policy
+- Copyright compliance
+- Image usage rights
+- Video/audio licensing
+
+### Accessibility Compliance:
+- WCAG 2.1 AA standards
+- Alternative text for images
+- Keyboard navigation
+- Screen reader compatibility
+
+---
+
+## 14. FUTURE EXPANSION POSSIBILITIES
+
+### Year 2-3 Enhancements:
+- **Mobile Apps** (iOS/Android native)
+- **Church Management System Integration** (full ERP)
+- **Advanced Member Portal** (family accounts, children's portal)
+- **E-Learning Platform** (Bible school, discipleship courses)
+- **Appointment Booking System** (pastoral counseling)
+- **Facilities Management** (room booking, asset tracking)
+- **Volunteer Management System**
+- **Multi-Campus Support** (if church plants)
+- **API for Third-Party Integrations**
+- **Advanced Automation** (AI-driven personalization)
+
+### Emerging Technologies:
+- Virtual Reality church tours
+- Augmented Reality Bible studies
+- Blockchain for donation transparency
+- Voice assistants integration (Alexa, Google)
+- Advanced analytics (predictive modeling)
+
+---
+
+## CONCLUSION
+
+This blueprint provides a comprehensive foundation for building a world-class church website for AIC Zambezi. The key to success will be:
+
+1. **Start Simple**: Launch with core features, then iterate
+2. **User-Centric Design**: Always prioritize member and visitor experience
+3. **Mobile-First**: Majority of users will access via phones
+4. **Content is King**: Regular, quality content keeps people engaged
+5. **Security First**: Protect member data and financial transactions
+6. **Measure Everything**: Use analytics to guide decisions
+7. **Stay Flexible**: Technology changes, be ready to adapt
+8. **Community Driven**: Involve members in feedback and improvement
+
+The website should be seen not as a project, but as a living platform that grows with the church. It's a tool for ministry, evangelism, and community building that, when done well, can significantly amplify the church's impact in Zambezi, Kiambu, and beyond.
 
 **Next Steps:**
-1. Review and prioritize features based on immediate needs
-2. Secure budget approval
-3. Select development team or agency
-4. Begin Phase 1 implementation
-5. Train church staff on website management
-6. Launch and promote to congregation
-7. Gather feedback and iterate
+1. Review this blueprint with church leadership
+2. Prioritize features based on budget and immediate needs
+3. Select development approach (WordPress vs. custom)
+4. Assemble team (developer, content creator, admin)
+5. Create detailed project timeline
+6. Begin Phase 1 implementation
 
-**For Questions or Clarification:**
-Contact: [Your Church Tech Team / Development Team Contact]
+May this digital platform be a tool that brings glory to God and draws many to faith in Christ!
 
 ---
 
-*This blueprint is designed to be a living document. It is updated as technology evolves, congregation needs change, and new opportunities arise.*
-
-**Document Prepared By:** Claude (Anthropic AI)  
-**Date:** February 11, 2026  
-**Version:** 1.0
+**Document Version:** 1.0  
+**Created:** February 2026  
+**For:** AIC Zambezi Outstation, Kiambu, Kenya
