@@ -2053,7 +2053,7 @@ Contact: [Your Church Tech Team / Development Team Contact]
 
 ---
 
-*This blueprint is designed to be a living document. Update it as technology evolves, congregation needs change, and new opportunities arise.*
+*This blueprint is designed to be a living document. It is updated as technology evolves, congregation needs change, and new opportunities arise.*
 
 **Document Prepared By:** Claude (Anthropic AI)  
 **Date:** February 11, 2026  
